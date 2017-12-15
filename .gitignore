@@ -1,0 +1,13 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+.sublime-gulp.cache
+.DS_Store
+icon?
+_src/.DS_Store
+_src/assets/.DS_Store
+_src/assets/js/.DS_Store
+_src/page-content/.DS_Store
+dist/.DS_Store
+node_modules/
+node_modules/*
+node_modules/.bin/node-sass.cmd
+node_modules/node-sass/vendor/win32-x64-47/

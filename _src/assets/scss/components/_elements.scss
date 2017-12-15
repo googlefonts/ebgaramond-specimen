@@ -1,0 +1,135 @@
+//* Those elements that can appear in any page: links, buttons, titles, lists,… *//
+
+/* Textual styles
+========================================================================== */
+.text-content{
+	* + *{
+		margin-top: 2*$gap;
+	}
+}
+
+/* Titles
+========================================================================== */
+
+.title{
+
+	&--villain{
+		font-size: 10vw;
+		line-height: .9;
+	}
+
+	&--minion{
+		font-style: italic;
+		font-weight: 300;
+		margin-top: 0;
+		font-size: 2.5vw;
+
+
+	}
+}
+
+/* Links
+========================================================================== */
+
+.link{
+	text-decoration: none;
+
+	&--scroll{
+		position: absolute;
+		bottom: 5vh;
+		color: $c-white;
+		opacity: .5;
+	}
+}
+
+
+/* BUttons CTA
+========================================================================== */
+
+
+.cta{
+	background-color: $c-white;
+	color: $c-black;
+	border-radius: 4rem;
+	text-decoration: none;
+	padding: $gap 4*$gap;
+	font-size: $f-bit;
+	align-self: start;
+	font-weight: 700;
+	line-height: 1;
+	margin-top: 2*$gap;
+
+	&--bossy{
+		text-transform: uppercase;
+	}
+
+}
+
+/* Custom selects
+========================================================================== */
+
+.shy-select{
+	position: relative;
+	overflow: hidden;
+}
+
+.select__value{
+	display: block;
+	white-space: nowrap;
+}
+
+.select__selector{
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+/* Sliders
+========================================================================== */
+
+
+
+.slider{
+	&__wrapper{
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	&__tooltip{
+		position: absolute;
+		bottom: 100%;
+		margin-left: 1.5rem;
+		transform: translateX(-50%); // size of the icon before the slider
+	}
+}
+
+
+/* Animated elements
+========================================================================== */
+
+.animated{
+	transform: rotate(-90deg);
+	display: inline-block;
+	position: absolute;
+	line-height: .9;
+	color: #1C3551;
+		opacity: .3;
+
+	&--intro{
+		top: 50%;
+		right: 30%;
+		font-size: 6vh;
+	}
+
+	&--bio{
+		top: 20%;
+		left: 38%;
+		font-weight: bold;
+		font-size: 5vh;
+		border-left: .5rem solid;
+		padding-left: $gap;
+	}
+}

@@ -1,0 +1,58 @@
+//* Those things typical but a little different. (Colors, Font family, sizes, layout sizes…) *//
+
+// Colors
+
+$c-white: #ffffff;
+$c-black: #0C1232;
+$c-text: $c-black;
+
+// Icons colors
+
+// Fonts
+$f-fallback: serif;
+$f-text: 'EB Garamond', $f-fallback;
+$f-base: 18;
+
+$f-light: 300;
+$f-regular: 400;
+$f-medium: 500;
+$f-bold: 700;
+
+$f-yotta: 83 / $f-base + rem;
+$f-zetta: 74 / $f-base + rem;
+$f-exa: 66 / $f-base + rem;
+$f-peta: 59  / $f-base + rem;
+$f-tera: 36 / $f-base + rem;
+$f-giga: 27 / $f-base + rem;
+$f-megish: 24 / $f-base + rem;
+$f-mega: 21 / $f-base + rem;
+$f-kilo: 18 / $f-base + rem;
+$f-byte: 16 /$f-base + rem;
+$f-bit: 14 /$f-base + rem;
+$f-micro: 12 /$f-base + rem;
+$f-nano: 11 /$f-base + rem;
+$f-pico: 10 /$f-base + rem;
+
+// Layout
+$site-width: 1120;
+
+$centering: calc((100% - 80%)/ 2);
+
+$gap: .5rem; // half of the $f-base actyally
+$padding: 3*$gap;
+
+
+// BreakPoints: Use this sizes with @include mq($bp_tabletish) - check helpers if you want more info
+$bp-mobilish: 320;
+$bp_middle-down-: 449;
+$bp_middle-down: 450;
+$bp_middle: 600;
+$bp_tabletish: 768;
+$bp_desktopish-: 1023;
+$bp_desktopish: 1024;
+$bp_hdish: 1280;
+$bp_4kdish: 1440;
+
+
+// Animations
+$anm: all .4s ease-out;
