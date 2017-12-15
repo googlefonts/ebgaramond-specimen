@@ -1,0 +1,47 @@
+//* DRY functions and mixins. Whatever you write too many times or just it's hard to remember *//
+
+
+//* Hide elements in screen but let them accesibles
+//========================================================================== *//
+
+@mixin hide-but-accesible {
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+//* Creating mobile firts mq
+//========================================================================== *//
+@mixin mq($pixels, $width: min-width) {
+	@media screen and ( $width: $pixels/16+rem ){
+		//@media screen and ($width: #{$pixels}px){
+		@content;
+	}
+}
+
+
+//* Styling placeholders in every browser
+//========================================================================== *//
+@mixin placeholder{
+		&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  @content
+		}
+		&::-moz-placeholder { /* Firefox 19+ */
+		  @content
+		}
+		&::placeholder {
+		  @content
+		}
+		&:-ms-input-placeholder { /* IE 10+ */
+		  @content
+		}
+		&:-moz-placeholder { /* Firefox 18- */
+		  @content
+		}
+}
+
