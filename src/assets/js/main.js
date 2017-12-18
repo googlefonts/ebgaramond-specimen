@@ -84,6 +84,117 @@ $(document).ready(function(){
 	});
 	// End Simulating dropdown effect on Opentype element
 
+	// Pin sidebar menú
+
+	// init ScrollMagic Controller
+	var controller = new ScrollMagic.Controller();
+
+	// Scene Handler
+	var scene1 = new ScrollMagic.Scene({
+		triggerElement: '.nav--main',
+		triggerHook: .5,
+		offset: '100%'
+	})
+	.setPin('#nav')
+	.setClassToggle('#nav', 'visible')
+	.addIndicators({
+		name: 'navigation'
+	})
+	.addTo(controller);
+	// End Pin sidebar menú
+
+	// Show image at intro section
+
+	var img = new ScrollMagic.Scene({
+		triggerElement: '.section--intro',
+		triggerHook: .5,
+		reverse: false
+	})
+	.setClassToggle('.intro__img', 'show-img')
+	.addTo(controller);
+	// Show image at intro section
+
+	// Animate vertical text
+	var text = new ScrollMagic.Scene({
+		triggerElement: '.section--intro',
+		triggerHook: .9,
+		duration: '90%'
+	})
+	.setClassToggle('.animated--intro', 'im-moving')
+	.addTo(controller);
+	// End Animate vertical text
+
+
 // End Typetester scripts
+
+	$(function(){
+				var $window = $(window);		//Window object
+
+				var scrollTime = 1.2;			//Scroll time
+				var scrollDistance = 270;		//Distance. Use smaller value for shorter scroll and greater value for longer scroll
+
+				$window.on("mousewheel DOMMouseScroll", function(event){
+
+					event.preventDefault();
+
+					var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
+					var scrollTop = $window.scrollTop();
+					var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+
+					TweenMax.to($window, scrollTime, {
+						scrollTo : { y: finalScroll, autoKill:true },
+							ease: Power1.easeOut,	//For more easing functions see https://api.greensock.com/js/com/greensock/easing/package-detail.html
+							// autoKill: true,
+							// overwrite: 5
+						});
+						$intro = $('.animated--intro');
+						if (delta > 0){
+							if ($intro.hasClass('im-moving')){
+								TweenLite.to($intro, 1, {
+									ease: Power4.easeOut,
+									y:  "-=" + 6 + 'px',
+									rotate: -90
+								});
+							}else{
+								TweenLite.to($intro, 1, {
+									ease: Power4.easeOut,
+									y:  0,
+									rotate: -90
+								});
+							}
+
+						}else{
+							if ($intro.hasClass('im-moving')){
+								TweenLite.to($intro, 1, {
+									ease: Power2.easeOut,
+									y:  "+=" + 6 + 'px',
+									rotate: -90
+								});
+							}else{
+								TweenLite.to($intro, 1, {
+									ease: Power2.easeOut,
+									y:  0,
+									rotate: -90
+								});
+							}
+						}
+						$bio = $('.animated--bio');
+						if (delta > 0){
+							TweenLite.to($bio, 1, {
+								ease: Power2.easeOut,
+								y:  "+=" + 7 + 'px',
+								rotate: -90
+							});
+
+						}else{
+							TweenLite.to($bio, 1, {
+								ease: Power2.easeOut,
+								y:  "-=" + 7 + 'px',
+								rotate: -90
+							});
+						}
+					});
+			});
+
 
 });

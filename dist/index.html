@@ -98,14 +98,13 @@
 	<body >
 
 		<header>
-			<nav class="nav nav--main">
+			<nav id="nav" class="nav nav--main">
 				<ul>
 					<li class="nav__item"><a href="" title="">Intro</a></li>
 					<li class="nav__item"><a href="" title="">About Garamond</a></li>
 					<li class="nav__item"><a href="" title="">Try me</a></li>
 				</ul>
 			</nav>
-
 		</header>
 
 		<div class="section over-the-folder">
@@ -117,6 +116,18 @@
 		<div class="section section--intro text-content">
 			<p class="intro__highlight">Garamond’s fonts represent a milestone in the history of type design, a touchstone to which font designers have been returning ever since. EB Garamond is an open source project to create a revival of Claude Garamond’s famous humanist typeface from the mid-16th century. Its design reproduces the original by Claude Garamont.</p>
 			<p>The source for the letterforms is a scan of a specimen known as the “Berner specimen”, which, composed in 1592 by Conrad Berner, son-in-law of Christian Egenolff and his successor at the Egenolff print office, shows Garamont’s roman and Granjon’s italic fonts at different sizes. Hence the name of this project: Egenolff-Berner Garamond.</p>
+			<div class="animated--img intro__img">
+				<div class="mask-img">
+					<picture>
+						<source sizes="(max-width: 700px) 100vw, 700px" type="image/webp" srcset="
+							/img/specimen-garamond-300.webp 320w,
+							img/specimen-garamond-600.webp 739w" />
+						<img sizes="(max-width: 700px) 100vw, 700px" class="Garamond typeface specimen" srcset="
+							img/specimen-garamond-300.jpg 320w,
+							img/specimen-garamond-600 739w" src="specimen-garamond-600.jpg" alt="Garamond typeface specimeno">
+					</picture>
+				</div>
+			</div>
 			<div class="animated animated--intro">Egenolff-<br>Berner</div>
 		</div>
 		<div class="section section--typographer text-content">
@@ -227,62 +238,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+
 		<script>
 
 
-			$(function(){
-				var $window = $(window);		//Window object
-
-				var scrollTime = 1.2;			//Scroll time
-				var scrollDistance = 270;		//Distance. Use smaller value for shorter scroll and greater value for longer scroll
-
-				$window.on("mousewheel DOMMouseScroll", function(event){
-
-					event.preventDefault();
-
-					var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
-					var scrollTop = $window.scrollTop();
-					var finalScroll = scrollTop - parseInt(delta*scrollDistance);
-					console.log(delta);
-
-					TweenMax.to($window, scrollTime, {
-						scrollTo : { y: finalScroll, autoKill:true },
-							ease: Power1.easeOut,	//For more easing functions see https://api.greensock.com/js/com/greensock/easing/package-detail.html
-							// autoKill: true,
-							// overwrite: 5
-						});
-						$intro = $('.animated--intro');
-						if (delta > 0){
-							TweenLite.to($intro, 1, {
-								ease: Power2.easeOut,
-								y:  "+=" + 12 + 'px',
-								rotate: -90
-							});
-
-						}else{
-							TweenLite.to($intro, 1, {
-								ease: Power2.easeOut,
-								y:  "-=" + 12 + 'px',
-								rotate: -90
-							});
-						}
-						$bio = $('.animated--bio');
-						if (delta > 0){
-							TweenLite.to($bio, 1, {
-								ease: Power2.easeOut,
-								y:  "+=" + 7 + 'px',
-								rotate: -90
-							});
-
-						}else{
-							TweenLite.to($bio, 1, {
-								ease: Power2.easeOut,
-								y:  "-=" + 7 + 'px',
-								rotate: -90
-							});
-						}
-					});
-			});
 
 			window.onload = function() {
 				initialSetup();
