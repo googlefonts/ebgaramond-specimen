@@ -19,18 +19,18 @@ var gulp = require('gulp'),
 
 
 var paths = {
-	sass: '_src/assets/scss/**/*.scss',
-	js: '_src/assets/js/**/*.js',
-	img: '_src/assets/img/**/*',
-	fonts: '_src/assets/fonts/**/*',
+	sass: 'src/assets/scss/**/*.scss',
+	js: 'src/assets/js/**/*.js',
+	img: 'src/assets/img/**/*',
+	fonts: 'src/assets/fonts/**/*',
 	content: [
-		'_src/page-content/**/*',
-		'_src/page-content/**/.*',
-		"!_src/page-content/.DS_Store",
-		"!_src/page-content/partials",
-		"!_src/page-content/partials/*",
-		"!_src/page-content/base",
-		"!_src/page-content/base/*"
+		'src/page-content/**/*',
+		'src/page-content/**/.*',
+		"!src/page-content/.DS_Store",
+		"!src/page-content/partials",
+		"!src/page-content/partials/*",
+		"!src/page-content/base",
+		"!src/page-content/base/*"
 	],
 	distCss: 'dist/css',
 	distJs: 'dist/js',
@@ -56,11 +56,11 @@ var watch = {
 	],
 	content: [
 		// paths.content
-		'_src/page-content/**/*',
-		'_src/page-content/**/.*',
-		"!_src/page-content/.DS_Store",
-		"!_src/page-content/base/.DS_Store",
-		"!_src/page-content/partials/.DS_Store",
+		'src/page-content/**/*',
+		'src/page-content/**/.*',
+		"!src/page-content/.DS_Store",
+		"!src/page-content/base/.DS_Store",
+		"!src/page-content/partials/.DS_Store",
 	]
 };
 
