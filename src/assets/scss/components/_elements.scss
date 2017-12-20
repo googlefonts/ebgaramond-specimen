@@ -3,7 +3,7 @@
 /* Textual styles
 ========================================================================== */
 .text-content{
-	* + *{
+	>*:not(.title--shy) + *{
 		margin-top: 2*$gap;
 	}
 }
@@ -23,8 +23,14 @@
 		font-weight: 300;
 		margin-top: 0;
 		font-size: 2.5vw;
+	}
 
+	&--shy{
+		text-transform: uppercase;
 
+		+ *{
+			margin-top: $gap;
+		}
 	}
 }
 
@@ -89,8 +95,6 @@
 /* Sliders
 ========================================================================== */
 
-
-
 .slider{
 	&__wrapper{
 		position: relative;
@@ -111,12 +115,15 @@
 ========================================================================== */
 
 .animated{
-	transform: rotate(-90deg);
 	display: inline-block;
 	position: absolute;
 	line-height: .9;
 	color: #1C3551;
-		opacity: .3;
+
+	&--scroll{
+		// transform: rotate(-90deg);
+		// opacity: .3;
+	}
 
 	&--intro{
 		top: 50%;
@@ -131,5 +138,54 @@
 		font-size: 5vh;
 		border-left: .5rem solid;
 		padding-left: $gap;
+	}
+}
+
+
+/* Animated images
+========================================================================== */
+
+.img--bg{
+	&::after{
+		content: '';
+		position: absolute;
+		height: 100%;
+		background-color: #ff0;
+		transform: translate(10%, -5%);
+		top: 0;
+		z-index: -1;
+		transform-origin: 0 0;
+		transition: all .8s ease-out;
+		width: 0;
+	}
+
+	&.show-img{
+		&::after{
+			width: 100%;
+		}
+	}
+}
+
+
+.mask-img{
+	width: 0;
+	transform-origin: left center;
+	transition: all .6s .8s ease-out;
+	overflow: hidden;
+
+	img{
+		width: 35vh;
+		transform: scale(1.1);
+		transition: all 1.2s .3s ease-out;
+		transform-origin: center center;
+	}
+
+	.show-img &{
+		transition: all .4s .5s ease-out;
+		width: 100%;
+
+		img{
+			transform: scale(1);
+		}
 	}
 }

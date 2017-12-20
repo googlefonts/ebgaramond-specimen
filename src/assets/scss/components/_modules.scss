@@ -43,9 +43,9 @@
 			content: '';
 			position: absolute;
 			display: inline-block;
-			width: 4*$gap;
+			width: 3*$gap;
 			height: 2px;
-			background-color: #ff0;
+			background-color: #000;
 			top: 50%;
 			transform: translateY(-50%);
 		}
@@ -54,8 +54,9 @@
 			opacity: 0;
 			display: block;
 			transform: translateX(-100px);
+			color: #000;
 
-			padding-left: 5*$gap;
+			padding-left: 4*$gap;
 			transition: opacity .5s ease-out, transform .5s .3s ease-out;
 			text-decoration: none;
 		}
@@ -106,58 +107,11 @@
 	// opacity: 0;
 	width: 35%;
 
-	&::after{
-		content: '';
-		position: absolute;
-		height: 100%;
-		background-color: #ff0;
-		transform: translate(10%, -5%);
-		top: 0;
-		z-index: -1;
-		transform-origin: 0 0;
-		transition: all .8s ease-out;
-		width: 0;
-	}
-
-	img{
-		width: 35vh;
-		transform: scale(1.1);
-		transition: all 1.2s .3s ease-out;
-		transform-origin: center center;
-
-	}
-
-	.mask-img{
-		width: 0;
-		transform-origin: left center;
-		transition: all .6s .8s ease-out;
-		overflow: hidden;
-	}
 
 	&.show-img{
 
-		&::after{
-			width: 100%;
-		}
-
-		& .mask-img{
-			transition: all .4s .5s ease-out;
-			width: 100%;
-		}
-
-		img{
-			transform: scale(1);
-		}
 	}
 }
-
-// .mask-img{
-// 	position: absolute;
-// 	width: 100%;
-// 	height: 100%;
-
-// }
-
 
 // Bio about Claude Garamond
 
@@ -173,6 +127,26 @@
 				width: 50%;
 			}
 		}
+	}
+}
+
+.bio__img{
+	width: 35vw;
+	position: relative;
+	z-index: -1;
+}
+
+.glyph{
+	&--right{
+		position: absolute;
+		right: 15%;
+		transform: translateY(-100%);
+		opacity: .3;
+		z-index: -1;
+	}
+	&--left{
+		position: absolute;
+		left: 5%;
 	}
 }
 
@@ -275,17 +249,18 @@
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-column-gap: 4*$gap;
+	grid-row-gap: 4*$gap;
 
-	@include mq($bp_middle-down){
+	@include mq($bp_middle){
 		grid-template-columns: repeat(2, 1fr);
-
 	}
-	@include mq($bp_tabletish){
-		grid-template-columns: repeat(3, 1fr);
 
+	@include mq($bp_desktopish){
+		grid-template-columns: repeat(2, 1fr) .7fr;
 	}
 
 	a{
 		color: $c-white;
+		display: inline-block;
 	}
 }
