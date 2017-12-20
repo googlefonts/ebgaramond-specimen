@@ -32,12 +32,12 @@ var paths = {
 		"!src/page-content/base",
 		"!src/page-content/base/*"
 	],
-	distCss: 'dist/css',
-	distJs: 'dist/js',
-	distImg: 'dist/img',
-	distContent: 'dist/',
-	distFont: 'dist/fonts',
-	dist: 'dist'
+	distCss: 'docs/css',
+	distJs: 'docs/js',
+	distImg: 'docs/img',
+	distContent: 'docs/',
+	distFont: 'docs/fonts',
+	dist: 'docs'
 };
 
 
