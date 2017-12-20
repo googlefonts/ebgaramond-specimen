@@ -84,117 +84,138 @@ $(document).ready(function(){
 	});
 	// End Simulating dropdown effect on Opentype element
 
-	// Pin sidebar menú
+	// Scrollmagic movements
 
 	// init ScrollMagic Controller
 	var controller = new ScrollMagic.Controller();
 
-	// Scene Handler
-	var scene1 = new ScrollMagic.Scene({
-		triggerElement: '.nav--main',
-		triggerHook: .5,
-		offset: '100%'
-	})
-	.setPin('#nav')
-	.setClassToggle('#nav', 'visible')
-	.addIndicators({
-		name: 'navigation'
-	})
-	.addTo(controller);
-	// End Pin sidebar menú
-
-	// Show image at intro section
-
-	var img = new ScrollMagic.Scene({
+	// Show/Hide navigation
+	var nav = new ScrollMagic.Scene({
 		triggerElement: '.section--intro',
-		triggerHook: .5,
-		reverse: false
+		triggerHook: .5
 	})
-	.setClassToggle('.intro__img', 'show-img')
+	.setPin('.nav--main')
+	.setClassToggle('.nav--main', 'visible')
 	.addTo(controller);
-	// Show image at intro section
+	// End Show/Hide navigation
 
-	// Animate vertical text
-	var text = new ScrollMagic.Scene({
-		triggerElement: '.section--intro',
-		triggerHook: .9,
-		duration: '90%'
-	})
-	.setClassToggle('.animated--intro', 'im-moving')
-	.addTo(controller);
-	// End Animate vertical text
+	// Show images on scroll
+	$('.animated--img').each(function(){
+		var imgs = new ScrollMagic.Scene({
+			triggerElement: this,
+			triggerHook: .75,
+			reverse: false
+		})
+		.setClassToggle(this, 'show-img')
+		.addTo(controller);
+	});
+	// End Show images on scroll
 
+	// Move elements on scroll
+	$('.animated--scroll').each(function(){
+		var itemMoving = new ScrollMagic.Scene({
+			triggerElement: this,
+			triggerHook: 1,
+			duration: '150%'
+		})
+		.setClassToggle(this, 'scrolling-item')
+		.addTo(controller);
+	});
+	// End Move elements on scroll
+
+	// Detecting sections text come into view
+	$('.section p').each(function(){
+		var introText = TweenLite.fromTo($(this), .75, {
+			y: 30,
+			autoAlpha: 0,
+			ease: Power3.easeInOut
+		}, {
+			y: 0,
+			autoAlpha: 1,
+			ease: Power3.easeInOut
+		});
+		var textShowing = new ScrollMagic.Scene({
+			triggerElement: this,
+			triggerHook: .95,
+		})
+		.setTween(introText)
+		.addTo(controller);
+	});
+	// Detecting sections text come into view
 
 // End Typetester scripts
 
 	$(function(){
-				var $window = $(window);		//Window object
+		var $window = $(window);		//Window object
+		var scrollTime = .2;			//Scroll time
+		var scrollDistance = 70;		//Distance. Use smaller value for shorter scroll and greater value for longer scroll
+		$intro = $('.animated--intro');
 
-				var scrollTime = 1.2;			//Scroll time
-				var scrollDistance = 270;		//Distance. Use smaller value for shorter scroll and greater value for longer scroll
+		TweenLite.set($('.glyph--right'), {
+			y: '-200%'
+		});
+		TweenLite.set($('.animated--intro, .animated--bio'), {
+			rotation: -90,
+			autoAlpha: .3
+		});
 
-				$window.on("mousewheel DOMMouseScroll", function(event){
+		$window.on("mousewheel DOMMouseScroll", function(event){
 
-					event.preventDefault();
+			event.preventDefault();
 
-					var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
-					var scrollTop = $window.scrollTop();
-					var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+			var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
+			var scrollTop = $window.scrollTop();
+			var finalScroll = scrollTop - parseInt(delta*scrollDistance);
 
-					TweenMax.to($window, scrollTime, {
-						scrollTo : { y: finalScroll, autoKill:true },
-							ease: Power1.easeOut,	//For more easing functions see https://api.greensock.com/js/com/greensock/easing/package-detail.html
-							// autoKill: true,
-							// overwrite: 5
-						});
-						$intro = $('.animated--intro');
-						if (delta > 0){
-							if ($intro.hasClass('im-moving')){
-								TweenLite.to($intro, 1, {
-									ease: Power4.easeOut,
-									y:  "-=" + 6 + 'px',
-									rotate: -90
-								});
-							}else{
-								TweenLite.to($intro, 1, {
-									ease: Power4.easeOut,
-									y:  0,
-									rotate: -90
-								});
-							}
-
-						}else{
-							if ($intro.hasClass('im-moving')){
-								TweenLite.to($intro, 1, {
-									ease: Power2.easeOut,
-									y:  "+=" + 6 + 'px',
-									rotate: -90
-								});
-							}else{
-								TweenLite.to($intro, 1, {
-									ease: Power2.easeOut,
-									y:  0,
-									rotate: -90
-								});
-							}
-						}
-						$bio = $('.animated--bio');
-						if (delta > 0){
-							TweenLite.to($bio, 1, {
-								ease: Power2.easeOut,
-								y:  "+=" + 7 + 'px',
-								rotate: -90
-							});
-
-						}else{
-							TweenLite.to($bio, 1, {
-								ease: Power2.easeOut,
-								y:  "-=" + 7 + 'px',
-								rotate: -90
-							});
-						}
-					});
+			TweenMax.to($window, scrollTime, {
+				scrollTo : { y: finalScroll, autoKill:true },
+					ease: Power1.easeOut,
 			});
 
+			// Check if im doing scroll up or down
+			//Scrollup
+			if (delta > 0){
 
+				//Move elements on scroll
+				$('.animated--scroll').each(function(){
+					var $speed = $(this).data('speed');
+					// Check if the element is animatable and should go down
+					if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'down'){
+						TweenLite.to(this, 1, {
+							ease: Power4.easeOut,
+							y:  "-=" + $speed + 'px',
+							rotate: -90
+						});
+					// Check if the element is animatable and should go up
+					}else if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'up'){
+						TweenLite.to(this, 1, {
+							ease: Power4.easeOut,
+							y:  "+=" + $speed + 'px',
+							rotate: -90
+						});
+					}
+				});
+			//Scrolldown
+			}else{
+				$('.animated--scroll').each(function(){
+					var $speed = $(this).data('speed');
+					// Check if the element is animatable and should go down
+					if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'down'){
+						TweenLite.to(this, 1, {
+							ease: Power4.easeOut,
+							y:  "+=" + $speed + 'px',
+							rotate: -90
+						});
+					// Check if the element is animatable and should go up
+					}else if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'up'){
+						TweenLite.to(this, 1, {
+							ease: Power4.easeOut,
+							y:  "-=" + $speed + 'px',
+							rotate: -90
+						});
+					}
+				});
+			}
+		});
+	});
 });
