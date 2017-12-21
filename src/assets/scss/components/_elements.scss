@@ -32,6 +32,43 @@
 			margin-top: $gap;
 		}
 	}
+
+	&--intro{
+		line-height: 2.1;
+		overflow: hidden;
+		transform-origin: left center;
+		transition: width 1.2s ease-out;
+		width: 0;
+
+		strong{
+			display: block;
+			width: 40vw;
+		}
+
+		span{
+			background-color: #000;
+			display: inline;
+			padding: .5*$gap 1.5*$gap .75*$gap;
+			font-size: $f-mega;
+			font-weight: 500;
+			color: transparent;
+			width: 50vw;
+			transition: color 1s 1.2s ease-out;
+
+			/* Needs prefixing */
+			box-decoration-break: clone;
+			-webkit-box-decoration-break: clone;
+		}
+
+		&.run-animation{
+			width: 50%;
+
+			span{
+				color: #fff;
+			}
+
+		}
+	}
 }
 
 /* Links
@@ -187,5 +224,52 @@
 		img{
 			transform: scale(1);
 		}
+	}
+}
+
+
+/* FLorish animation
+========================================================================== */
+
+.florish{
+	width: 10rem;
+	stroke-width: 2px;
+}
+
+[id="florish-stroke"] {
+	stroke-dasharray: 720;
+	stroke-dashoffset: 720;
+	animation: dash 3s ease-in-out forwards;
+	animation-play-state: paused;
+}
+
+[id="florish-counter"]{
+	stroke-dasharray: 68;
+	stroke-dashoffset: 68;
+	animation: counter 2.5s .5s ease-in-out forwards;
+	animation-play-state: paused;
+}
+
+[id="florish-stroke"], [id="florish-counter"]{
+	.run-animation &{
+		animation-play-state: running;
+	}
+}
+
+
+@keyframes dash {
+	from {
+		stroke-dashoffset: 720;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes counter {
+	from {
+		stroke-dashoffset: 68;
+	}
+	to {
+		stroke-dashoffset: 0;
 	}
 }

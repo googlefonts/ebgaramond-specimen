@@ -117,6 +117,8 @@
 
 .section{
 	&--typographer{
+		padding-bottom: 0;
+
 		@include mq($bp_middle){
 			p:not(:first-child){
 				width: 66.6%;
@@ -147,6 +149,20 @@
 	&--left{
 		position: absolute;
 		left: 5%;
+	}
+}
+
+// Scripts section
+.section--scripts{
+	padding-top: 0;
+
+	.florish{
+		margin-left: 50%;
+		transform: translateY(50%)
+	}
+	.title--intro{
+		margin-left: 50%;
+		transform: translate(20%, 0);
 	}
 }
 

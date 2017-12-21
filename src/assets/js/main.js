@@ -143,6 +143,17 @@ $(document).ready(function(){
 	});
 	// Detecting sections text come into view
 
+	// If florish is in view start animation
+	$('.show-in').each(function(){
+		var florish = new ScrollMagic.Scene({
+			triggerElement: this,
+			triggerHook: .5,
+		})
+		.setClassToggle(this, 'run-animation')
+		.addTo(controller);
+	});
+	// End If florish is in view start animation
+
 // End Typetester scripts
 
 	$(function(){

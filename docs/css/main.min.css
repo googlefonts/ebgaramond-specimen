@@ -189,6 +189,44 @@ textarea {
   margin-top: 0.5rem;
 }
 
+.title--intro {
+  line-height: 2.1;
+  overflow: hidden;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transition: width 1.2s ease-out;
+  transition: width 1.2s ease-out;
+  width: 0;
+}
+
+.title--intro strong {
+  display: block;
+  width: 40vw;
+}
+
+.title--intro span {
+  background-color: #000;
+  display: inline;
+  padding: 0.25rem 0.75rem 0.375rem;
+  font-size: 1.16667rem;
+  font-weight: 500;
+  color: transparent;
+  width: 50vw;
+  -webkit-transition: color 1s 1.2s ease-out;
+  transition: color 1s 1.2s ease-out;
+  /* Needs prefixing */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.title--intro.run-animation {
+  width: 50%;
+}
+
+.title--intro.run-animation span {
+  color: #fff;
+}
+
 /* Links
 ========================================================================== */
 
@@ -343,6 +381,78 @@ textarea {
   transform: scale(1);
 }
 
+/* FLorish animation
+========================================================================== */
+
+.florish {
+  width: 10rem;
+  stroke-width: 2px;
+}
+
+[id="florish-stroke"] {
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  -webkit-animation: dash 3s ease-in-out forwards;
+  animation: dash 3s ease-in-out forwards;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+[id="florish-counter"] {
+  stroke-dasharray: 68;
+  stroke-dashoffset: 68;
+  -webkit-animation: counter 2.5s .5s ease-in-out forwards;
+  animation: counter 2.5s .5s ease-in-out forwards;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+.run-animation [id="florish-stroke"],
+.run-animation [id="florish-counter"] {
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+
+@-webkit-keyframes dash {
+  from {
+    stroke-dashoffset: 720;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 720;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes counter {
+  from {
+    stroke-dashoffset: 68;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes counter {
+  from {
+    stroke-dashoffset: 68;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 /* Header
 ========================================================================== */
 
@@ -438,6 +548,10 @@ textarea {
   width: 35%;
 }
 
+.section--typographer {
+  padding-bottom: 0;
+}
+
 .bio__img {
   width: 35vw;
   position: relative;
@@ -456,6 +570,22 @@ textarea {
 .glyph--left {
   position: absolute;
   left: 5%;
+}
+
+.section--scripts {
+  padding-top: 0;
+}
+
+.section--scripts .florish {
+  margin-left: 50%;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+.section--scripts .title--intro {
+  margin-left: 50%;
+  -webkit-transform: translate(20%, 0);
+  transform: translate(20%, 0);
 }
 
 /* CTA message intro over the folder
