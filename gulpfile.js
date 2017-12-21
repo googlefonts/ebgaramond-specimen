@@ -21,6 +21,7 @@ var gulp = require('gulp'),
 var paths = {
 	sass: 'src/assets/scss/**/*.scss',
 	js: 'src/assets/js/**/*.js',
+	jsThirdParty: 'src/third_party/**/*',
 	img: 'src/assets/img/**/*',
 	fonts: 'src/assets/fonts/**/*',
 	content: [
@@ -34,6 +35,7 @@ var paths = {
 	],
 	distCss: 'docs/css',
 	distJs: 'docs/js',
+	distJsThirdParty: 'docs/third_party',
 	distImg: 'docs/img',
 	distContent: 'docs/',
 	distFont: 'docs/fonts',
@@ -44,6 +46,9 @@ var paths = {
 var watch = {
 	js: [
 		paths.js
+	],
+	js3party: [
+		paths.jsThirdParty
 	],
 	sass: [
 		paths.sass
@@ -133,7 +138,13 @@ gulp.task('content', function(){
 		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %> 💩")}))
 		.pipe(gulp.dest(paths.distContent))
 		.pipe(notify({message: 'HTML OK 💃', onLast: true}));
+});
 
+gulp.task('js3party', function(){
+	return gulp.src(paths.jsThirdParty)
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %> 💩")}))
+		.pipe(gulp.dest(paths.distJsThirdParty))
+		.pipe(notify({message: 'JS COPY 💃', onLast: true}));
 });
 
 gulp.task('clean', function() {
@@ -149,6 +160,7 @@ gulp.task('watch', function () {
 	gulp.watch(watch.img, { interval: 500 }, ['images']);
 	gulp.watch(watch.fonts, { interval: 2500 }, ['fonts']);
 	gulp.watch(watch.content, { interval: 500 }, ['content']);
+	gulp.watch(watch.js3party, { interval: 500 }, ['js3party']);
 });
 
 // Default task, watching changes and launching actions
