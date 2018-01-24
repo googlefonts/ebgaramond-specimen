@@ -39,8 +39,8 @@ button{
 		color: $c-brown;
 		opacity: 0;
 		padding-bottom: .25rem;
-		-webkit-mask: url(img/script-mask.png);
-						mask: url(img/script-mask.png);
+		-webkit-mask: url(../img/script-mask.png);
+						mask: url(../img/script-mask.png);
 		-webkit-mask-size: 3000% 100%;
 						mask-size: 3000% 100%;
 		-webkit-animation: subtitle-play 1.6s 2.9s steps(29) reverse forwards;
