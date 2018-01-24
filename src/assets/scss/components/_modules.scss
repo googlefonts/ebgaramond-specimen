@@ -419,8 +419,8 @@
 
 	&--hide{
 		color: transparent;
-		-webkit-mask: url(img/script-mask.png);
-						mask: url(img/script-mask.png);
+		-webkit-mask: url(../img/script-mask.png);
+						mask: url(../img/script-mask.png);
 		-webkit-mask-size: 3000% 100%;
 						mask-size: 3000% 100%;
 		-webkit-animation: mask-play 1.4s steps(29) forwards;
@@ -1375,8 +1375,8 @@ $contrast: 5% !default;
 
 	.otf__launcher:hover + &{
 		opacity: 1;
-		-webkit-mask: url(img/script-mask.png);
-						mask: url(img/script-mask.png);
+		-webkit-mask: url(../img/script-mask.png);
+						mask: url(../img/script-mask.png);
 		-webkit-mask-size: 3000% 100%;
 						mask-size: 3000% 100%;
 		-webkit-animation: mask-play 1.4s steps(29) reverse forwards;
