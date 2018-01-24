@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "0.0.1",
-  "description": "EB garamond",
+  "description": "EB Garamond Minisite",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
