@@ -19,31 +19,36 @@ var gulp = require('gulp'),
 
 
 var paths = {
-	sass: '_src/assets/scss/**/*.scss',
-	js: '_src/assets/js/**/*.js',
-	img: '_src/assets/img/**/*',
-	fonts: '_src/assets/fonts/**/*',
+	sass: 'src/assets/scss/**/*.scss',
+	js: 'src/assets/js/**/*.js',
+	jsThirdParty: 'src/third_party/**/*',
+	img: 'src/assets/img/**/*',
+	fonts: 'src/assets/fonts/**/*',
 	content: [
-		'_src/page-content/**/*',
-		'_src/page-content/**/.*',
-		"!_src/page-content/.DS_Store",
-		"!_src/page-content/partials",
-		"!_src/page-content/partials/*",
-		"!_src/page-content/base",
-		"!_src/page-content/base/*"
+		'src/page-content/**/*',
+		'src/page-content/**/.*',
+		"!src/page-content/.DS_Store",
+		"!src/page-content/partials",
+		"!src/page-content/partials/*",
+		"!src/page-content/base",
+		"!src/page-content/base/*"
 	],
-	distCss: 'dist/css',
-	distJs: 'dist/js',
-	distImg: 'dist/img',
-	distContent: 'dist/',
-	distFont: 'dist/fonts',
-	dist: 'dist'
+	distCss: 'docs/css',
+	distJs: 'docs/js',
+	distJsThirdParty: 'docs/third_party',
+	distImg: 'docs/img',
+	distContent: 'docs/',
+	distFont: 'docs/fonts',
+	dist: 'docs'
 };
 
 
 var watch = {
 	js: [
 		paths.js
+	],
+	js3party: [
+		paths.jsThirdParty
 	],
 	sass: [
 		paths.sass
@@ -56,11 +61,11 @@ var watch = {
 	],
 	content: [
 		// paths.content
-		'_src/page-content/**/*',
-		'_src/page-content/**/.*',
-		"!_src/page-content/.DS_Store",
-		"!_src/page-content/base/.DS_Store",
-		"!_src/page-content/partials/.DS_Store",
+		'src/page-content/**/*',
+		'src/page-content/**/.*',
+		"!src/page-content/.DS_Store",
+		"!src/page-content/base/.DS_Store",
+		"!src/page-content/partials/.DS_Store",
 	]
 };
 
@@ -133,7 +138,13 @@ gulp.task('content', function(){
 		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %> 💩")}))
 		.pipe(gulp.dest(paths.distContent))
 		.pipe(notify({message: 'HTML OK 💃', onLast: true}));
+});
 
+gulp.task('js3party', function(){
+	return gulp.src(paths.jsThirdParty)
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %> 💩")}))
+		.pipe(gulp.dest(paths.distJsThirdParty))
+		.pipe(notify({message: 'JS COPY 💃', onLast: true}));
 });
 
 gulp.task('clean', function() {
@@ -149,6 +160,7 @@ gulp.task('watch', function () {
 	gulp.watch(watch.img, { interval: 500 }, ['images']);
 	gulp.watch(watch.fonts, { interval: 2500 }, ['fonts']);
 	gulp.watch(watch.content, { interval: 500 }, ['content']);
+	gulp.watch(watch.js3party, { interval: 500 }, ['js3party']);
 });
 
 // Default task, watching changes and launching actions
