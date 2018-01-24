@@ -198,8 +198,8 @@ button {
   color: #836D62;
   opacity: 0;
   padding-bottom: .25rem;
-  -webkit-mask: url(/img/script-mask.png);
-  mask: url(/img/script-mask.png);
+  -webkit-mask: url(img/script-mask.png);
+  mask: url(img/script-mask.png);
   -webkit-mask-size: 3000% 100%;
   mask-size: 3000% 100%;
   -webkit-animation: subtitle-play 1.6s 2.9s steps(29) reverse forwards;
@@ -4893,8 +4893,8 @@ button {
 
 .script--hide {
   color: transparent;
-  -webkit-mask: url(/img/script-mask.png);
-  mask: url(/img/script-mask.png);
+  -webkit-mask: url(img/script-mask.png);
+  mask: url(img/script-mask.png);
   -webkit-mask-size: 3000% 100%;
   mask-size: 3000% 100%;
   -webkit-animation: mask-play 1.4s steps(29) forwards;
@@ -5897,8 +5897,8 @@ button {
 
 .otf__launcher:hover + .otf__info {
   opacity: 1;
-  -webkit-mask: url(/img/script-mask.png);
-  mask: url(/img/script-mask.png);
+  -webkit-mask: url(img/script-mask.png);
+  mask: url(img/script-mask.png);
   -webkit-mask-size: 3000% 100%;
   mask-size: 3000% 100%;
   -webkit-animation: mask-play 1.4s steps(29) reverse forwards;
