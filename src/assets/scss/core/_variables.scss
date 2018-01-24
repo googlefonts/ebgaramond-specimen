@@ -2,36 +2,61 @@
 
 // Colors
 
-$c-white: #ffffff;
+$c-white: #f1f1f1;
 $c-black: #0C1232;
-$c-text: $c-black;
+$c-almost-black: #3f3f3f;
+$c-main-light: #FFAE92;
+$c-main-dark: #F03C02;
+$c-main-dark1: #C21A01;
+$c-main-dark2: #A30006;
+$c-main-dark3: #6B0103;
+$c-grey-medium: #666666;
+$c-grey-dark: #5C5E5D;
+$c-grey-dark1: #1C0113;
+$c-brown-light: #D0C0B7;
+$c-brown-dark: #836D62;
+// $c-blue-light: #;
+
+
+$c-grey-light: #F1F1F1;
+$c-blue-medium: #BBCECC;
+$c-main: #EE6F52;
+$c-dark: #4F4746;
+$c-brown: #836D62;
+$c-brown-light: #D0C0B7;
+$c-brown-dark: #362A28;
+
+
+$c-text: $c-dark;
+$c-bg: $c-grey-light;
+$c-complementary: $c-blue-medium;
 
 // Icons colors
 
 // Fonts
 $f-fallback: serif;
 $f-text: 'EB Garamond', $f-fallback;
-$f-base: 18;
+$f-base: 21;
 
 $f-light: 300;
 $f-regular: 400;
 $f-medium: 500;
 $f-bold: 700;
 
-$f-yotta: 83 / $f-base + rem;
-$f-zetta: 74 / $f-base + rem;
-$f-exa: 66 / $f-base + rem;
-$f-peta: 59  / $f-base + rem;
-$f-tera: 36 / $f-base + rem;
-$f-giga: 27 / $f-base + rem;
-$f-megish: 24 / $f-base + rem;
-$f-mega: 21 / $f-base + rem;
-$f-kilo: 18 / $f-base + rem;
-$f-byte: 16 /$f-base + rem;
-$f-bit: 14 /$f-base + rem;
-$f-micro: 12 /$f-base + rem;
-$f-nano: 11 /$f-base + rem;
-$f-pico: 10 /$f-base + rem;
+$f-yotta: 5.19rem;
+$f-zetta: 4.35rem;
+$f-exa: 4.12rem;
+$f-peta: 3.69rem;
+$f-tera: 2.25rem;
+$f-giga: 1.69rem;
+$f-megish: 1.5rem;
+$f-mega: 1.3125rem;
+$f-kilo: 1.125rem;
+$f-byte:  1rem;
+$f-bit: 0.88rem;
+$f-micro: 0.75rem;
+$f-nano: 0.69rem;
+$f-pico: 0.62rem;
 
 // Layout
 $site-width: 1120;
