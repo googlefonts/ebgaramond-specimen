@@ -165,33 +165,66 @@ $(document).ready(function(){
 	// End Change between words and paragraph in typetester
 
 	// Show tooltip numeric value when change slide input range
-		$( ".slider__item" ).bind('keyup mousemove',function() {
+		$( ".specimen-slider" ).bind('keyup mousemove',function() {
 			var value = $( this ).val();
 			var slideValue = value;
 
-			if($(this).hasClass('slider__item--lh')){
-				$( this ).parent().find($('.slider__tooltip')).text(slideValue/10);
-			}else{
-				$( this ).parent().find($('.slider__tooltip')).text(Math.round($(window).width() * slideValue / 100));
-			}
-
 			var tooltipMov = slideValue - $(this).attr('min');
 			var tooltipProp = $(this).attr('max') - $(this).attr('min');
-			$( this ).parent().find($('.slider__tooltip')).css({
+			$( this ).parent().prev().css({
 				'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
 			});
 		});
 	// end Show tooltip numeric value when change slide input range
 
+
+	// $('.type-tester__features--optional').each(function(){
+	// 	var e = $(this).find('button');
+	// 	console.log($(this).children()[0]);
+	// 	setTimeout(function(){
+	// 	console.log($(this).children()[0]);
+
+	// 	}, 10000)
+	// 	var str = $(this).text();
+	// 	str = str.substring(str.indexOf(":") + 1);
+	// 	console.log(str);
+
+	// });
+
 	// Simulating dropdown effect on Opentype element
 	$('.js-dropdown').on('click', function(){
+
+		if($(this).next().hasClass('visible')){
+			$('.open-type').css({
+				'transform': ''
+			})
+		}else{
+			$('.js-dropdown').next().removeClass('visible');
+			$('.open-type').css({
+				'transform': 'translateY(' + $(this).next().height() +'px)'
+			})
+		}
 		$(this).next().toggleClass('visible');
 	});
 	// End Simulating dropdown effect on Opentype element
 
+
+	$('.tt__settings').on('click', function(e){
+		event.stopPropagation();
+		$(this).toggleClass('active');
+		if($('.family-chooser input').is(':checked')){
+			$('.mdl-switch__label').addClass('active')
+		}else{
+			$('.mdl-switch__label').removeClass('active')
+		}
+	});
 	// Justify items active
 	$('.justify__item').on('click', function(){
 		$(this).parent().attr('data-justify', $(this).data('justify'));
+
+		$('.open-type').css({
+			'text-align': $(this).data('justify')
+		});
 	});
 
 // Scrollmagic movements
@@ -412,5 +445,42 @@ $(document).ready(function(){
 
 
 // End Animation and smooth scroll styles
+
+// Cleaning OTF names in typetester
+
+	window.onload = function(){
+		var OTFLabel = function(){
+			if($('.type-tester__features--optional  button').length != 0 ){
+				$('.type-tester__features--optional  button, .type-tester__features--default  button').each(function(){
+					var str = $(this).text();
+					str = str.substring(str.indexOf(":") + 2);
+					$(this).text(str);
+				});
+				clearInterval(cleaningOTFlabels);
+			}else{
+			}
+		}
+		var cleaningOTFlabels = setInterval(OTFLabel, 1000);
+
+
+		var sliderTT = function(){
+			if($('.specimen-slider').length != 0){
+				$( ".specimen-slider" ).bind('keyup mousemove',function() {
+					var value = $( this ).val();
+					var slideValue = value;
+
+					var tooltipMov = slideValue - $(this).attr('min');
+					var tooltipProp = $(this).attr('max') - $(this).attr('min');
+					$( this ).parent().prev().css({
+						'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
+					});
+				});
+				clearInterval(movingSliderTT)
+			}
+
+		}
+		var movingSliderTT = setInterval(sliderTT, 1000);
+	}
+// End Cleaning OTF names in typetester
 
 });

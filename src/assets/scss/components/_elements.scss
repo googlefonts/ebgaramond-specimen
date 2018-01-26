@@ -587,24 +587,25 @@ button{
 ========================================================================== */
 
 .slider{
-	&__wrapper{
-		position: relative;
-		display: flex;
-		align-items: center;
+	position: relative;
+}
 
-		&:not(:first-child){
-			margin-left: 1rem;
-		}
-	}
+.type-tester__label{
+	position: absolute;
+	bottom: 150%;
+	transform: translateX(-50%); // size of the icon before the slider
+	white-space: nowrap;
+	opacity: 0;
+	transition: opacity .4s ease-out;font-size: $f-bit;
 
-	&__tooltip{
-		position: absolute;
-		bottom: 80%;
-		margin-left: 1.5rem;
-		transform: translateX(-50%); // size of the icon before the slider
+	.slider:hover &{
+		opacity: 1;
 	}
 }
 
+.type-tester__slider{
+	display: flex;
+}
 
 /* Animated elements
 ========================================================================== */
