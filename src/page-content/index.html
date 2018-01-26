@@ -46,15 +46,6 @@
 		<link rel="me" href="mailto:name@example.com">
 		<link rel="me" href="sms:+15035550125">
 
-		<!-- Prefetching, preloading, prebrowsing -->
-		<link rel="dns-prefetch" href="//example.com/">
-		<link rel="preconnect" href="https://www.example.com/">
-		<link rel="prefetch" href="https://www.example.com/">
-		<link rel="prerender" href="https://example.com/">
-		<link rel="subresource" href="css/main.min.css">
-		<link rel="preload" href="image.png">
-		<!-- More info: https://css-tricks.com/prefetching-preloading-prebrowsing/ -->
-
 		<!-- For IE 10 and below -->
 		<!-- No link, just place a file called favicon.ico in the root directory -->
 
@@ -85,8 +76,6 @@
 
 		<!-- JavaScript -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-		<script src="js/opentype.js"></script>
 		<script src="js/main.js"></script>
 
 		<!--[if lt IE 9 ]>
@@ -1071,96 +1060,69 @@
 					<li class="otf-dot"></li>
 				</ul>
 			</div>
-		<div class="section section--typetester">
-				<div class="tt__settings ">
-					<div class="shy-select select--style">
-						<span class="select__value dropdown-arrow">Regular</span>
-						<select id="font-weights" onchange="changeFontStyle(event)" class="select__selector js-selector">
-							<option value="font-weight: 400; font-style: normal" selected>Regular</option>
-							<option value="font-weight: 400; font-style: italic">Regular Italic</option>
-							<option value="font-weight: 500; font-style: normal">Medium</option>
-							<option value="font-weight: 500; font-style: italic" >Medium Italic</option>
-							<option value="font-weight: 600; font-style: normal">Semibold</option>
-							<option value="font-weight: 600; font-style: italic">Semibold Italic</option>
-							<option value="font-weight: 700; font-style: normal">Bold</option>
-							<option value="font-weight: 700; font-style: italic">Bold Italic</option>
-							<option value="font-weight: 800; font-style: normal">ExtraBold</option>
-							<option value="font-weight: 800; font-style: italic">ExtraBold Italic</option>
-						</select>
-					</div>
-
-					<div class="trigger-dropdown select--style tt__otf js-dropdown dropdown-arrow">
-						Open type
-					</div>
-					<div class="settings otf-features js-dropdown-box">
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="locl" class="feature-checkbox" id="otf-locl" /><label for="otf-locl">Localiced forms</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="subs" class="feature-checkbox" id="otf-subs" /><label for="otf-subs">Subscript</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="sups" class="feature-checkbox" id="otf-sups" /><label for="otf-sups">Superscript</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="frac" class="feature-checkbox" id="otf-frac" /><label for="otf-frac">Fractions</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ordn" class="feature-checkbox" id="otf-ordn" /><label for="otf-ordn">Ordinals</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="lnum" class="feature-checkbox" id="otf-lnum" /><label for="otf-lnum">Lining figures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="pnum" class="feature-checkbox" id="otf-pnum" /><label for="otf-pnum">Proportional figures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="tnum" class="feature-checkbox" id="otf-tnum" /><label for="otf-tnum">Tabular figures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="onum" class="feature-checkbox" id="otf-onum" /><label for="otf-onum">Oldstyle figures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="smcp" class="feature-checkbox" id="otf-smcp" /><label for="otf-smcp">Smallcaps</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="liga" class="feature-checkbox" id="otf-liga" /><label for="otf-liga">Ligatures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="swsh" class="feature-checkbox" id="otf-swsh" /><label for="otf-swsh">Swashes</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="dlig" class="feature-checkbox" id="otf-dlig" /><label for="otf-dlig">Discretionary ligatures</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss01" class="feature-checkbox" id="otf-ss01" /><label for="otf-ss01">Stylistic Set 01</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss02" class="feature-checkbox" id="otf-ss02" /><label for="otf-ss02">Stylistic Set 02</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss03" class="feature-checkbox" id="otf-ss03" /><label for="otf-ss03">Stylistic Set 03</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss04" class="feature-checkbox" id="otf-ss04" /><label for="otf-ss04">Stylistic Set 04</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss05" class="feature-checkbox" id="otf-ss05" /><label for="otf-ss05">Stylistic Set 05</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss06" class="feature-checkbox" id="otf-ss06" /><label for="otf-ss06">Stylistic Set 06</label></li>
-						<li class="otf__control"><input type="checkbox" onclick="featureCheckboxClicked(this)" value="ss07" class="feature-checkbox" id="otf-ss07" /><label for="otf-ss07">Stylistic Set 07</label></li>
-					</div>
-					<div class="sliders">
-						<span class="slider__wrapper setting__slider setting__slider--line">
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#lh-small" />
-							</svg>
-							<input name="lineHeight" type="range" min="5" max="30" value="15" oninput="changeLineHeight(event)" onchange="changeLineHeight(event)" class="slider__item slider__item--lh js-lh" />
-							<span class="slider__tooltip"></span>
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#lh-big" />
-							</svg>
-						</span>
-						<span class="slider__wrapper setting__slider setting__slider--line">
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#fz-small" />
-							</svg>
-							<input name="fontSize" type="range" min="1" max="25" value="13" step="0.1" oninput="changeFontSize(event)" onchange="changeFontSize(event)" class="slider__item slider__item--fz js-fz"/>
-							<span class="slider__tooltip"></span>
+			<div class="section section--typetester">
+				<div class="type-tester"
+						data-unit-font-size="px"
+						data-min-font-size="18"
+						data-max-font-size="200"
+						data-step-font-size="1"
+						data-value-font-size="125"
+						data-unit-letter-spacing="px"
+						data-min-letter-spacing="-5"
+						data-max-letter-spacing="5"
+						data-value-letter-spacing="0"
+						data-step-letter-spacing="0.1"
+						data-unit-line-height="%"
+						data-min-line-height="50"
+						data-max-line-height="300"
+						data-step-line-height="5"
+						data-value-line-height="100"
+						data-class-line-height="custom-class special-slider">
+					<div class="tt__settings ">
+						<div>
+							<span class="dropdown js-dropdown">Styles</span>
+							<div class="family-chooser"></div>
+						</div>
+						<div class="tt__otf">
+							<span class="dropdown js-dropdown">Features</span>
+							<div class="otf-wrapper">
+								<div class="type-tester__features--default"></div>
+								<div class="type-tester__features--optional"></div>
+							</div>
+						</div>
+						<div class="slider">
+							<span class="type-tester__label" data-target-property="font-size"></span>
+							<div class="type-tester__slider" data-target-property="font-size"></div>
+						</div>
+						<div class="justify-buttons" data-justify="center">
+							<button class="justify__item js-justify" onclick="justify('left')" data-justify="left">
 								<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#fz-big" />
-							</svg>
-
-						</span>
+									<use xlink:href="img/typetester_base/garamond-icons.svg#text-left" />
+								</svg>
+							</button>
+							<button class="justify__item js-justify button--active" onclick="justify('center')" data-justify="center">
+								<svg class="icon tt__icon">
+									<use xlink:href="img/typetester_base/garamond-icons.svg#text-center" />
+								</svg>
+							</button>
+							<button class="justify__item js-justify" onclick="justify('right')" data-justify="right">
+								<svg class="icon tt__icon">
+									<use xlink:href="img/typetester_base/garamond-icons.svg#text-right" />
+								</svg>
+							</button>
+						</div>
+						<div class="tt-content" data-text="word">
+							<button class="content__item js-text" data-text="word">Word</button>
+							<button class="content__item js-text" data-text="paragraph">Paragraph</button>
+						</div>
 					</div>
-					<div class="justify-buttons" data-justify="center">
-						<button class="justify__item js-justify" onclick="justify('left')" data-justify="left">
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#text-left" />
-							</svg>
-						</button>
-						<button class="justify__item js-justify button--active" onclick="justify('center')" data-justify="center">
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#text-center" />
-							</svg>
-						</button>
-						<button class="justify__item js-justify" onclick="justify('right')" data-justify="right">
-							<svg class="icon tt__icon">
-								<use xlink:href="img/typetester_base/garamond-icons.svg#text-right" />
-							</svg>
-						</button>
-					</div>
-					<div class="tt-content" data-text="word">
-						<button class="content__item js-text" data-text="word">Word</button>
-						<button class="content__item js-text" data-text="paragraph">Paragraph</button>
-					</div>
+					<p class="current-font type-tester__content open-type typetester__text js-tt-text" contenteditable="true">
+					Try me ❤
+					</p>
 				</div>
-				<div id="font-preview" class="open-type typetester__text js-tt-text" contenteditable ondragstart="return false" ondrop="return false">Try me ❤</div>
+				<!-- <div class="glyph-table"></div> -->
 			</div>
+
 			<div class="section section--author">
 				<h2>About the author</h2>
 				<div class="animated--img animated--scroll bio__img" data-direction="up" data-speed="2">
@@ -1219,19 +1181,11 @@
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
-
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
 		<script src="third_party/smooth-scrollbar/smooth-scrollbar.js"></script>
 
-		<script>
-			window.onload = function() {
-				initialSetup();
-				window.getSelection().removeAllRanges();
-
-			};
-		</script>
 		<script>
 			// var scrollbar = window.Scrollbar;
 			const scrollbar = Scrollbar.init(document.querySelector('#scroll-container'), {
@@ -1295,21 +1249,14 @@
 								}
 							}
 							lastScrollTop = st;
-
 				});
 
 				$('.section:not(.over-the-folder)').each(function(){
 					if(scrollbar.isVisible(this)){
 						$(this).find('.title-vertical').addClass('im-here');
-						// if ($(this).hasClass('section--author')){
-						// 	$('body').addClass('author--view');
-						// }
 					}
 					else{
 						$(this).find('.title-vertical').removeClass('im-here');
-						// if ($(this).hasClass('section--author')){
-						// 	$('body').removeClass('author--view');
-						// }
 					}
 				});
 				$('.letter-style-tester').each(function(){
@@ -1318,15 +1265,6 @@
 					}
 				});
 
-				// $('.animated--img').each(function(){
-				// 	if(scrollbar.isVisible(this) && $('.capitular-letter').hasClass('animation-in')){
-				// 		if($(this).hasClass('intro__img')){
-				// 			$(this).addClass('show-img').addClass('show-img--delayed');
-				// 		}else{
-				// 			$(this).addClass('show-img');
-				// 		}
-				// 	}
-				// });
 			});
 
 
@@ -1334,6 +1272,30 @@
 		</script>
 
 		<script src='third_party/easyzoom/easyzoom.js'></script>
+
+
+		<script src="/third_party/specimenTools/lib/bower_components/requirejs/require.js"></script>
+		<script>
+		fontFiles = [ 'fonts/EBGaramond12-Regular.woff',
+									'fonts/EBGaramond12-Italic.woff',
+									'fonts/EBGaramond12-Semibold.woff',
+									'fonts/EBGaramond12-SemiboldItalic.woff',
+									'fonts/EBGaramond12-Medium.woff',
+									'fonts/EBGaramond12-MediumItalic.woff',
+									'fonts/EBGaramond12-ExtraBoldItalic.woff',
+									'fonts/EBGaramond12-ExtraBold.woff',
+									'fonts/EBGaramond12-BoldItalic.woff',
+									'fonts/EBGaramond12-Bold.woff',
+		];
+		require.config({baseUrl: 'third_party/specimenTools/lib'});
+		require(['bootstrap'], function(require) {
+			require(['../main'], function(main) {
+				main(window, fontFiles);
+			});
+		});
+
+
+		</script>
 
 	</body>
 
