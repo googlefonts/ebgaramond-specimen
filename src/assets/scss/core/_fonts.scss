@@ -1,1 +1,71 @@
 //* Do you have some self-served fonts? Declare them here. *//
+
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 400;
+	font-style: normal;
+	src:	url('../fonts/EBGaramond12-Regular.woff2') format('woff2'),
+				url('../EBGaramond12-Regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 400;
+	font-style: italic;
+	src:	url('../fonts/EBGaramond12-Italic.woff2') format('woff2'),
+				url('../EBGaramond12-Italic.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 500;
+	font-style: normal;
+	src:	url('../fonts/EBGaramond12-Medium.woff2') format('woff2'),
+				url('../EBGaramond12-Medium.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 500;
+	font-style: italic;
+	src:	url('../fonts/EBGaramond12-MediumItalic.woff2') format('woff2'),
+				url('../EBGaramond12-MediumItalic.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 600;
+	font-style: normal;
+	src:	url('../fonts/EBGaramond12-Semibold.woff2') format('woff2'),
+				url('../EBGaramond12-Semibold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 600;
+	font-style: italic;
+	src:	url('../fonts/EBGaramond12-Semibolditalic.woff2') format('woff2'),
+				url('../EBGaramond12-Semibolditalic.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 700;
+	font-style: normal;
+	src:	url('../fonts/EBGaramond12-Bold.woff2') format('woff2'),
+				url('../EBGaramond12-Bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 700;
+	font-style: italic;
+	src:	url('../fonts/EBGaramond12-BoldItalic.woff2') format('woff2'),
+				url('../EBGaramond12-BoldItalic.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 800;
+	src:	url('../fonts/EBGaramond12-ExtraBold.woff2') format('woff2'),
+				url('../EBGaramond12-ExtraBold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Garamond';
+	font-weight: 800;
+	font-style: italic;
+	src:	url('../fonts/EBGaramond12-ExtraBoldItalic.woff2') format('woff2'),
+				url('../EBGaramond12-ExtraBoldItalic.woff') format('woff');
+}

@@ -1,5 +1,20 @@
 $(document).ready(function(){
 
+	// Menu: Scroll to new section
+	var section;
+	$('.js-menu').on('click', function(e){
+		e.preventDefault();
+		console.log($(this).data('section'));
+		section = $(this).data('section');
+		console.log($('.section--' + section));
+		console.log($('.section--' + section).offset().top);
+		console.log(scrollbar.offset.y +$('.section--' + section).offset().top);
+		scrollbar.scrollTo(null, scrollbar.offset.y +$('.section--' + section).offset().top, 1000)
+	});
+
+
+	// End Menu: Scroll to new section
+
 	// Updating mask for the slider component
 	$(".js-slider").on("input change", function() {
 		$('.js-slider-mask').css({
@@ -101,6 +116,7 @@ $(document).ready(function(){
 	});
 
 	// End Styles
+
 
 
 
@@ -218,14 +234,7 @@ $(document).ready(function(){
 			$('.mdl-switch__label').removeClass('active')
 		}
 	});
-	// Justify items active
-	$('.justify__item').on('click', function(){
-		$(this).parent().attr('data-justify', $(this).data('justify'));
 
-		$('.open-type').css({
-			'text-align': $(this).data('justify')
-		});
-	});
 
 // Scrollmagic movements
 	// init ScrollMagic Controller
