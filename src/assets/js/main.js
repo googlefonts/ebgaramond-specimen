@@ -4,11 +4,7 @@ $(document).ready(function(){
 	var section;
 	$('.js-menu').on('click', function(e){
 		e.preventDefault();
-		console.log($(this).data('section'));
 		section = $(this).data('section');
-		console.log($('.section--' + section));
-		console.log($('.section--' + section).offset().top);
-		console.log(scrollbar.offset.y +$('.section--' + section).offset().top);
 		scrollbar.scrollTo(null, scrollbar.offset.y +$('.section--' + section).offset().top, 1000)
 	});
 
@@ -120,120 +116,6 @@ $(document).ready(function(){
 
 
 
-// Typetester scripts
-	// When a user change a value for a select input update the text for the label
-	$('.js-selector').on('change', function(){
-		$(this).prev().text($(this).find('option:selected').text());
-	});
-	// End When a user change a value for a select input update the text for the label
-
-	// Change between words and paragraph in typetester
-	$('.js-text').on('click', function(e){
-		e.preventDefault();
-		var $tt = $('.typetester__text');
-
-		var word = 'Ok! Reset done';
-		var paragraph = [
-			'Lorem ipsum dolor sit amet, consectetur elit. Proin sit amet dui et quam condimentum eleifend. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim in. Nunc fermentum turpis id libero pulvinar imperdiet. Maecenas nec sem dapibus est rutrum lobortis. Aliquam',
-			'Maecenas ac risus in leo porttitor feugiat sed sit amet sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet dui et quam condimentum eleifend. Maecenas ac risus in leo porttitor feugiat sed sit amet sem. In semper tortor a justo venenatis, vitae placerat mi imperdiet. Nullam ac mauris interdum, molestie',
-			'In semper tortor a justo venenatis, placerat mi imperdiet Mauris dictum, libero sed posuere fringilla, lacus orci ultrices diam, nec dictum enim ex euismod arcu. Nulla semper mauris velit, vel pulvinar tellus pharetra eu. Fusce malesuada, lacus vel rutrum suscipit, nunc urna pharetra ligula, et volutpat justo metus quis felis. In',
-			'Nullam ac mauris interdum,molestie lacus vel, ultrices semlacus vel, ultrices sem. Aliquam erat volutpat. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim.',
-		];
-
-		if($(this).data('text') == 'word'){
-			$('.js-tt-text').css({
-				fontSize: ''
-			});
-
-			$('.js-fz').attr({
-				value: '13',
-				max: 25
-			})
-
-			if($tt.children().length == 1){
-				$tt.children('span:first-child').text(word);
-			}else if ($tt.children().length > 1){
-				$tt.children('span:first-child').text(word);
-				$tt.find('*:not(span)').remove();
-			}else{
-				$tt.text(word);
-			}
-		}else{
-			$('.js-tt-text').css({
-				fontSize: '1.4vw'
-			});
-
-			$('.js-fz').attr({
-				value: '1.4',
-				max: 7
-			})
-			var randomNumber = Math.floor((Math.random()*paragraph.length));
-			if($tt.children().length == 1){
-				$tt.children('span:first-child').text(paragraph[randomNumber]);
-			}else if ($tt.children().length > 1){
-				$tt.children('span:first-child').text(paragraph[randomNumber]);
-				$tt.find('*:not(span)').remove();
-			}else{
-				$tt.text(paragraph[randomNumber]);
-			}
-		}
-	});
-	// End Change between words and paragraph in typetester
-
-	// Show tooltip numeric value when change slide input range
-		$( ".specimen-slider" ).bind('keyup mousemove',function() {
-			var value = $( this ).val();
-			var slideValue = value;
-
-			var tooltipMov = slideValue - $(this).attr('min');
-			var tooltipProp = $(this).attr('max') - $(this).attr('min');
-			$( this ).parent().prev().css({
-				'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
-			});
-		});
-	// end Show tooltip numeric value when change slide input range
-
-
-	// $('.type-tester__features--optional').each(function(){
-	// 	var e = $(this).find('button');
-	// 	console.log($(this).children()[0]);
-	// 	setTimeout(function(){
-	// 	console.log($(this).children()[0]);
-
-	// 	}, 10000)
-	// 	var str = $(this).text();
-	// 	str = str.substring(str.indexOf(":") + 1);
-	// 	console.log(str);
-
-	// });
-
-	// Simulating dropdown effect on Opentype element
-	$('.js-dropdown').on('click', function(){
-
-		if($(this).next().hasClass('visible')){
-			$('.open-type').css({
-				'transform': ''
-			})
-		}else{
-			$('.js-dropdown').next().removeClass('visible');
-			$('.open-type').css({
-				'transform': 'translateY(' + $(this).next().height() +'px)'
-			})
-		}
-		$(this).next().toggleClass('visible');
-	});
-	// End Simulating dropdown effect on Opentype element
-
-
-	$('.tt__settings').on('click', function(e){
-		event.stopPropagation();
-		$(this).toggleClass('active');
-		if($('.family-chooser input').is(':checked')){
-			$('.mdl-switch__label').addClass('active')
-		}else{
-			$('.mdl-switch__label').removeClass('active')
-		}
-	});
 
 
 // Scrollmagic movements
@@ -455,9 +337,10 @@ $(document).ready(function(){
 
 // End Animation and smooth scroll styles
 
-// Cleaning OTF names in typetester
+// Typetester scripts
 
 	window.onload = function(){
+	// Cleaning OTF names in typetester
 		var OTFLabel = function(){
 			if($('.type-tester__features--optional  button').length != 0 ){
 				$('.type-tester__features--optional  button, .type-tester__features--default  button').each(function(){
@@ -471,6 +354,24 @@ $(document).ready(function(){
 		}
 		var cleaningOTFlabels = setInterval(OTFLabel, 1000);
 
+		var proportionalLH = function(){
+			// What i move and what i can move
+			var currentVal = $('.specimen-slider').val() - $('.specimen-slider').attr('min'),
+					maxVal = $('.specimen-slider').attr('max') - $('.specimen-slider').attr('min');
+
+			// Percentage moved
+			var movPercent = currentVal * 100 / maxVal;
+
+			// Getting the total for move at line-height
+			var minLH = $('.type-tester__slider').data('min'),
+					maxLH = $('.type-tester__slider').data('max'),
+					totalLH = maxLH - minLH;
+					lhIncrease  = maxLH - totalLH * (movPercent / 100);
+
+			$('.js-tt-text').css({
+				'line-height': lhIncrease
+			})
+		}
 
 		var sliderTT = function(){
 			if($('.specimen-slider').length != 0){
@@ -484,12 +385,128 @@ $(document).ready(function(){
 						'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
 					});
 				});
-				clearInterval(movingSliderTT)
-			}
+				proportionalLH();
 
+
+				clearInterval(movingSliderTT);
+
+				// Show tooltip in right place the first time
+				var value = $( ".specimen-slider" ).val();
+				var slideValue = value;
+				var tooltipMov = slideValue - $( ".specimen-slider" ).attr('min');
+				var tooltipProp = $( ".specimen-slider" ).attr('max') - $( ".specimen-slider" ).attr('min');
+
+				$( '.type-tester__label' ).css({
+					'left': (tooltipMov/ tooltipProp ) * ($( ".specimen-slider" ).width() - 12)  + 7 + 'px'
+				});
+
+
+
+			$('.specimen-slider').bind('keyup mousemove', function(){
+				proportionalLH();
+			});
+
+			}
 		}
+
 		var movingSliderTT = setInterval(sliderTT, 1000);
+
+	// Change between words and paragraph in typetester
+	$('.js-text').on('click', function(e){
+		e.preventDefault();
+		var $tt = $('.typetester__text');
+
+		var word = 'Ok! Reset done';
+		var paragraph = [
+			'Lorem ipsum dolor sit amet, consectetur elit. Proin sit amet dui et quam condimentum eleifend. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim in. Nunc fermentum turpis id libero pulvinar imperdiet. Maecenas nec sem dapibus est rutrum lobortis. Aliquam',
+			'Maecenas ac risus in leo porttitor feugiat sed sit amet sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet dui et quam condimentum eleifend. Maecenas ac risus in leo porttitor feugiat sed sit amet sem. In semper tortor a justo venenatis, vitae placerat mi imperdiet. Nullam ac mauris interdum, molestie',
+			'In semper tortor a justo venenatis, placerat mi imperdiet Mauris dictum, libero sed posuere fringilla, lacus orci ultrices diam, nec dictum enim ex euismod arcu. Nulla semper mauris velit, vel pulvinar tellus pharetra eu. Fusce malesuada, lacus vel rutrum suscipit, nunc urna pharetra ligula, et volutpat justo metus quis felis. In',
+			'Nullam ac mauris interdum,molestie lacus vel, ultrices semlacus vel, ultrices sem. Aliquam erat volutpat. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim.',
+		];
+
+		// Animate dot between buttons
+		$(this).parent().attr('data-text', $(this).data('text'));
+		// End Animate dot between buttons
+
+		// Fill the typetester with word or paragrapsh
+		//Fill with words
+		if($(this).data('text') == 'word'){
+			$('.js-tt-text').css({
+				fontSize: '125px'
+			});
+
+
+			$('.specimen-slider').val('125');
+			$('.type-tester__label').text('125px');
+			proportionalLH();
+
+			$tt.text(word);
+
+		//Fill with paragraphs
+		}else{
+			$('.js-tt-text').css({
+				fontSize: '21px'
+			});
+
+			$('.specimen-slider').val('21');
+			$('.type-tester__label').text('21px');
+			proportionalLH();
+
+			var randomNumber = Math.floor((Math.random()*paragraph.length));
+				// $tt.children('span:first-child').text(paragraph[randomNumber]);
+				$tt.text(paragraph[randomNumber]);
+		}
+	});
+	// End Change between words and paragraph in typetester
+
+	// Show tooltip numeric value when change slide input range
+		$( ".specimen-slider" ).bind('keyup mousemove',function() {
+			var value = $( this ).val();
+			var slideValue = value;
+
+			var tooltipMov = slideValue - $(this).attr('min');
+			var tooltipProp = $(this).attr('max') - $(this).attr('min');
+			$( this ).parent().prev().css({
+				'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
+			});
+		});
+	// end Show tooltip numeric value when change slide input range
+
+
+
+
+	// Simulating dropdown effect on Opentype element
+	$('.js-dropdown').on('click', function(){
+
+		if($(this).next().hasClass('visible')){
+			$('.open-type').css({
+				'transform': ''
+			})
+		}else{
+			$('.js-dropdown').next().removeClass('visible');
+			$('.open-type').css({
+				'transform': 'translateY(' + $(this).next().height() +'px)'
+			})
+		}
+		$(this).next().toggleClass('visible');
+	});
+	// End Simulating dropdown effect on Opentype element
+
+
+	$('.tt__settings').on('click', function(e){
+		event.stopPropagation();
+		$(this).toggleClass('active');
+		if($('.family-chooser input').is(':checked')){
+			$('.mdl-switch__label').addClass('active')
+		}else{
+			$('.mdl-switch__label').removeClass('active')
+		}
+	});
+
+
 	}
-// End Cleaning OTF names in typetester
+	// End typetester functions
+
+	// Setting the line-height for the typetester
 
 });

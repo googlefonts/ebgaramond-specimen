@@ -1112,7 +1112,7 @@
 						</div>
 						<div class="slider">
 							<span class="type-tester__label" data-target-property="font-size"></span>
-							<div class="type-tester__slider" data-target-property="font-size"></div>
+							<div class="type-tester__slider" data-target-property="font-size" data-min=".82" data-max="1.35"></div>
 						</div>
 						<div class="tt-content" data-text="word">
 							<button class="content__item js-text" data-text="word">Word</button>
@@ -1198,27 +1198,17 @@
 				}
 
 				//Change color for Google friends logo
-				// console.log($('.footer').offset().top);
-				// console.log($('.footer').height());
-				// console.log(scrollbar.offset.y);
 				if(scrollbar.offset.y > $('.js-google-logo').height() && scrollbar.offset.y + $(window).height() < scrollbar.size.content.height - $('.footer').height() - $('.js-google-logo').height()){
 					$('.js-google-logo').addClass('on-content')
 				}else{
 					$('.js-google-logo').removeClass('on-content')
 				}
-
-				console.log(scrollbar.offset.y + $(window).height());
-				console.log(scrollbar.size.content.height - $('.footer').height() - $('.js-google-logo').height());
-				console.log();
-
-				// if()
 				//End Change color for Google friends logo
 
 				$('.section:not(.over-the-folder)').each(function(){
 					isElementOutViewport(this)
 					if(isElementOutViewport(this) == false){
 						$(this).addClass('section--in');
-						// console.log($(this).index());
 						$('.nav__item').removeClass('nav__item--active');
 						$('.nav__item').eq($(this).index()-1).addClass('nav__item--active');
 
@@ -1289,16 +1279,16 @@
 		<script src='third_party/easyzoom/easyzoom.js'></script>
 		<script src="third_party/specimenTools/lib/bower_components/requirejs/require.js"></script>
 		<script>
-		fontFiles = [ 'fonts/EBGaramond12-Regular.ttf',
-									'fonts/EBGaramond12-Italic.ttf',
-									'fonts/EBGaramond12-Semibold.ttf',
-									'fonts/EBGaramond12-SemiboldItalic.ttf',
-									'fonts/EBGaramond12-Medium.ttf',
-									'fonts/EBGaramond12-MediumItalic.ttf',
-									'fonts/EBGaramond12-ExtraBoldItalic.ttf',
-									'fonts/EBGaramond12-ExtraBold.ttf',
-									'fonts/EBGaramond12-BoldItalic.ttf',
-									'fonts/EBGaramond12-Bold.ttf',
+		fontFiles = [ 'fonts/EBGaramond12-Regular.woff',
+									'fonts/EBGaramond12-Italic.woff',
+									'fonts/EBGaramond12-Semibold.woff',
+									'fonts/EBGaramond12-SemiboldItalic.woff',
+									'fonts/EBGaramond12-Medium.woff',
+									'fonts/EBGaramond12-MediumItalic.woff',
+									'fonts/EBGaramond12-ExtraBoldItalic.woff',
+									'fonts/EBGaramond12-ExtraBold.woff',
+									'fonts/EBGaramond12-BoldItalic.woff',
+									'fonts/EBGaramond12-Bold.woff',
 		];
 		require.config({baseUrl: 'third_party/specimenTools/lib'});
 		require(['bootstrap'], function(require) {

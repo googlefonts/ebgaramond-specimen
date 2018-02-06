@@ -886,7 +886,7 @@
 	opacity: 0;
 	transition: opacity .4s .5s ease-out,  transform .4s .5s ease-out;
 	transform: translateY(3rem);
-	line-height: 1.6;
+	// line-height: 1.04135;
 
 	.section--in &{
 		opacity: 1;
@@ -1126,8 +1126,8 @@
 	&::before{
 		content: '';
 		position: absolute;
-		width: 9px;
-		height: 9px;
+		width: 8px;
+		height: 8px;
 		border-radius: 50%;
 		background-color: $c-main;
 		left: 2.15rem;

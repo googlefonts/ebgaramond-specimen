@@ -719,8 +719,8 @@ button {
   transform: translateX(-50%);
   white-space: nowrap;
   opacity: 0;
-  -webkit-transition: opacity .4s ease-out;
-  transition: opacity .4s ease-out;
+  -webkit-transition: opacity .4s .2s ease-out;
+  transition: opacity .4s .2s ease-out;
   font-size: 0.88rem;
 }
 
@@ -4616,6 +4616,11 @@ button {
   padding: 0.25rem 0.5rem;
   -webkit-transition: background-color .1s ease-out;
   transition: background-color .1s ease-out;
+  opacity: 0;
+  -webkit-transform: translateY(1rem);
+  transform: translateY(1rem);
+  -webkit-animation: logoIn 1.2s 3s forwards;
+  animation: logoIn 1.2s 3s forwards;
 }
 
 .google-friends-logo.on-content {
@@ -4625,6 +4630,34 @@ button {
 
 .author--view .google-friends-logo.on-content {
   background-color: rgba(238, 111, 82, 0.7);
+}
+
+@-webkit-keyframes logoIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(1rem);
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(1rem);
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
 /* Smooth Scroll
@@ -5410,7 +5443,6 @@ button {
   transition: opacity .4s .5s ease-out,  transform .4s .5s ease-out,  -webkit-transform .4s .5s ease-out;
   -webkit-transform: translateY(3rem);
   transform: translateY(3rem);
-  line-height: 1.6;
 }
 
 .section--in .typetester__text {
@@ -5633,8 +5665,8 @@ button {
 .tt-content::before {
   content: '';
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #EE6F52;
   left: 2.15rem;

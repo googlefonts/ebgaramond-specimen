@@ -639,7 +639,8 @@ button{
 	transform: translateX(-50%); // size of the icon before the slider
 	white-space: nowrap;
 	opacity: 0;
-	transition: opacity .4s ease-out;font-size: $f-bit;
+	transition: opacity .4s .2s ease-out;
+	font-size: $f-bit;
 
 	.slider:hover &{
 		opacity: 1;
@@ -3033,6 +3034,10 @@ button{
 	fill: $c-bg;
 	padding: .5*$gap $gap;
 	transition: background-color .1s ease-out;
+	opacity: 0;
+	transform: translateY(1rem);
+	animation: logoIn 1.2s 3s forwards;
+
 
 	&.on-content{
 		fill: $c-grey-dark;
@@ -3043,4 +3048,46 @@ button{
 		background-color: rgba($c-main, .7);
 	}
 
+}
+
+
+@-webkit-keyframes logoIn {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	 }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	 }
+}
+@-o-keyframes logoIn {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	 }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	 }
+}
+@-moz-keyframes logoIn {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	 }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	 }
+}
+@keyframes logoIn {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	 }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	 }
 }
