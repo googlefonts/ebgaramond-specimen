@@ -5427,6 +5427,7 @@ button {
   -webkit-transform: translate(0);
   transform: translate(0);
   min-height: 60vh;
+  z-index: 1;
 }
 
 .author--view .section--typetester {
@@ -5644,7 +5645,7 @@ button {
   border: 1px solid #BBCECC;
   position: absolute;
   border-radius: 50%;
-  left: 0;
+  right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -5669,31 +5670,24 @@ button {
   height: 8px;
   border-radius: 50%;
   background-color: #EE6F52;
-  left: 2.15rem;
   top: 100%;
   -webkit-transform: translate(-50%, 50%);
   transform: translate(-50%, 50%);
-  -webkit-transition: left .5s ease-out;
-  transition: left .5s ease-out;
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
   mix-blend-mode: multiply;
 }
 
-.tt-content[data-justify="right"]::before {
-  left: 3.85rem;
-}
-
-.tt-content[data-justify="left"]::before {
-  left: .5rem;
-}
-
 .tt-content[data-text="word"]::before {
-  left: auto;
-  right: 5.7rem;
+  -webkit-transform: translate(-6em, 50%);
+  transform: translate(-6em, 50%);
 }
 
 .tt-content[data-text="paragraph"]::before {
-  left: auto;
-  right: 1.8rem;
+  -webkit-transform: translate(-1.9em, 50%);
+  transform: translate(-1.9em, 50%);
 }
 
 .tt-content {
@@ -5743,6 +5737,7 @@ button {
   margin-bottom: 0.5rem;
   cursor: pointer;
   font-size: 0.88rem;
+  font-weight: 400;
 }
 
 [data-feature-type]::before,
@@ -5833,6 +5828,22 @@ button {
   cursor: pointer;
 }
 
+.dropdown::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #EE6F52;
+  position: absolute;
+  border-radius: 50%;
+  bottom: -0.5rem;
+  left: 50%;
+  -webkit-transform: translateX(calc(-50% - .7rem));
+  transform: translateX(calc(-50% - .7rem));
+  opacity: 0;
+  -webkit-transition: opacity .4s ease-out;
+  transition: opacity .4s ease-out;
+}
+
 .dropdown::after {
   content: '';
   position: absolute;
@@ -5844,8 +5855,21 @@ button {
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg) translateX(-0.2rem);
   transform: rotate(45deg) translateX(-0.2rem);
+  -webkit-transition: -webkit-transform .4s ease-out;
+  transition: -webkit-transform .4s ease-out;
+  transition: transform .4s ease-out;
+  transition: transform .4s ease-out, -webkit-transform .4s ease-out;
   right: .5rem;
   top: 50%;
+}
+
+.dropdown.opened::before {
+  opacity: 1;
+}
+
+.dropdown.opened::after {
+  -webkit-transform: rotate(-135deg) translateX(0.15rem) translateY(-0.1rem);
+  transform: rotate(-135deg) translateX(0.15rem) translateY(-0.1rem);
 }
 
 [type='range'] {

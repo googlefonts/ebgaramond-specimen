@@ -876,6 +876,7 @@
 	transition: all .4s ease-out;
 	transform: translate(0);
 	min-height: 60vh;
+	z-index: 1;
 	.author--view &{
 		opacity: 0;
 		transform: translateY(-3rem);
@@ -1110,7 +1111,7 @@
 			border: 1px solid $c-complementary;
 			position: absolute;
 			border-radius: 50%;
-			left: 0;
+			right: 0;
 			top: 50%;
 			transform: translateY(-50%);
 			transition: background-color .4s ease-out;
@@ -1130,34 +1131,32 @@
 		height: 8px;
 		border-radius: 50%;
 		background-color: $c-main;
-		left: 2.15rem;
 		top: 100%;
 		transform: translate(-50%, 50%);
-		transition: left .5s ease-out;
+		transition: transform .5s ease-out;
 		mix-blend-mode: multiply;
 	}
 
-	&[data-justify="right"]{
-		&::before{
-			left: 3.85rem;
-		}
-	}
-	&[data-justify="left"]{
-		&::before{
-			left: .5rem;
-		}
-	}
+	// &[data-justify="right"]{
+	// 	&::before{
+	// 		left: 3.85rem;
+	// 	}
+	// }
+	// &[data-justify="left"]{
+	// 	&::before{
+	// 		left: .5rem;
+	// 	}
+	// }
 
 	&[data-text="word"]{
 		&::before{
-			left: auto;
-			right: 5.7rem;
+			transform:translate(-6em, 50%);
 		}
 	}
 	&[data-text="paragraph"]{
 		&::before{
-			left: auto;
-			right: 1.8rem;
+			transform:translate(-1.9em, 50%);
+
 		}
 	}
 }
@@ -1205,6 +1204,7 @@
 	margin-bottom: $gap;
 	cursor: pointer;
 	font-size: $f-bit;
+	font-weight: 400;
 
 	&::before{
 		content: '';
@@ -1328,6 +1328,20 @@
 	padding-right: 1.5rem;
 	cursor: pointer;
 
+	&::before{
+		content: '';
+		width: 8px;
+		height: 8px;
+		background-color: $c-main;
+		position: absolute;
+		border-radius: 50%;
+		bottom: -$gap;
+		left: 50%;
+		transform: translateX(calc(-50% - .7rem));
+		opacity: 0;
+		transition: opacity .4s ease-out;
+	}
+
 	&::after{
 		content: '';
 		position: absolute;
@@ -1338,8 +1352,19 @@
 		border: 1px solid $c-black;
 		border-width: 0 2px 2px 0;
 		transform: rotate(45deg) translateX(-.2rem);
+		transition: transform .4s ease-out;
 		right: .5rem;
 		top: 50%;
+	}
+
+	&.opened{
+		&::before{
+			opacity: 1;
+		}
+
+		&::after{
+			transform: rotate(-135deg) translateX(.15rem) translateY(-0.1rem);
+		}
 	}
 }
 

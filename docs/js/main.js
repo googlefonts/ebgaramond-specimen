@@ -340,6 +340,9 @@ $(document).ready(function(){
 // Typetester scripts
 
 	window.onload = function(){
+
+	// Deactivating spell checked on typetester element
+	$('.js-tt-text').attr("spellcheck",false);
 	// Cleaning OTF names in typetester
 		var OTFLabel = function(){
 			if($('.type-tester__features--optional  button').length != 0 ){
@@ -353,6 +356,33 @@ $(document).ready(function(){
 			}
 		}
 		var cleaningOTFlabels = setInterval(OTFLabel, 1000);
+
+		var stylesButton = function(){
+			if($('.family-chooser button').length != 0){
+				$('.family-chooser .active>div> button').off('click').on('click', function(event){
+					$('.js-tt-text').css({
+						'font-size': $('.specimen-slider').val() + 'px'
+					})
+				})
+				$('.family-chooser .active>label> input').off('click').on('click', function(event){
+					if(changeBtn == true){
+						$('.js-tt-text').css({
+							opacity: 0
+						})
+						window.setTimeout(function(){
+							$('.js-tt-text').css({
+								'font-size': $('.specimen-slider').val() + 'px',
+								opacity: 1
+							})
+						}, .001);
+					}
+				})
+				clearInterval(stylesBtn);
+			}
+		}
+
+		var stylesBtn = setInterval(stylesButton, 1000);
+
 
 		var proportionalLH = function(){
 			// What i move and what i can move
@@ -405,12 +435,17 @@ $(document).ready(function(){
 			$('.specimen-slider').bind('keyup mousemove', function(){
 				proportionalLH();
 			});
+			$('.specimen-slider').on('change', function(){
+				changeBtn = false;
+
+			});
 
 			}
 		}
 
 		var movingSliderTT = setInterval(sliderTT, 1000);
 
+		var changeBtn = false;
 	// Change between words and paragraph in typetester
 	$('.js-text').on('click', function(e){
 		e.preventDefault();
@@ -423,6 +458,10 @@ $(document).ready(function(){
 			'In semper tortor a justo venenatis, placerat mi imperdiet Mauris dictum, libero sed posuere fringilla, lacus orci ultrices diam, nec dictum enim ex euismod arcu. Nulla semper mauris velit, vel pulvinar tellus pharetra eu. Fusce malesuada, lacus vel rutrum suscipit, nunc urna pharetra ligula, et volutpat justo metus quis felis. In',
 			'Nullam ac mauris interdum,molestie lacus vel, ultrices semlacus vel, ultrices sem. Aliquam erat volutpat. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim.',
 		];
+
+		changeBtn = true;
+
+
 
 		// Animate dot between buttons
 		$(this).parent().attr('data-text', $(this).data('text'));
@@ -437,7 +476,9 @@ $(document).ready(function(){
 
 
 			$('.specimen-slider').val('125');
+			$('.specimen-slider').value = '125';
 			$('.type-tester__label').text('125px');
+
 			proportionalLH();
 
 			$tt.text(word);
@@ -449,7 +490,10 @@ $(document).ready(function(){
 			});
 
 			$('.specimen-slider').val('21');
+			$('.specimen-slider').value = '21';
+
 			$('.type-tester__label').text('21px');
+
 			proportionalLH();
 
 			var randomNumber = Math.floor((Math.random()*paragraph.length));
@@ -489,6 +533,16 @@ $(document).ready(function(){
 			})
 		}
 		$(this).next().toggleClass('visible');
+
+
+
+		if($(this).hasClass('opened')){
+			$(this).removeClass('opened');
+		}else{
+			$('.js-dropdown').removeClass('opened');
+			$(this).toggleClass('opened');
+		}
+
 	});
 	// End Simulating dropdown effect on Opentype element
 
