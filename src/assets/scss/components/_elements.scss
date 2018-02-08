@@ -631,6 +631,11 @@ button{
 
 .slider{
 	position: relative;
+	@include mq($bp_tabletish-, max-width ){
+		justify-content: space-between;
+		width: 100%;
+		order: -1;
+	}
 }
 
 .type-tester__label{

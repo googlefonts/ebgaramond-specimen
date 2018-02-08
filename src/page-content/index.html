@@ -1112,14 +1112,14 @@
 						</div>
 						<div class="slider">
 							<span class="type-tester__label" data-target-property="font-size"></span>
-							<div class="type-tester__slider" data-target-property="font-size" data-min=".82" data-max="1.35"></div>
+							<div class="type-tester__slider" data-target-property="font-size" data-min=".81" data-max="1.35"></div>
 						</div>
 						<div class="tt-content" data-text="word">
 							<button class="content__item js-text" data-text="word">Word</button>
 							<button class="content__item js-text" data-text="paragraph">Paragraph</button>
 						</div>
 					</div>
-					<p class="current-font type-tester__content open-type typetester__text js-tt-text" contenteditable="true">
+					<p class="current-font type-tester__content open-type typetester__text js-tt-text" contenteditable="true" >
 					Try me ❤
 					</p>
 				</div>
@@ -1279,6 +1279,9 @@
 		<script src='third_party/easyzoom/easyzoom.js'></script>
 		<script src="third_party/specimenTools/lib/bower_components/requirejs/require.js"></script>
 		<script>
+		if ($(window).width() < 768){
+			$('.type-tester').attr('data-value-font-size', '80');
+		}
 		fontFiles = [ 'fonts/EBGaramond12-Regular.woff',
 									'fonts/EBGaramond12-Italic.woff',
 									'fonts/EBGaramond12-Semibold.woff',

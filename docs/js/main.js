@@ -405,7 +405,8 @@ $(document).ready(function(){
 
 		var sliderTT = function(){
 			if($('.specimen-slider').length != 0){
-				$( ".specimen-slider" ).bind('keyup mousemove',function() {
+				$( ".specimen-slider" ).bind('input change keyup mousemove',function() {
+					console.log('hola hola holaaaa');
 					var value = $( this ).val();
 					var slideValue = value;
 
@@ -414,8 +415,29 @@ $(document).ready(function(){
 					$( this ).parent().prev().css({
 						'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
 					});
+					// var currentVal = $('.specimen-slider').val() - $('.specimen-slider').attr('min'),
+					// 		maxVal = $('.specimen-slider').attr('max') - $('.specimen-slider').attr('min');
+					// console.log(currentVal);
+					// console.log(maxVal);
+
+					// // Percentage moved
+					// var movPercent = currentVal * 100 / maxVal;
+					// console.log(movPercent);
+
+					// // Getting the total for move at line-height
+					// var minLH = $('.type-tester__slider').data('min'),
+					// 		maxLH = $('.type-tester__slider').data('max'),
+					// 		totalLH = maxLH - minLH;
+					// 		lhIncrease  = maxLH - totalLH * (movPercent / 100);
+					// 		console.log(minLH);
+					// 		console.log(maxLH);
+					// 		console.log(totalLH);
+					// 		console.log(lhIncrease);
+					// $('.js-tt-text').css({
+					// 	'line-height': lhIncrease
+					// })
+					proportionalLH();
 				});
-				proportionalLH();
 
 
 				clearInterval(movingSliderTT);
@@ -432,9 +454,9 @@ $(document).ready(function(){
 
 
 
-			$('.specimen-slider').bind('keyup mousemove', function(){
-				proportionalLH();
-			});
+			// $('.specimen-slider').bind('keyup mousemove', function(){
+			// 	proportionalLH();
+			// });
 			$('.specimen-slider').on('change', function(){
 				changeBtn = false;
 
@@ -443,7 +465,7 @@ $(document).ready(function(){
 			}
 		}
 
-		var movingSliderTT = setInterval(sliderTT, 1000);
+		var movingSliderTT = setInterval(sliderTT, 10);
 
 		var changeBtn = false;
 	// Change between words and paragraph in typetester
@@ -451,12 +473,21 @@ $(document).ready(function(){
 		e.preventDefault();
 		var $tt = $('.typetester__text');
 
-		var word = 'Ok! Reset done';
+		var word = [
+				'Helas! Mon amy',
+				'Seur du roy François',
+				'J’aye veu en ma vie',
+				'Que voulez-vous?',
+				];
 		var paragraph = [
-			'Lorem ipsum dolor sit amet, consectetur elit. Proin sit amet dui et quam condimentum eleifend. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim in. Nunc fermentum turpis id libero pulvinar imperdiet. Maecenas nec sem dapibus est rutrum lobortis. Aliquam',
-			'Maecenas ac risus in leo porttitor feugiat sed sit amet sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet dui et quam condimentum eleifend. Maecenas ac risus in leo porttitor feugiat sed sit amet sem. In semper tortor a justo venenatis, vitae placerat mi imperdiet. Nullam ac mauris interdum, molestie',
-			'In semper tortor a justo venenatis, placerat mi imperdiet Mauris dictum, libero sed posuere fringilla, lacus orci ultrices diam, nec dictum enim ex euismod arcu. Nulla semper mauris velit, vel pulvinar tellus pharetra eu. Fusce malesuada, lacus vel rutrum suscipit, nunc urna pharetra ligula, et volutpat justo metus quis felis. In',
-			'Nullam ac mauris interdum,molestie lacus vel, ultrices semlacus vel, ultrices sem. Aliquam erat volutpat. Cras quam mi, suscipit a elit a, tempor tristique quam. Vestibulum nec condimentum tortor, ut ultricies ante. Donec ultricies enim diam, ac euismod elit dignissim.',
+			'«Mon amy, allez ailleurs, car vostre place est prinse.» Et luy, pensant que le mary fut venu, luy demanda comme le tout alloit. La pauvre femme, aiant pitié de luy, le voiant tant beau, jeune et honneste homme, aymer si fort et estre si peu aymé, luy declaira la folye de sa maistresse, pensant que, quant il l’entendroit, cella le chastieroit d’aymer tant. Et luy compta comme l’evesque de Sées ne faisoit que d’y arriver et estoit couché avecq elle, chose à quoy elle ne se attendoit pas, car il n’y devoit venir jusques au lendemain.',
+			'Elle, voiant que beaucoup de peuple estoit en l’eglise et qu’il estoit accompaigné de deux bons serviteurs, se contraingnit de parler le plus gratieusement qu’elle peut, luy disant qu’elle ne faisoit nulle doubte qu’il ne dist verité et qu’elle l’estimoit trop homme de bien pour dire mal de personne du monde, et encores moins d’elle, qui luy portoit tant d’amityé; mais que son mary en avoit entendu des propos, par quoy elle le prioit qu’il voulust dire devant luy qu’il n’en avoit poinct parlé et qu’il n’en croyast riens.',
+			'Le serviteur qui parloit à la damoiselle luy dist: "J’oy mon maistre qui parle en ce degré: je m’en voys à luy." \
+				La damoiselle le retint et luy dist: \
+				"Ne vous soulciez: il viendra assez tost."\
+				Et, peu après, oiant que son maistre disoit: "Je meurs et recommande à Dieu mon esprit!" le voulut aller secourir; mais elle le retint, luy disant:\
+				"Ne vous soulsiez: mon mary le chastie de ses jeunesses. Allons veoir que c’est." Et, en s’appuyant dessus le bout du degré, demanda à son mary: "Et puys? est il faict?"',
+			'Je ne vous sçaurois dire lequel estoit plus aise des deux, ou luy de penser tromper sa femme, ou elle de tromper son mary. Et quant il eut demouré avec elle, non selon son vouloir, mais selon sa puissance, qui sentoit le viel marié, s’en alla hors de la maison, où il trouva son compaignon, beaucoup plus jeune et plus fort que luy; et luy feit la feste d’avoir trouvé la meilleure robbe qu’il avoit point veue. Son compaignon luy dist: «Vous sçavez que vous m’avez promis? - Allez doncques vistement, dict le maistre, de paour qu’elle ne se lieve, ou que ma femme ayt affaire d’elle.»',
 		];
 
 		changeBtn = true;
@@ -471,17 +502,20 @@ $(document).ready(function(){
 		//Fill with words
 		if($(this).data('text') == 'word'){
 			$('.js-tt-text').css({
-				fontSize: '125px'
+				fontSize: $('.type-tester').data('value-font-size') + 'px'
 			});
 
 
-			$('.specimen-slider').val('125');
-			$('.specimen-slider').value = '125';
-			$('.type-tester__label').text('125px');
+			$('.specimen-slider').val($('.type-tester').data('value-font-size'));
+			$('.specimen-slider').value = $('.type-tester').data('value-font-size');
+			$('.type-tester__label').text($('.type-tester').data('value-font-size') + 'px');
 
 			proportionalLH();
 
-			$tt.text(word);
+			var randomNumber = Math.floor((Math.random()*word.length));
+
+			$tt.text(word[randomNumber]);
+
 
 		//Fill with paragraphs
 		}else{
@@ -523,12 +557,12 @@ $(document).ready(function(){
 	$('.js-dropdown').on('click', function(){
 
 		if($(this).next().hasClass('visible')){
-			$('.open-type').css({
+			$('.open-type, .section--author, .footer').css({
 				'transform': ''
 			})
 		}else{
 			$('.js-dropdown').next().removeClass('visible');
-			$('.open-type').css({
+			$('.open-type, .section--author, .footer').css({
 				'transform': 'translateY(' + $(this).next().height() +'px)'
 			})
 		}

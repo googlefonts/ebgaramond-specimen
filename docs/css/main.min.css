@@ -4804,8 +4804,8 @@ button {
 .nav__item a {
   opacity: 0;
   display: block;
-  -webkit-transform: translateX(-100px);
-  transform: translateX(-100px);
+  -webkit-transform: translateX(calc(-100% - 21rem));
+  transform: translateX(calc(-100% - 21rem));
   color: #000;
   padding: 0 0.5rem 0 2rem;
   -webkit-transition: opacity .5s ease-out, -webkit-transform .5s .3s ease-out;
@@ -5660,6 +5660,9 @@ button {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   position: relative;
 }
 
@@ -5688,12 +5691,6 @@ button {
 .tt-content[data-text="paragraph"]::before {
   -webkit-transform: translate(-1.9em, 50%);
   transform: translate(-1.9em, 50%);
-}
-
-.tt-content {
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
 }
 
 .justify__item,
@@ -5874,7 +5871,7 @@ button {
 
 [type='range'] {
   -webkit-appearance: none;
-  margin: 6px 0;
+  margin: 7px 0;
   width: 100%;
 }
 
@@ -5914,12 +5911,13 @@ button {
   border: 0 solid transparent;
   border-radius: 50%;
   cursor: pointer;
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
+  margin: .5rem 0;
   position: relative;
   z-index: 2;
   -webkit-appearance: none;
-  margin-top: -5.5px;
+  margin-top: -6.5px;
 }
 
 [type='range']::-moz-range-track {
@@ -5940,8 +5938,9 @@ button {
   border: 0 solid transparent;
   border-radius: 50%;
   cursor: pointer;
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
+  margin: .5rem 0;
   position: relative;
   z-index: 2;
 }
@@ -5954,7 +5953,7 @@ button {
   width: 100%;
   background: transparent;
   border-color: transparent;
-  border-width: 6px 0;
+  border-width: 7px 0;
   color: transparent;
 }
 
@@ -5978,8 +5977,9 @@ button {
   border: 0 solid transparent;
   border-radius: 50%;
   cursor: pointer;
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
+  margin: .5rem 0;
   position: relative;
   z-index: 2;
   margin-top: 0;
@@ -6013,6 +6013,7 @@ button {
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
   z-index: -1;
+  pointer-events: none;
 }
 
 .otf-item:nth-child(6n+1):hover ~ .otf-dot {
@@ -6073,6 +6074,14 @@ button {
   opacity: 0;
   -webkit-transition: all 1s cubic-bezier(0.01, 0.3, 0.2, 0.98);
   transition: all 1s cubic-bezier(0.01, 0.3, 0.2, 0.98);
+}
+
+.otf__launcher::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  top: 100%;
 }
 
 .animation-in .otf__launcher {
@@ -6595,5 +6604,50 @@ button {
 
   [data-feature-type="optional"]:first-child {
     margin-left: 25%;
+  }
+}
+
+@media screen and (max-width: 47.9375rem) {
+  .slider {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .tt__otf,
+  .tt__settings > div:first-child {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 1rem;
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    text-align: center;
+  }
+
+  .tt-content {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .tt-content[data-text="word"]::before {
+    -webkit-transform: translate(-1050%, 50%);
+    transform: translate(-1050%, 50%);
+  }
+
+  .tt-content[data-text="paragraph"]::before {
+    -webkit-transform: translate(850%, 50%);
+    transform: translate(850%, 50%);
   }
 }
