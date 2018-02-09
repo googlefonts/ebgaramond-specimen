@@ -113,7 +113,7 @@
 					<!-- <li class="nav__item js-menu" data-section="" title><a href="#" ="">Past & present</a></li> -->
 					<li class="nav__item js-menu" data-section="otf"><a href="#"  title="OTF features">OTF features</a></li>
 					<li class="nav__item js-menu" data-section="typetester"><a href="#"  title="Try EB Garamond">Try EB Garamond</a></li>
-					<li class="nav__item js-menu" data-section="author"><a href="#"  title="Try EB Garamond">Try EB Garamond</a></li>
+					<li class="nav__item js-menu" data-section="author"><a href="#"  title="Try EB Garamond">About the author</a></li>
 					<li class="nav__item--dot"></li>
 				</ul>
 			</nav>
@@ -802,17 +802,15 @@
 				</nav>
 				<div class="scripts-list">
 					<div class="script script--latin script--active">
-						<div class="content-text">
-							<p>Claude Garamont (c. 1510 – 1561), known commonly as Claude Garamond, was a French type designer, publisher and punch-cutter based in Paris. Garamond worked as an engraver of punches, the masters used to stamp matrices, the moulds used to cast metal type. He worked in the tradition of what is now called old-style serif letter design, that produced letters with a relatively organic structure resembling handwriting with a pen but with a slightly more structured and upright design. Considered one of the leading type designers of all time, he is recognised to this day for the elegance of his typefaces. Many old-style serif typefaces are collectively known as Garamond, named after the designer.</p>
-							<p>Garamond was one of the first independent punchcutters, specialising in type design and punch-cutting as a service to others rather than working in house for a specific printer. His career therefore helped to define the future of commercial printing with typefounding as a distinct industry to printing books. </p>
-							<div class="alphabet alphabet--latin">
-								<p class="alphabet__uppercase">
-									ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
-								</p>
-								<p class="alphabet__lowercase">
-									abcdefghijklmnñopqrstuvwxyz
-								</p>
-							</div>
+						<p>Claude Garamont (c. 1510 – 1561), known commonly as Claude Garamond, was a French type designer, publisher and punch-cutter based in Paris. Garamond worked as an engraver of punches, the masters used to stamp matrices, the moulds used to cast metal type. He worked in the tradition of what is now called old-style serif letter design, that produced letters with a relatively organic structure resembling handwriting with a pen but with a slightly more structured and upright design. Considered one of the leading type designers of all time, he is recognised to this day for the elegance of his typefaces. Many old-style serif typefaces are collectively known as Garamond, named after the designer.</p>
+						<p>Garamond was one of the first independent punchcutters, specialising in type design and punch-cutting as a service to others rather than working in house for a specific printer. His career therefore helped to define the future of commercial printing with typefounding as a distinct industry to printing books. </p>
+						<div class="alphabet alphabet--latin">
+							<p class="alphabet__uppercase">
+								ABCDEFGHIJKLMNÑOPQRSTUVWXYZ
+							</p>
+							<p class="alphabet__lowercase">
+								abcdefghijklmnñopqrstuvwxyz
+							</p>
 						</div>
 					</div>
 					<div class="script script--greek script--hide">
@@ -937,8 +935,14 @@
 			</div> -->
 			<div class="section section--otf">
 				<h2 class="title-vertical vertical--otf" data-y="150" data-hook=".5" data-offset=".5">OT Features</h2>
+				<div class="otf-selector">
+					<button class="js-otf-category" data-otf="letters">Letters</button>
+					<button class="js-otf-category" data-otf="numbers">Numbers</button>
+					<button class="js-otf-category" data-otf="symbols">Symbols</button>
+					<span class="dot"></span>
+				</div>
 				<ul class="otf-list">
-					<li class="otf-item otf--small-caps">
+					<li class="otf-item otf--small-caps otf--letters otf--active">
 						<div class="otf__launcher">Aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Small Caps</h3>
@@ -946,7 +950,7 @@
 							<p class="otf__active"><span class="otf__sample">Alphabetum Græcum</span></p>
 						</div>
 					</li>
-					<li class="otf-item otf--localized-forms">
+					<li class="otf-item otf--localized-forms  otf--letters">
 						<div class="otf__launcher">ii</div>
 						<div class="otf__info">
 							<h3 class="otf__name">localized forms</h3>
@@ -954,7 +958,7 @@
 							<p class="otf__active">das M<span class="otf__sample">ä</span>dchen</p>
 						</div>
 					</li>
-					<li class="otf-item otf--aligned-tabular">
+					<li class="otf-item otf--aligned-tabular  otf--numbers">
 						<div class="otf__launcher">1486</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Aligned tabular</h3>
@@ -962,14 +966,14 @@
 							<p class="otf__active"><span>C. Garamond</span> <span class="otf__sample">1510-1561</span></p>
 						</div>
 					</li>
-					<li class="otf-item otf--aligned-proportional">
+					<li class="otf-item otf--aligned-proportional  otf--numbers">
 						<div class="otf__launcher">1999</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Aligned proportional</h3>
 							<p class="otf__active">Dates as early as <span class="otf__sample">1480</span> and as late as c. <span class="otf__sample">1510</span>  have been proposed for his birth, the latter being preferred by the French ministry of culture. In favour of a later date, his will of <span class="otf__sample">1561</span> states that his mother was then still alive</p>
 						</div>
 					</li>
-					<li class="otf-item otf--old-tabular">
+					<li class="otf-item otf--old-tabular  otf--numbers">
 						<div class="otf__launcher">1234</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Old Style tabular</h3>
@@ -977,14 +981,14 @@
 							<p class="otf__active"><span>C. Garamond</span> <span class="otf__sample">1510-1561</span></p>
 						</div>
 					</li>
-					<li class="otf-item  otf--old-proportional">
+					<li class="otf-item  otf--old-proportional  otf--numbers">
 						<div class="otf__launcher">789</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Old Style proportional</h3>
 							<p class="otf__active">Dates as early as <span class="otf__sample">1480</span> and as late as c. <span class="otf__sample">1510</span>  have been proposed for his birth, the latter being preferred by the French ministry of culture. In favour of a later date, his will of <span class="otf__sample">1561</span> states that his mother was then still alive</p>
 						</div>
 					</li>
-					<li class="otf-item otf--subscripts">
+					<li class="otf-item otf--subscripts  otf--numbers">
 						<div class="otf__launcher">17</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Subscripts</h3>
@@ -992,7 +996,7 @@
 							<p class="otf__active">H<span class="otf__sample">(13+45>a=69~87c)</span></p>
 						</div>
 					</li>
-					<li class="otf-item otf--supscripts">
+					<li class="otf-item otf--supscripts  otf--numbers">
 						<div class="otf__launcher">17</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Superscripts</h3>
@@ -1000,14 +1004,14 @@
 							<p class="otf__active">H<span class="otf__sample">(13+45>a=69~87c)</span></p>
 						</div>
 					</li>
-					<li class="otf-item  otf--fractions">
+					<li class="otf-item  otf--fractions  otf--numbers">
 						<div class="otf__launcher">17</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Fractions</h3>
 							<p class="otf__active">Human beings are between <span class="otf__sample">1/2</span>  and <span class="otf__sample">2/3</span> water</p>
 						</div>
 					</li>
-					<li class="otf-item otf--ordinals">
+					<li class="otf-item otf--ordinals  otf--numbers">
 						<div class="otf__launcher">17</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Ordinals</h3>
@@ -1015,14 +1019,14 @@
 							<p class="otf__active">La 1<span class="otf__sample">a</span> Dama</p>
 						</div>
 					</li>
-					<li class="otf-item otf--petit-caps">
+					<li class="otf-item otf--petit-caps  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Petit Caps</h3>
 							<p class="otf__active">Some typefaces have additional Small Caps which match the x-height and they are called Petite Caps</p>
 						</div>
 					</li>
-					<li class="otf-item otf--old-forms">
+					<li class="otf-item otf--old-forms  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Old forms</h3>
@@ -1030,7 +1034,7 @@
 							<p class="otf__active">Lo<span class="otf__sample">st</span> Paradi<span class="otf__sample">s</span>e</p>
 						</div>
 					</li>
-					<li class="otf-item otf--old-ligatures">
+					<li class="otf-item otf--old-ligatures  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">oldforms ligatures</h3>
@@ -1038,7 +1042,7 @@
 							<p class="otf__active">Ma<span class="otf__sample">ss</span>ive Di<span class="otf__sample">sast</span>er</p>
 						</div>
 					</li>
-					<li class="otf-item otf--ligatures">
+					<li class="otf-item otf--ligatures  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Ligatures</h3>
@@ -1046,7 +1050,7 @@
 							<p class="otf__active">Re<span class="otf__sample">fi</span>ned E<span class="otf__sample">ffi</span>ciency</p>
 						</div>
 					</li>
-					<li class="otf-item otf--discretional-ligatures">
+					<li class="otf-item otf--discretional-ligatures  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Discretional ligatures</h3>
@@ -1054,7 +1058,7 @@
 							<p class="otf__active">Ca<span class="otf__sample">st</span>ed letterforms</p>
 						</div>
 					</li>
-					<li class="otf-item otf--swashes">
+					<li class="otf-item otf--swashes  otf--letters">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Swashes</h3>
@@ -1062,14 +1066,14 @@
 							<p class="otf__active"><span class="otf__sample">Q</span>ueen <span class="otf__sample">E</span>lizabeth</p>
 						</div>
 					</li>
-					<li class="otf-item otf--ornaments">
+					<li class="otf-item otf--ornaments  otf--symbols">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Ornaments</h3>
 							<p class="otf__active">☙❦❧☜☝☞♾✊✋✌>👌👍</p>
 						</div>
 					</li>
-					<li class="otf-item otf--arrows">
+					<li class="otf-item otf--arrows  otf--symbols">
 						<div class="otf__launcher">aa</div>
 						<div class="otf__info">
 							<h3 class="otf__name">Arrows</h3>
@@ -1156,10 +1160,13 @@
 					<h5 class="title--shy">EB Garamond</h5>
 					<p>The EB Garamond family is a quite literal revival of Claude Garamond punches. Featuring an inmense set of characters, it’s ready for all kind of typographic challenges in a huge variety of languages and dialects.</p>
 					<p>EB Garamond designed by Georg Mayr-Duffner</p>
+
 				</div>
 				<div class="the-partner text-content">
-					<h5 class="title--shy">Google Fonts</h5>
-					<p>The expanded character, styles, and small caps for was commissioned by Goolge Fonts. Google Fonts is making the web more beautiful, fast, and open through great typography.</p>
+					<div class="text-wrapper">
+						<h5 class="title--shy">Google Fonts</h5>
+						<p>The expanded character, styles, and small caps for was commissioned by Goolge Fonts. Google Fonts is making the web more beautiful, fast, and open through great typography.</p>
+					</div>
 					<ul>
 						<li><a href="#">Google Fonts</a></li>
 						<li><a href="#">@googlefonts on Github</a></li>
@@ -1168,13 +1175,14 @@
 					</ul>
 				</div>
 				<div class="the crafters text-content">
-					<h6 class="title--shy">Designed with plenty of love&nbsp;by</h6>
+					<h6 class="title--shy">Site designed with plenty of love&nbsp;by</h6>
 					<a href="http:www.ashler.design" title="Ashler design studio">
 						<svg class="ashler-logo">
 							<use xlink:href="img/typetester_base/garamond-icons.svg#ashler-logo" />
 						</svg>
 					</a>
 				</div>
+
 			</footer>
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>

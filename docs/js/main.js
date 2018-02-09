@@ -106,7 +106,8 @@ $(document).ready(function(){
 
 	// Styles
 	$('.js-styles li').on('mouseover', function(){
-
+		$('.js-styles li').removeClass('style--active');
+		$(this).addClass('style--active');
 		// $('.js-letter-tester').removeClass().addClass($(this).data('style'));
 		$('.js-letter-tester').attr('data-style', $(this).data('style'));
 	});
@@ -336,6 +337,30 @@ $(document).ready(function(){
 
 
 // End Animation and smooth scroll styles
+
+// OTF category selector: Letters, numbers & symbols
+$('.otf-item').on('mouseover', function(){
+	$('.otf-item').removeClass('otf--active');
+	$(this).addClass('otf--active');
+});
+// End OTF category selector: Letters, numbers & symbols
+
+// OTF category selector: Letters, numbers & symbols
+$('.js-otf-category').on('click', function(){
+	$('.otf-item').hide();
+	$('.otf-item.otf--'+$(this).data('otf')).show();
+	$(this).parent().attr('data-otf', $(this).data('otf'));
+
+	$('.otf-item').removeClass('otf--active');
+	$('.otf--'+$(this).data('otf')).first().addClass('otf--active');
+});
+
+$(window).on('resize', function(){
+	if($(window).width() > 1024){
+		$('.otf-item').show().removeClass('otf--active');
+	}
+})
+// End OTF category selector: Letters, numbers & symbols
 
 // Typetester scripts
 

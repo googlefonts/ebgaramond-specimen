@@ -67,9 +67,14 @@ button{
 
 	&--shy{
 		text-transform: uppercase;
+		font-size: $f-nano;
 
 		+ *{
 			margin-top: $gap;
+		}
+
+		@include mq($bp_tabletish, max-width){
+			max-width: 34ch;
 		}
 	}
 
@@ -83,6 +88,7 @@ button{
 		position: relative;
 		z-index: 2;
 		pointer-events: none;
+
 		@include mq($bp_tabletish){
 			line-height: 2.1;
 		}
@@ -105,8 +111,12 @@ button{
 			box-decoration-break: clone;
 			-webkit-box-decoration-break: clone;
 
+		@include mq($bp_middle){
+			font-size: 4vw;
+		}
+
 			@include mq($bp_tabletish){
-			font-size: $f-mega;
+				font-size: $f-mega;
 				// font-size: 3vw;
 			// padding: .5*$gap 1.5*$gap .75*$gap;
 
@@ -123,6 +133,16 @@ button{
 
 
 		@include mq($bp_middle){
+			strong{
+				width: 60vw;
+			}
+
+			span, .run-animation &{
+				width: 70vw;
+			}
+
+		}
+		@include mq($bp_desktopish){
 			strong{
 				width: 40vw;
 			}
@@ -149,7 +169,11 @@ button{
 
 
 		&.im-here{
-			opacity: .8;
+			opacity: .4;
+
+			@include mq($bp_middle){
+				opacity: .8;
+			}
 		}
 	}
 }
@@ -223,6 +247,13 @@ button{
 		font-weight: 600;
 		top: 50%;
 		margin-left: 2rem;
+
+		@include mq($bp_middle, max-width){
+			opacity: .2 !important;
+			top: 35%;
+			margin-left: 0rem;
+
+		}
 	}
 
 	&--scripts{
@@ -3025,8 +3056,8 @@ button{
 }
 
 .google-friends-logo, .ashler-logo{
-	max-width: 4.5rem;
-	height: 1.75rem;
+	max-width: 4.1rem;
+	height: .9rem;
 }
 
 .google-friends-logo{
