@@ -348,7 +348,9 @@ $('.otf-item').on('mouseover', function(){
 // OTF category selector: Letters, numbers & symbols
 $('.js-otf-category').on('click', function(){
 	$('.otf-item').hide();
-	$('.otf-item.otf--'+$(this).data('otf')).show();
+	$('.otf-item.otf--'+$(this).data('otf')).show().css({
+		display: flex
+	});
 	$(this).parent().attr('data-otf', $(this).data('otf'));
 
 	$('.otf-item').removeClass('otf--active');
