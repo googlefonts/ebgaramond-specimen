@@ -5182,8 +5182,8 @@ button {
 }
 
 .section--comparison {
-  position: relative;
   height: calc(100vh + 6rem);
+  margin-top: 10rem;
 }
 
 .section--comparison::before {
@@ -5227,13 +5227,45 @@ button {
   left: 0;
 }
 
+.comparison-wrapper::before {
+  content: '';
+  position: absolute;
+  height: calc(100% - 10rem);
+  left: 0;
+  background-color: transparent;
+  z-index: 9;
+  width: 100%;
+}
+
+.comparison-wrapper.zooming::before {
+  content: none;
+}
+
 .comparison__slider {
   position: absolute;
-  width: 100vw;
-  left: 0;
-  pointer-events: none;
+  height: calc(100% - 10rem);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
   -webkit-transition: pointer-events .1s 1s ease-out;
   transition: pointer-events .1s 1s ease-out;
+}
+
+.comparison__slider::before {
+  content: '';
+  position: absolute;
+  z-index: 9;
+  border: 2px solid #EE6F52;
+  background-color: rgba(92, 94, 93, 0.05);
+  width: 100%;
+  height: 100%;
+  left: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.zooming .comparison__slider:hover::before {
+  opacity: 1;
 }
 
 .run-animation .comparison__slider {
@@ -5244,21 +5276,38 @@ button {
   pointer-events: none;
 }
 
+.comparison__slider a img {
+  width: auto;
+  height: 100%;
+  pointer-events: none;
+}
+
+.comparison--new {
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
 .comparison--new::before {
   left: 49.5%;
   -webkit-transform-origin: right top;
   transform-origin: right top;
 }
 
-.comparison--new {
+.comparison--old {
   -webkit-clip-path: inset(0 0 0 50%);
   clip-path: inset(0 0 0 50%);
   background-color: #fff;
 }
 
+.zooming.old:hover .comparison--old {
+  -webkit-clip-path: none !important;
+  clip-path: none !important;
+  z-index: 9;
+}
+
 .comparison__controller {
   position: absolute;
-  bottom: 2rem;
+  bottom: 4rem;
   width: calc(100% - 47%);
   left: 50%;
   -webkit-transform: translate(-50%, -2.5rem);
@@ -5266,27 +5315,38 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  height: 100%;
+  pointer-events: all;
 }
 
-.comparison__controller::before {
+.zooming ~ .comparison__controller {
+  pointer-events: none;
+}
+
+.comparison__controller::before,
+.comparison__controller::after {
   content: '';
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   border: 1px solid #5C5E5D;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  bottom: -2px;
+  left: -3px;
   background-color: #F1F1F1;
+  pointer-events: none;
+}
+
+.comparison__controller::after {
+  left: auto;
+  right: -3px;
 }
 
 .comparison__controller input {
-  width: 100%;
+  width: calc(100% + 10px);
   height: 2px;
 }
 
@@ -5303,11 +5363,103 @@ button {
   background-color: rgba(12, 18, 50, 0.1);
 }
 
+.comparison__toggle {
+  pointer-events: all;
+  position: absolute;
+  z-index: 9;
+  margin-top: .25rem;
+}
+
+.comparison__toggle--old {
+  -webkit-transform: translateX(calc(-100% + 2rem));
+  transform: translateX(calc(-100% + 2rem));
+}
+
+.comparison__toggle--old .toggle__label {
+  padding-right: 3rem;
+}
+
+.comparison__toggle--new {
+  right: 0;
+  -webkit-transform: translateX(calc(100% - 2rem));
+  transform: translateX(calc(100% - 2rem));
+}
+
+.comparison__toggle--new .toggle__label {
+  padding-left: 3rem;
+}
+
+.comparison__toggle input {
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.toggle__label {
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: color .4s ease-out;
+  transition: color .4s ease-out;
+  display: block;
+  width: 100%;
+}
+
+.toggle__label::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+  border-radius: 50%;
+  right: -16px;
+  top: 18px;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+}
+
+.comparison__toggle--old .toggle__label::before {
+  left: -16px;
+  right: auto;
+}
+
+input.active + .toggle__label {
+  color: #EE6F52;
+}
+
+input.active + .toggle__label::before {
+  background-color: #EE6F52;
+  top: 12px;
+}
+
+input.active + .toggle__label .caption {
+  color: #5C5E5D;
+}
+
+.toggle__label .caption {
+  font-size: 0.75rem;
+  display: block;
+  font-style: italic;
+  opacity: .8;
+  position: absolute;
+  top: 100%;
+  line-height: 1.1;
+  color: #5C5E5D;
+}
+
+.comparison__toggle--old .caption {
+  padding-right: 3rem;
+}
+
 .easyzoom-flyout {
   position: fixed;
-  left: 50%;
-  height: 100vh;
-  width: 50vw;
+  left: -25%;
+  height: 100%;
+  width: calc(100vw - 2rem);
   overflow: hidden;
   top: 0;
   z-index: 2;
@@ -5317,10 +5469,6 @@ button {
 .easyzoom-flyout img {
   width: 100vw;
   mix-blend-mode: multiply;
-}
-
-.comparison--new .easyzoom-flyout {
-  left: 0;
 }
 
 .section--styles {
@@ -5803,18 +5951,35 @@ button {
   max-width: none !important;
 }
 
-.glyph-table {
-  position: relative;
-  display: none;
+/* Glyphs table
+========================================================================== */
+
+.glyphs-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity .4s ease-out;
+  transition: opacity .4s ease-out;
+  background-color: rgba(241, 241, 241, 0.7);
+  padding: 1rem;
+  overflow-x: hidden;
+  z-index: 9;
+}
+
+.glyphs-wrapper.glyph-view {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .glyph-table > div > div {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  position: absolute;
-  width: 100%;
-  max-height: 100vh;
-  overflow: scroll;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  grid-gap: 0.5rem;
+  background-color: #EE6F52;
+  padding: 1rem 0.25rem;
 }
 
 /* Footer
@@ -6060,7 +6225,7 @@ button {
   height: 11px;
   border-radius: 50%;
   background-color: #EE6F52;
-  top: .24rem;
+  top: 10%;
   left: .24rem;
   -webkit-transition: all .5s ease-out;
   transition: all .5s ease-out;
@@ -6068,8 +6233,28 @@ button {
   pointer-events: none;
 }
 
-.otf-letters:nth-of-type(1):hover ~ .otf-dot {
-  left: 8%;
+.otf--letters:nth-of-type(4n+1):hover ~ .otf-dot,
+.otf--numbers:nth-of-type(4n+1):hover ~ .otf-dot {
+  left: calc(12% - .12rem);
+}
+
+.otf--letters:nth-of-type(4n+2):hover ~ .otf-dot,
+.otf--numbers:nth-of-type(4n+2):hover ~ .otf-dot {
+  left: calc(37% - .12rem);
+}
+
+.otf--letters:nth-of-type(4n+3):hover ~ .otf-dot,
+.otf--numbers:nth-of-type(4n+3):hover ~ .otf-dot {
+  left: calc(61.5% - .12rem);
+}
+
+.otf--letters:nth-of-type(4n+4):hover ~ .otf-dot,
+.otf--numbers:nth-of-type(4n+4):hover ~ .otf-dot {
+  left: calc(87% - .12rem);
+}
+
+.otf--leters:nth-of-type(1n+4):hover ~ .otf-dot {
+  top: 20%;
 }
 
 .otf-item {
@@ -6482,7 +6667,6 @@ button {
     width: 60vw;
   }
 
-  .title--intro span,
   .run-animation .title--intro {
     width: 70vw;
   }
@@ -6542,11 +6726,11 @@ button {
     margin-left: 30%;
   }
 
-  .section--scripts .title--intro {
+  .section--scripts.run-animation .title--intro {
     width: 60vw;
   }
 
-  .section--scripts .title--intro strong {
+  .section--scripts.run-animation .title--intro strong {
     width: 58vw;
   }
 
@@ -6669,7 +6853,6 @@ button {
     width: 40vw;
   }
 
-  .title--intro span,
   .run-animation .title--intro {
     width: 50vw;
   }
@@ -6679,11 +6862,11 @@ button {
     margin-left: 36%;
   }
 
-  .section--scripts .title--intro {
+  .section--scripts.run-animation .title--intro {
     width: 55vw;
   }
 
-  .section--scripts .title--intro strong {
+  .section--scripts.run-animation .title--intro strong {
     width: 50vw;
   }
 
@@ -6731,6 +6914,10 @@ button {
     min-height: 60vh;
     margin-left: 3rem;
     margin-top: 0;
+  }
+
+  .otf-dot {
+    top: .24rem;
   }
 
   .otf-item:nth-child(6n+1):hover ~ .otf-dot {
@@ -6913,6 +7100,14 @@ button {
   .tt-content[data-text="paragraph"]::before {
     -webkit-transform: translate(850%, 50%);
     transform: translate(850%, 50%);
+  }
+}
+
+@media screen and (max-width: 40.625rem) {
+  .google-friends-logo.on-content {
+    background-color: rgba(241, 241, 241, 0);
+    fill: transparent;
+    opacity: 0;
   }
 }
 

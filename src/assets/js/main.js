@@ -1,5 +1,20 @@
 $(document).ready(function(){
 
+	// var glyphs = $('.section--typetester');
+	// console.log(glyphs);
+	// glyphs.detach();
+	// $('.test').on('click', function(e){
+	// 	e.preventDefault();
+	// 	$('body').append(glyphs);
+	// });
+
+	// First scroll: Scroll down
+	$('.js-scroll').on('click', function(e){
+		e.preventDefault();
+		scrollbar.scrollTo(null, $(window).height() - 16, 1000);
+	});
+	// End First scroll: Scroll down
+
 	// Menu: Scroll to new section
 	var section;
 	$('.js-menu').on('click', function(e){
@@ -11,8 +26,86 @@ $(document).ready(function(){
 
 	// End Menu: Scroll to new section
 
+	// Fixing view for slider component: old version vs new version
+	$('.js-toggle').on('click', function(){
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+
+			$('.js-slider-mask').animate().css({
+				'clip-path': 'inset(0 0 0 ' + 50 + '%)'
+			});
+			$('.js-slider').val(50);
+		}else{
+			$('.js-toggle').removeClass('active');
+			$(this).addClass('active')
+		}
+		if($(this).data('period') == 'old'){
+			$('.js-slider-mask').animate().css({
+				'clip-path': 'inset(0 0 0 ' + 0 + '%)'
+			});
+			$('.js-slider').val(0);
+		}else{
+			$('.js-slider-mask').animate().css({
+				'clip-path': 'inset(0 0 0 ' + 100 + '%)'
+			});
+			$('.js-slider').val(100);
+		}
+
+		if($('.js-toggle').hasClass('active')){
+			$('.comparison-wrapper, .comparison__controller').addClass('zooming');
+			if($(this).data('period') == 'old'){
+				$('.comparison-wrapper, .comparison__controller').removeClass('new').addClass('old');
+			}else{
+				$('.comparison-wrapper, .comparison__controller').removeClass('old').addClass('new');
+			}
+
+		}else{
+			$('.comparison-wrapper, .comparison__controller').removeClass('zooming new old');
+			$('.js-slider-mask').css({
+				'clip-path': 'inset(0 0 0 ' + 50 + '%)'
+			});
+			$('.js-slider').val(50);
+		}
+	})
+	// End: Fixing view for slider component: old version vs new version
 	// Updating mask for the slider component
-	$(".js-slider").on("input change", function() {
+	$('.comparison__controller').css({
+		width: $(".comparison__slider").width() + 16,
+	});
+	$('.comparison__controller').on('mousemove', function(e){
+		if(!$(this).hasClass('zooming')){
+			var x = e.pageX - $(this).offset().left;
+
+			var canvasWidth =  $(".comparison__slider").width();
+			var x = e.pageX - $(this).offset().left - 10;
+
+			var percent = x * 100 / canvasWidth;
+
+			$('.js-slider').val(percent);
+
+			$('.js-slider-mask').css({
+				'clip-path': 'inset(0 0 0 ' + parseInt(percent) + '%)'
+			});
+		}
+	});
+
+	//Zooming view adjust left position
+	$('.comparison__slider').on('mouseover', function(){
+		var leftOffset = $(this).offset().left;
+		var zoomImgExists = function(){
+			if($('.easyzoom-flyout').length){
+				$('.easyzoom-flyout').css({
+					left: 'calc('+ -leftOffset + 'px + 1rem)'
+				})
+				clearInterval(zoomImg)
+			}else{
+			}
+		}
+		var zoomImg = setInterval(zoomImgExists, 100);
+
+	})
+
+	$(".js-slider").on("input change mouseover", function() {
 		$('.js-slider-mask').css({
 			'clip-path': 'inset(0 0 0 ' + $(this).val() + '%)'
 		});
@@ -368,6 +461,21 @@ $(window).on('resize', function(){
 
 	window.onload = function(){
 
+		var glyphs = function(){
+			if($('.glyph').length != 0){
+				var glyphTable = $('.glyph-table');
+				glyphTable.detach();
+
+				clearInterval(gettingGlyphs);
+
+				$('.test').on('click', function(e){
+					e.preventDefault();
+					$('.glyphs-wrapper').addClass('glyph-view').append(glyphTable);
+				});
+			}
+		}
+		var gettingGlyphs = setInterval(glyphs, 1000);
+
 	// Deactivating spell checked on typetester element
 	$('.js-tt-text').attr("spellcheck",false);
 	// Cleaning OTF names in typetester
@@ -433,7 +541,6 @@ $(window).on('resize', function(){
 		var sliderTT = function(){
 			if($('.specimen-slider').length != 0){
 				$( ".specimen-slider" ).bind('input change keyup mousemove',function() {
-					console.log('hola hola holaaaa');
 					var value = $( this ).val();
 					var slideValue = value;
 
@@ -442,6 +549,22 @@ $(window).on('resize', function(){
 					$( this ).parent().prev().css({
 						'left': (tooltipMov/ tooltipProp ) * ($(this).width() - 12)  + 7 + 'px'
 					});
+
+
+					// Incremental value when you reach highest values
+					if($(this).val() >= 158){
+						$(this).attr('step', 10);
+					}else if($(this).val() >= 138){
+						$(this).attr('step', 8);
+					}else if($(this).val() >= 98){
+						$(this).attr('step', 6);
+					}else if($(this).val() >= 78){
+						$(this).attr('step', 4);
+					}else if($(this).val() >= 38){
+						$(this).attr('step', 2);
+					}else{
+						$(this).attr('step', 1);
+					}
 					// var currentVal = $('.specimen-slider').val() - $('.specimen-slider').attr('min'),
 					// 		maxVal = $('.specimen-slider').attr('max') - $('.specimen-slider').attr('min');
 					// console.log(currentVal);

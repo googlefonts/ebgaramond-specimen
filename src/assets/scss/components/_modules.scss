@@ -408,7 +408,7 @@
 			margin-left: 30%;
 			// transform: translateY(50%)
 		}
-		.title--intro{
+		&.run-animation .title--intro{
 			width: 60vw;
 
 			strong{
@@ -422,7 +422,7 @@
 			// transform: translateY(50%)
 		}
 
-		 .title--intro{
+		 &.run-animation .title--intro{
 			width:55vw;
 
 			strong{
@@ -669,9 +669,9 @@
 // Slider before after comparison
 
 .section--comparison{
-	position: relative;
+	// position: relative;
 	height: calc(100vh + 6rem);
-	// margin-top: 10rem;
+	margin-top: 10rem;
 
 		&::before{
 			content: '';
@@ -716,15 +716,48 @@
 		width: 100vw;
 		height: 110vh;
 		left: 0;
+
+		&::before{
+			content: '';
+			position: absolute;
+			height: calc(100% - 10rem);
+			left: 0;
+			background-color: transparent;
+			z-index: 9;
+			width: 100%;
+		}
+		&.zooming{
+			&::before{
+				content: none;
+			}
+		}
 	}
 	&__slider{
 		position: absolute;
-		// height: calc(100% - 10rem);
-		width: 100vw;
-		left: 0;
-		pointer-events: none;
+		height: calc(100% - 10rem);
+		// width: 100vw;
+		left: 50%;
+		transform: translateX(-50%);
 		transition: pointer-events .1s 1s ease-out;
 
+		&::before{
+			content: '';
+			position: absolute;
+			z-index: 9;
+			border: 2px solid $c-main;
+			background-color: rgba($c-grey-dark, .05);
+			width: 100%;
+			height: 100%;
+			left: 0 !important;
+			opacity: 0;
+			pointer-events:none;
+		}
+
+		.zooming &:hover{
+			&::before{
+				opacity: 1;
+			}
+		}
 
 		// &::before{
 		// 	content: '';
@@ -747,55 +780,77 @@
 
 		a {
 			pointer-events: none;
-			// img{
-			// 	width: auto;
-			// 	height: 100%;
-			// }
+			img{
+				width: auto;
+				height: 100%;
+				pointer-events: none;
+			}
 		}
 	}
 
 	&--new{
+		transition: all .2s ease-out;
 		&::before{
 			left: 49.5%;
 			transform-origin: right top;
-
 		}
 
 	}
 
 // Showing half of the new version > see half of the older version below
-	&--new{
+	&--old{
 		clip-path: inset(0 0 0 50%);
 		background-color: #fff;
+		.zooming.old:hover &{
+			clip-path: none !important;
+			z-index: 9;
+		}
+
 	}
 
 //Controller slider
 	&__controller{
 		position: absolute;
-		bottom: 2rem;
+		bottom: 4rem;
 		width: calc(100% - 47%);
 		left: 50%;
 		transform: translate(-50%, -2.5rem);
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
+		height: 100%;
+		pointer-events: all;
 
 
-		&::before{
+		.zooming ~ &{
+			pointer-events: none;
+		}
+
+
+		&::before, &::after{
 			content: '';
 			position: absolute;
-			width: 1rem;
-			height: 1rem;
-			border-radius: 50%;
+			width: 20px;
+			height: 20px;
 			border: 1px solid $c-grey-dark;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			bottom: -2px;
+			// transform: translateY(-50%);
+			left: -3px;
 			background-color: $c-bg;
+			pointer-events: none;
+		}
+
+		&::after{
+			left: auto;
+			right: -3px;
 		}
 
 		input{
-			width: 100%;
+			width: calc(100% + 10px);
 			height: 2px;
+			// .zooming + &{
+			// 	pointer-events: none;
+			// }
 		}
 	}
 
@@ -816,6 +871,105 @@
 	}
 }
 
+
+// .comparison-toggles{
+// 	bottom: 0;
+// 	width: 100%;
+// 	display: flex;
+// 	justify-content: space-between;
+// 	left: 50%;
+// 	transform: translate(-50%, 0);
+// 	z-index: 2;
+// }
+
+.comparison__toggle{
+	pointer-events: all;
+	position: absolute;
+	z-index: 9;
+	margin-top: .25rem;
+
+
+	&--old{
+		transform: translateX(calc(-100% + 2rem));
+
+		.toggle__label{
+			padding-right: 3rem;
+		}
+
+		// &::before{
+		// 	left: 100%;
+		// }
+	}
+	&--new{
+		right: 0;
+		transform: translateX(calc(100% - 2rem));
+		.toggle__label{
+			padding-left: 3rem;
+		}
+	}
+
+	input{
+		@include hide-but-accesible;
+
+
+	}
+}
+
+.toggle__label{
+	position: relative;
+	cursor: pointer;
+	transition: color .4s ease-out;
+	display: block;
+	width: 100%;
+
+	&::before{
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		// border: 5px solid $c-main;
+		background-color: transparent;
+		border-radius: 50%;
+		right: -16px;
+		top: 18px;
+		// transform: translateY(100%);
+		transition: all .4s ease-out;
+
+		.comparison__toggle--old &{
+			left: -16px;
+			right: auto;
+		}
+	}
+
+	input.active + &{
+		color: $c-main;
+
+		&::before{
+			background-color: $c-main;
+			top: 12px;
+			// transform: translateY(0);
+		}
+		.caption{
+			color: $c-grey-dark;
+		}
+	}
+	//
+	.caption{
+		font-size: $f-micro;
+		display: block;
+		font-style: italic;
+		opacity: .8;
+		position: absolute;
+		top: 100%;
+		line-height: 1.1;
+		color: $c-grey-dark;
+	}
+}
+.comparison__toggle--old{
+	.caption{
+		padding-right: 3rem;
+	}
+}
 // .zoom {
 // 	display:inline-block;
 // 	position: relative;
@@ -823,9 +977,9 @@
 // }
 .easyzoom-flyout{
 	position: fixed;
-	left: 50%;
-	height: 100vh;
-	width: 50vw;
+	left: -25%;
+	height: 100%;
+	width: calc(100vw - 2rem);
 	overflow: hidden;
 	top: 0;
 	z-index: 2;
@@ -834,10 +988,6 @@
 	img{
 		width: 100vw;
 		mix-blend-mode: multiply;
-	}
-
-	.comparison--new &{
-		left: 0;
 	}
 }
 
@@ -1089,7 +1239,6 @@
 	&__icon{
 		width: 1.5rem;
 		height: 1.5rem;
-
 
 
 		.setting__slider &{
@@ -1407,21 +1556,38 @@
 }
 
 
-.glyph-table{
-	position: relative;
-	display: none;
+/* Glyphs table
+========================================================================== */
 
-	 >div >div{
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-		position: absolute;
-		width: 100%;
-		max-height: 100vh;
-		overflow: scroll;
+.glyphs-wrapper{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .4s ease-out;
+	background-color: rgba($c-bg, .7);
+	padding: 2*$gap;
+	// max-height: calc(100vh - 4*#{$gap});
+	overflow-x: hidden;
+	z-index: 9;
+
+	&.glyph-view{
+		opacity: 1;
+		pointer-events: all;
 	}
 }
 
-
+.glyph-table{
+	 >div >div{
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+		grid-gap: $gap;
+		background-color: $c-main;
+		padding: 2*$gap .5*$gap;
+	}
+}
 
 /* Footer
 ========================================================================== */
@@ -1717,17 +1883,33 @@ $contrast: 5% !default;
 	height: 11px;
 	border-radius: 50%;
 	background-color: $c-main;
-	top: .24rem;
+	top: 10%;
 	left: .24rem;
 	transition: all .5s ease-out;
 	z-index: -1;
 	pointer-events:none;
 
-	.otf-letters:nth-of-type(1):hover ~ &{
-		left: 8%;
+
+	.otf--letters:nth-of-type(4n+1):hover ~ &, .otf--numbers:nth-of-type(4n+1):hover ~ &{
+		left: calc(12% - .12rem);
+	}
+	.otf--letters:nth-of-type(4n+2):hover ~ &, .otf--numbers:nth-of-type(4n+2):hover ~ &{
+		left: calc(37% - .12rem);
+	}
+	.otf--letters:nth-of-type(4n+3):hover ~ &, .otf--numbers:nth-of-type(4n+3):hover ~ &{
+		left: calc(61.5% - .12rem);
+	}
+	.otf--letters:nth-of-type(4n+4):hover ~ &, .otf--numbers:nth-of-type(4n+4):hover ~ &{
+		left: calc(87% - .12rem);
+	}
+
+	.otf--leters:nth-of-type(1n+4):hover ~ &{
+		top: 20%;
 	}
 
 	@include mq($bp_desktopish){
+		top: .24rem;
+
 		.otf-item:nth-child(6n+1):hover ~ &{
 			left: 8%;
 		}

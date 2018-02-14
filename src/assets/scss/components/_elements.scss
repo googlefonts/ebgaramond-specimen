@@ -137,7 +137,7 @@ button{
 				width: 60vw;
 			}
 
-			span, .run-animation &{
+			.run-animation &{
 				width: 70vw;
 			}
 
@@ -147,10 +147,9 @@ button{
 				width: 40vw;
 			}
 
-			span, .run-animation &{
+			.run-animation &{
 				width: 50vw;
 			}
-
 		}
 	}
 
@@ -3075,15 +3074,26 @@ button{
 	animation: logoIn 1.2s 3s forwards;
 
 
+
 	&.on-content{
 		fill: $c-grey-dark;
 		background-color: rgba($c-bg, .7);
+
+		@include mq($bp_middle-up, max-width){
+			background-color: rgba($c-bg, .0);
+			fill: transparent;
+			opacity: 0;
+		}
 	}
 
 	.author--view &.on-content{
 		background-color: rgba($c-main, .7);
-	}
 
+		// @include mq($bp_middle-up, max-width){
+		// 	background-color: rgba($c-main, .7);
+		// 	fill: $c-bg;
+		// }
+	}
 }
 
 
