@@ -451,7 +451,8 @@ button {
   color: rgba(241, 241, 241, 0);
   -webkit-animation: scrollIn 1.2s 3s forwards;
   animation: scrollIn 1.2s 3s forwards;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
+  margin-left: -0.5rem;
 }
 
 .link--scroll::before {
@@ -4609,7 +4610,7 @@ button {
 .google-friends-logo {
   position: fixed;
   z-index: 9;
-  right: 2rem;
+  right: 5.5%;
   bottom: 1.75rem;
   max-width: 7rem;
   height: 3rem;
@@ -4842,7 +4843,7 @@ button {
 ========================================================================== */
 
 .section {
-  padding: 2rem calc((100% - 80%)/ 2) 1rem;
+  padding: 2rem calc((100% - 76%)/ 2) 1rem;
   position: relative;
 }
 
@@ -4885,54 +4886,72 @@ button {
   padding: 1.5rem calc((100% - 80%)/ 2) 2rem;
 }
 
-.over-folder-bg {
+.over-the-folder > svg {
+  margin-left: -1%;
+}
+
+.header-grid {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
-  color: #f08269;
+  color: #f1f1f1;
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(2rem, 1fr));
 }
 
-.bg-grid {
+.grid__item {
   text-align: center;
   padding: 0.625rem 0 0 0;
-  opacity: 0;
-  -webkit-transition: all .2s ease-out;
-  transition: all .2s ease-out;
-  -webkit-transform-origin: center center;
-  transform-origin: center center;
+  opacity: .2;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+  -webkit-transform: translateY(1rem);
+  transform: translateY(1rem);
+  -webkit-animation: glyphIn .4s forwards;
+  animation: glyphIn .4s forwards;
 }
 
-.bg-grid.hover {
-  opacity: 1 !important;
-  -webkit-transform: scale(1.8);
-  transform: scale(1.8);
-  color: #f1f1f1;
+.grid__item.active-center {
+  font-weight: 900;
+  opacity: 1;
+}
+
+.grid__item.active-round1 {
+  font-weight: 700;
+  opacity: .7;
+}
+
+.grid__item.active-round2 {
+  font-weight: 500;
+  opacity: .4;
 }
 
 @-webkit-keyframes glyphIn {
   from {
-    opacity: 0;
+    -webkit-transform: translateY(1rem);
+    transform: translateY(1rem);
   }
 
   to {
-    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes glyphIn {
   from {
-    opacity: 0;
+    -webkit-transform: translateY(1rem);
+    transform: translateY(1rem);
   }
 
   to {
-    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -6682,7 +6701,7 @@ input.active + .toggle__label .caption {
   }
 
   .section {
-    padding: 3rem calc((100% - 80%)/ 2) 2rem;
+    padding: 3rem calc((100% - 76%)/ 2) 2rem;
   }
 
   .section--intro .intro__highlight {
@@ -6807,7 +6826,7 @@ input.active + .toggle__label .caption {
   }
 
   .section--intro p {
-    margin-left: 15%;
+    margin-left: 18.7%;
   }
 
   .section--intro .intro__highlight {

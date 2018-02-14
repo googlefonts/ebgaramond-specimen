@@ -281,7 +281,8 @@ button{
 		bottom: 5vh;
 		color: rgba($c-white, 0);
 		animation: scrollIn 1.2s 3s forwards;
-		padding-left: 2*$gap;
+		padding-left: $gap;
+		margin-left: -$gap;
 
 		&::before{
 			content: '';
@@ -3062,7 +3063,7 @@ button{
 .google-friends-logo{
 	position: fixed;
 	z-index: 9;
-	right: 4*$gap;
+	right: 5.5%;
 	bottom: 3.5*$gap;
 	max-width: 6rem + 2*$gap;
 	height: 2.5rem + $gap;

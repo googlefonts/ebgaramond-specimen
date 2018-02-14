@@ -8,6 +8,227 @@ $(document).ready(function(){
 	// 	$('body').append(glyphs);
 	// });
 
+
+
+	// Setting the basics: width & height for elements
+	var itemHeight = $('.grid__item').height();
+	var itemWidth = $('.grid__item').width();
+
+
+	var highlightLetters = function(currentX, currentY){
+		var center = document.elementFromPoint(currentX, currentY);
+
+		// Round 1 - wrapper 1 level
+		var left = document.elementFromPoint(currentX - itemWidth, currentY);
+		var right = document.elementFromPoint(currentX + itemWidth, currentY);
+		var top = document.elementFromPoint(currentX , currentY - itemHeight);
+		var bottom = document.elementFromPoint(currentX , currentY + itemHeight);
+		var leftTop = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight);
+		var leftBottom = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight);
+		var rightBottom = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight);
+		var rightTop = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight);
+		var round1 = [left, right, top, bottom, leftTop, leftBottom, rightBottom, rightTop];
+
+		// Round 2 - wrapper second level
+		var left = document.elementFromPoint(currentX - itemWidth*2, currentY);
+		var right = document.elementFromPoint(currentX + itemWidth*2, currentY);
+		var top = document.elementFromPoint(currentX , currentY - itemHeight*2);
+		var bottom = document.elementFromPoint(currentX , currentY + itemHeight*2);
+		var left2Top1 = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight);
+		var left2Bottom1 = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight);
+		var left1Top2 = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight*2);
+		var left1Bottom2 = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight*2);
+		var right1Bottom2 = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight*2);
+		var right2Bottom1 = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight);
+		var right1Top2 = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight*2);
+		var right2Top1 = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight);
+		var leftTop = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight*2);
+		var leftBottom = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight*2);
+		var rightBottom = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight*2);
+		var rightTop = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight*2);
+
+
+		var round2 = [left, right, top, bottom, left2Top1, left2Bottom1, left1Top2, left1Bottom2, right1Bottom2, right2Bottom1, right1Top2, leftTop, leftBottom, rightBottom, rightTop];
+
+		for(var i = 0; i<round2.length; i++){
+			round2[i].classList.remove('active-round1')
+			round2[i].classList.add('active-round2')
+		}
+
+		for(var i = 0; i<round1.length; i++){
+			round1[i].classList.remove('active-round2')
+			round1[i].classList.add('active-round1')
+		}
+
+		// Active when cursor is over
+		center.classList.remove('active-round1');
+		center.classList.remove('active-round2');
+		center.classList.add('active-center');
+
+		// Remove class when  the mouse are out of the element
+		center.addEventListener('mouseout', function(e){
+			setTimeout(function(){
+				center.classList.remove('active-center');
+
+				for(var i = 0; i<round1.length; i++){
+					round1[i].classList.remove('active-round1')
+				}
+				for(var i = 0; i<round2.length; i++){
+					round2[i].classList.remove('active-round2')
+				}
+			}, 1000);
+		})
+	}
+
+	// function click(x, y){
+	// 	console.log('test');
+	// 	var ev = new MouseEvent('mousemove', {
+	// 		'view': window,
+	// 		'bubbles': true,
+	// 		'cancelable': true,
+	// 		'screenX': x,
+	// 		'screenY': y
+	// 	});
+	// 	console.log(ev);
+
+	// 	// var el = document.elementFromPoint(x, y);
+	// 	// Active when cursor is over
+
+	// 	highlightLetters(x, y)
+
+
+	// 	center.dispatchEvent(ev);
+	// }
+	// click(100, 200);
+
+	// setTimeout(function(){
+	// 	highlightLetters(800, 200)
+	// }, 5000);
+	// setTimeout(function(){
+	// 	highlightLetters(800, 300)
+	// }, 5500);
+	var totalWidth = $(window).width() - 36;
+	var totalHeight = $(window).height() - 36 ; // css padding space
+	var gridNumberH = parseInt($(window).width() / $('.grid__item').width()) - 3;
+	var gridNumberV = parseInt($(window).height() / $('.grid__item').outerHeight()) -3;
+	var randomH = Math.floor(Math.random() * gridNumberH) + 1;
+	var randomV = Math.floor(Math.random() * gridNumberV) + 1 ;
+	x = $('.grid__item').width() * randomH;
+	y = $('.grid__item').height() * randomV;
+	var path1 = [
+		{
+			x:124,
+			y:98
+		}, {
+			x:124,
+			y:99
+		}, {
+			x:124,
+			y:100
+		},  {
+			x:124,
+			y:102
+		}, {
+			x:124,
+			y:102
+		}, {
+			x:123,
+			y:103
+		}, {
+			x:123,
+			y:103
+		}, {
+			x:123,
+			y:104
+		}, {
+			x:121,
+			y:107
+		}, {
+			x:111,
+			y:123
+		}, {
+			x:107,
+			y:139
+		}, {
+			x:105,
+			y:164
+		}, {
+			x:110,
+			y:180
+		}, {
+			x:155,
+			y:203
+		}, {
+			x:204,
+			y:204
+		},{
+			x:223,
+			y:203
+		},{
+			x:304,
+			y:172
+		},{
+			x:378,
+			y:131
+		},{
+			x:536,
+			y:137
+		},{
+			x:540,
+			y:139
+		},{
+			x:557,
+			y:161
+		},{
+			x:570,
+			y:185
+		},{
+			x:578,
+			y:201
+		},{
+			x:586,
+			y:214
+		},
+	]
+	var pos = 0;
+	var mouseMove = function(){
+		$('.grid__item').removeClass('active-center')
+		$('.grid__item').removeClass('active-round1')
+		$('.grid__item').removeClass('active-round2')
+
+
+			highlightLetters(path1[pos].x, path1[pos].y);
+			pos++;
+			if (pos == path1.length){
+				clearInterval(mouseMove)
+			}
+		// if( x < totalWidth && y < totalHeight){
+		// 	highlightLetters(x, y);
+		// 	x += $('.grid__item').width();
+		// 	y += $('.grid__item').outerHeight()
+		// }else{
+		// 	console.log('holaaa?');
+		// 	var randomH = Math.floor(Math.random() * gridNumberH) + 2;
+		// 	var randomV = Math.floor(Math.random() * gridNumberV) + 2 ;
+		// 	x = $('.grid__item').width() * randomH;
+		// 	y = $('.grid__item').height() * randomV;
+		// 	highlightLetters(x, y);
+		// }
+	};
+
+	// var simulateMove = setInterval(mouseMove, 1000);
+
+
+	// Getting the elements under the mouse cursor
+	document.addEventListener('mousemove', function(e) {
+		// Actual mouse position
+		currentX = e.pageX;
+		currentY = e.pageY;
+
+		highlightLetters(currentX, currentY);
+
+	})
+
 	// First scroll: Scroll down
 	$('.js-scroll').on('click', function(e){
 		e.preventDefault();

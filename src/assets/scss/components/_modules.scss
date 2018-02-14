@@ -209,66 +209,84 @@
 	width: calc(100vw - 2rem);
 	transform: translate(1rem, 1rem);
 	padding: 1.5rem calc((100% - 80%)/ 2) 2rem;
+
+	>svg{
+		margin-left: -1%;
+	}
 }
-.over-folder-bg{
+
+.header-grid{
 	position: absolute;
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	z-index: -1;
-	color: lighten($c-main, 5%);
+	color: rgba($c-bg, 1);
 	overflow: hidden;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
 	grid-template-rows: repeat(auto-fit, minmax(2rem, 1fr));
 }
-.bg-grid{
+.grid__item{
 	text-align: center;
 	padding: 1.25*$gap 0 0 0;
-	opacity: 0;
-	// animation: glyphIn 1s 3s ease-out forwards;
-	transition: all .2s ease-out;
-	transform-origin: center center;
+	opacity: .2;
+	transition: all .4s ease-out;
+	transform: translateY(1rem);
+	animation: glyphIn .4s forwards;
 
-	&.hover{
-		opacity: 1 !important;
-		// background-color: red;
-		transform: scale(1.8);
-		color: $c-white;
+	&.active-center{
+		font-weight: 900;
+		// transition: all .1s;
+		opacity: 1;
 	}
+
+	&.active-round1{
+		font-weight: 700;
+		opacity: .7;
+		// transition: all .1s;
+
+	}
+	&.active-round2{
+		font-weight: 500;
+		opacity: .4;
+		// transition: all .1s;
+
+	}
+
 }
 
 @-webkit-keyframes glyphIn {
 	from {
-		opacity: 0;
+		transform: translateY(1rem);
 	}
 	to {
-		opacity: 1;
+		transform: translateY(0)
 	 }
 }
 @-o-keyframes glyphIn {
 	from {
-		opacity: 0;
+		transform: translateY(1rem);
 	}
 	to {
-		opacity: 1;
+		transform: translateY(0)
 	 }
 }
 @-moz-keyframes glyphIn {
 	from {
-		opacity: 0;
+		transform: translateY(1rem);
 	}
 	to {
-		opacity: 1;
+		transform: translateY(0)
 	 }
 }
 @keyframes glyphIn {
 	from {
-		opacity: 0;
+		transform: translateY(1rem);
 	}
 	to {
-		opacity: 1;
+		transform: translateY(0)
 	 }
 }
 
@@ -282,7 +300,7 @@
 			margin-left: 5%;
 
 			@include mq($bp_tabletish){
-				margin-left: 15%;
+				margin-left: 18.7%;
 
 			}
 		}
