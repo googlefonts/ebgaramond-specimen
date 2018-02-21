@@ -9,104 +9,96 @@ $(document).ready(function(){
 	// });
 
 
+	//Open menu on mobile version
+	$('.js-menu-mobile').on('click', function(e){
+		e.preventDefault();
+		$(this).parent().toggleClass('menu--opened');
+	});
+	//Open menu on mobile version
+
 
 	// Setting the basics: width & height for elements
 	var itemHeight = $('.grid__item').height();
 	var itemWidth = $('.grid__item').width();
+	var autoplay = false;
 
+	var highlightLetters = function(currentX, currentY, autoplay){
 
-	var highlightLetters = function(currentX, currentY){
 		var center = document.elementFromPoint(currentX, currentY);
+		if (center.parentNode.classList.contains('header-grid')){
+			// Round 1 - wrapper 1 level
+			var left = document.elementFromPoint(currentX - itemWidth, currentY);
+			var right = document.elementFromPoint(currentX + itemWidth, currentY);
+			var top = document.elementFromPoint(currentX , currentY - itemHeight);
+			var bottom = document.elementFromPoint(currentX , currentY + itemHeight);
+			var leftTop = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight);
+			var leftBottom = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight);
+			var rightBottom = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight);
+			var rightTop = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight);
+			var round1 = [left, right, top, bottom, leftTop, leftBottom, rightBottom, rightTop];
 
-		// Round 1 - wrapper 1 level
-		var left = document.elementFromPoint(currentX - itemWidth, currentY);
-		var right = document.elementFromPoint(currentX + itemWidth, currentY);
-		var top = document.elementFromPoint(currentX , currentY - itemHeight);
-		var bottom = document.elementFromPoint(currentX , currentY + itemHeight);
-		var leftTop = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight);
-		var leftBottom = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight);
-		var rightBottom = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight);
-		var rightTop = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight);
-		var round1 = [left, right, top, bottom, leftTop, leftBottom, rightBottom, rightTop];
-
-		// Round 2 - wrapper second level
-		var left = document.elementFromPoint(currentX - itemWidth*2, currentY);
-		var right = document.elementFromPoint(currentX + itemWidth*2, currentY);
-		var top = document.elementFromPoint(currentX , currentY - itemHeight*2);
-		var bottom = document.elementFromPoint(currentX , currentY + itemHeight*2);
-		var left2Top1 = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight);
-		var left2Bottom1 = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight);
-		var left1Top2 = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight*2);
-		var left1Bottom2 = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight*2);
-		var right1Bottom2 = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight*2);
-		var right2Bottom1 = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight);
-		var right1Top2 = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight*2);
-		var right2Top1 = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight);
-		var leftTop = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight*2);
-		var leftBottom = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight*2);
-		var rightBottom = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight*2);
-		var rightTop = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight*2);
+			// Round 2 - wrapper second level
+			var left = document.elementFromPoint(currentX - itemWidth*2, currentY);
+			var right = document.elementFromPoint(currentX + itemWidth*2, currentY);
+			var top = document.elementFromPoint(currentX , currentY - itemHeight*2);
+			var bottom = document.elementFromPoint(currentX , currentY + itemHeight*2);
+			var left2Top1 = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight);
+			var left2Bottom1 = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight);
+			var left1Top2 = document.elementFromPoint(currentX - itemWidth, currentY - itemHeight*2);
+			var left1Bottom2 = document.elementFromPoint(currentX - itemWidth, currentY + itemHeight*2);
+			var right1Bottom2 = document.elementFromPoint(currentX + itemWidth, currentY + itemHeight*2);
+			var right2Bottom1 = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight);
+			var right1Top2 = document.elementFromPoint(currentX + itemWidth, currentY - itemHeight*2);
+			var right2Top1 = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight);
+			var leftTop = document.elementFromPoint(currentX - itemWidth*2, currentY - itemHeight*2);
+			var leftBottom = document.elementFromPoint(currentX - itemWidth*2, currentY + itemHeight*2);
+			var rightBottom = document.elementFromPoint(currentX + itemWidth*2, currentY + itemHeight*2);
+			var rightTop = document.elementFromPoint(currentX + itemWidth*2, currentY - itemHeight*2);
 
 
-		var round2 = [left, right, top, bottom, left2Top1, left2Bottom1, left1Top2, left1Bottom2, right1Bottom2, right2Bottom1, right1Top2, leftTop, leftBottom, rightBottom, rightTop];
+			var round2 = [left, right, top, bottom, left2Top1, left2Bottom1, left1Top2, left1Bottom2, right1Bottom2, right2Bottom1, right1Top2, leftTop, leftBottom, rightBottom, rightTop];
 
-		for(var i = 0; i<round2.length; i++){
-			round2[i].classList.remove('active-round1')
-			round2[i].classList.add('active-round2')
+			for(var i = 0; i<round2.length; i++){
+				round2[i].classList.remove('active-round1')
+				round2[i].classList.add('active-round2')
+			}
+
+			for(var i = 0; i<round1.length; i++){
+				round1[i].classList.remove('active-round2')
+				round1[i].classList.add('active-round1')
+			}
+
+			// Active when cursor is over
+			center.classList.remove('active-round1');
+			center.classList.remove('active-round2');
+			center.classList.add('active-center');
+
+			var fadeOut = function(){
+				setTimeout(function(){
+					center.classList.remove('active-center');
+
+					for(var i = 0; i<round1.length; i++){
+						round1[i].classList.remove('active-round1')
+					}
+					for(var i = 0; i<round2.length; i++){
+						round2[i].classList.remove('active-round2')
+					}
+				}, 1000);
+			}
+
+			// Remove class when  the mouse are out of the element
+			if (autoplay == false){
+				center.addEventListener('mouseout', function(e){
+					fadeOut()
+				})
+			}else{
+				fadeOut()
+			}
+		}else{
+			return
 		}
-
-		for(var i = 0; i<round1.length; i++){
-			round1[i].classList.remove('active-round2')
-			round1[i].classList.add('active-round1')
-		}
-
-		// Active when cursor is over
-		center.classList.remove('active-round1');
-		center.classList.remove('active-round2');
-		center.classList.add('active-center');
-
-		// Remove class when  the mouse are out of the element
-		center.addEventListener('mouseout', function(e){
-			setTimeout(function(){
-				center.classList.remove('active-center');
-
-				for(var i = 0; i<round1.length; i++){
-					round1[i].classList.remove('active-round1')
-				}
-				for(var i = 0; i<round2.length; i++){
-					round2[i].classList.remove('active-round2')
-				}
-			}, 1000);
-		})
 	}
 
-	// function click(x, y){
-	// 	console.log('test');
-	// 	var ev = new MouseEvent('mousemove', {
-	// 		'view': window,
-	// 		'bubbles': true,
-	// 		'cancelable': true,
-	// 		'screenX': x,
-	// 		'screenY': y
-	// 	});
-	// 	console.log(ev);
-
-	// 	// var el = document.elementFromPoint(x, y);
-	// 	// Active when cursor is over
-
-	// 	highlightLetters(x, y)
-
-
-	// 	center.dispatchEvent(ev);
-	// }
-	// click(100, 200);
-
-	// setTimeout(function(){
-	// 	highlightLetters(800, 200)
-	// }, 5000);
-	// setTimeout(function(){
-	// 	highlightLetters(800, 300)
-	// }, 5500);
 	var totalWidth = $(window).width() - 36;
 	var totalHeight = $(window).height() - 36 ; // css padding space
 	var gridNumberH = parseInt($(window).width() / $('.grid__item').width()) - 3;
@@ -116,118 +108,611 @@ $(document).ready(function(){
 	x = $('.grid__item').width() * randomH;
 	y = $('.grid__item').height() * randomV;
 	var path1 = [
-		{
-			x:124,
-			y:98
+		{ // 0
+			x:82.6 * totalWidth/100,
+			y:25.2 * totalHeight/100
 		}, {
-			x:124,
-			y:99
+			x:82.1 * totalWidth/100,
+			y:25.4 * totalHeight/100
 		}, {
-			x:124,
-			y:100
-		},  {
-			x:124,
-			y:102
-		}, {
-			x:124,
-			y:102
-		}, {
-			x:123,
-			y:103
-		}, {
-			x:123,
-			y:103
-		}, {
-			x:123,
-			y:104
-		}, {
-			x:121,
-			y:107
-		}, {
-			x:111,
-			y:123
-		}, {
-			x:107,
-			y:139
-		}, {
-			x:105,
-			y:164
-		}, {
-			x:110,
-			y:180
-		}, {
-			x:155,
-			y:203
-		}, {
-			x:204,
-			y:204
+			x:81.7 * totalWidth/100,
+			y:24.4 * totalHeight/100
 		},{
-			x:223,
-			y:203
+			x:82.3 * totalWidth/100,
+			y:24 * totalHeight/100
 		},{
-			x:304,
-			y:172
+			x:82.1 * totalWidth/100,
+			y:25 * totalHeight/100
 		},{
-			x:378,
-			y:131
+			x:82.2 * totalWidth/100,
+			y:25 * totalHeight/100
 		},{
-			x:536,
-			y:137
+			x:82.7 * totalWidth/100,
+			y:21.75 * totalHeight/100
 		},{
-			x:540,
-			y:139
+			x:81* totalWidth/100,
+			y:22.53 * totalHeight/100
 		},{
-			x:557,
-			y:161
+			x:82.5 * totalWidth/100,
+			y:24.68 * totalHeight/100
 		},{
-			x:570,
-			y:185
+			x:81.1 * totalWidth/100,
+			y:28.86 * totalHeight/100
+		},{ // 10
+			x:81.2 * totalWidth/100,
+			y:28.35 * totalHeight/100
 		},{
-			x:578,
-			y:201
+			x:80 * totalWidth/100,
+			y:37.21 * totalHeight/100
 		},{
-			x:586,
-			y:214
+			x:81.7 * totalWidth/100,
+			y:46.07 * totalHeight/100
+		},{
+			x:81.9 * totalWidth/100,
+			y:62.65 * totalHeight/100
+		},{
+			x:79 * totalWidth/100,
+			y:74.43 * totalHeight/100
+		},{
+			x:82.1 * totalWidth/100,
+			y:75.82 * totalHeight/100
+		},{
+			x:82.8 * totalWidth/100,
+			y:79.11 * totalHeight/100
+		},{
+			x:81.8 * totalWidth/100,
+			y:79.74 * totalHeight/100
+		},{
+			x:82.4 * totalWidth/100,
+			y:77.72 * totalHeight/100
+		},{
+			x:79.8 * totalWidth/100,
+			y:68.22 * totalHeight/100
+		},{//20
+			x:78 * totalWidth/100,
+			y:59.24 * totalHeight/100
+		},{
+			x:74.7 * totalWidth/100,
+			y:52.53 * totalHeight/100
+		},{
+			x:66.9 * totalWidth/100,
+			y:45.82 * totalHeight/100
+		},{
+			x:59.8 * totalWidth/100,
+			y:40.50 * totalHeight/100
+		},{
+			x:55.3 * totalWidth/100,
+			y:37.72 * totalHeight/100
+		},{
+			x:57.4 * totalWidth/100,
+			y:26.83 * totalHeight/100
+		},{
+			x:62.6 * totalWidth/100,
+			y:21.49 * totalHeight/100
+		},{
+			x:68.9 * totalWidth/100,
+			y:24.2 * totalHeight/100
+		},{
+			x:76.7 * totalWidth/100,
+			y:25.17 * totalHeight/100
+		},{
+			x:79.6 * totalWidth/100,
+			y:23.53 * totalHeight/100
+		},{//30
+			x:82.8 * totalWidth/100,
+			y:21.40 * totalHeight/100
+		},{
+			x:82.4 * totalWidth/100,
+			y:21.81 * totalHeight/100
+		},{
+			x:78.1 * totalWidth/100,
+			y:21.22 * totalHeight/100
+		},{
+			x:82.7 * totalWidth/100,
+			y:22.87 * totalHeight/100
+		},{
+			x:82.1 * totalWidth/100,
+			y:24.17 * totalHeight/100
+		},{
+			x:82.2 * totalWidth/100,
+			y:27.59 * totalHeight/100
+		},{
+			x:82.5 * totalWidth/100,
+			y:29.74 * totalHeight/100
+		},{
+			x:79.5* totalWidth/100,
+			y:32.02 * totalHeight/100
+		},{
+			x:77.3* totalWidth/100,
+			y:35.69 * totalHeight/100
+		},{
+			x:71.7* totalWidth/100,
+			y:39.62 * totalHeight/100
+		},{ //40
+			x:69.3* totalWidth/100,
+			y:45.31 * totalHeight/100
+		},{
+			x:68.3* totalWidth/100,
+			y:51.01 * totalHeight/100
+		},{
+			x:68.6* totalWidth/100,
+			y:55.82 * totalHeight/100
+		},{
+			x:68.9* totalWidth/100,
+			y:62.91 * totalHeight/100
+		},{
+			x:68.4* totalWidth/100,
+			y:68.22 * totalHeight/100
+		},{
+			x:67.9* totalWidth/100,
+			y:71.89 * totalHeight/100
+		},{
+			x:66.9* totalWidth/100,
+			y:75.56 * totalHeight/100
+		},{
+			x:65.7* totalWidth/100,
+			y:76.7 * totalHeight/100
+		},{
+			x:63.3* totalWidth/100,
+			y:76.45 * totalHeight/100
+		},{
+			x:61* totalWidth/100,
+			y:77.21 * totalHeight/100
+		},{//50
+			x:56.1* totalWidth/100,
+			y:78.1 * totalHeight/100
+		},{
+			x:45.6* totalWidth/100,
+			y:77.46 * totalHeight/100
+		},{
+			x:40.2* totalWidth/100,
+			y:75.18 * totalHeight/100
+		},{
+			x:31* totalWidth/100,
+			y:70 * totalHeight/100
+		},{
+			x:28* totalWidth/100,
+			y:63.41 * totalHeight/100
+		},{
+			x:28* totalWidth/100,
+			y:57.84 * totalHeight/100
+		},{
+			x:28* totalWidth/100,
+			y:57.08 * totalHeight/100
+		},{
+			x:30* totalWidth/100,
+			y:57.72 * totalHeight/100
+		},{
+			x:30* totalWidth/100,
+			y:58.1 * totalHeight/100
+		},{
+			x:30* totalWidth/100,
+			y:59.49 * totalHeight/100
+		},{ //60
+			x:31* totalWidth/100,
+			y:56.45 * totalHeight/100
+		},{
+			x:31.1* totalWidth/100,
+			y:53.92 * totalHeight/100
+		},{
+			x:41.4* totalWidth/100,
+			y:48.6 * totalHeight/100
+		},{
+			x:51.5* totalWidth/100,
+			y:46.2 * totalHeight/100
+		},{
+			x:58.2* totalWidth/100,
+			y:44.3 * totalHeight/100
+		},{
+			x:59.1* totalWidth/100,
+			y:43.54 * totalHeight/100
+		},{
+			x:57.4* totalWidth/100,
+			y:42.4 * totalHeight/100
+		},{
+			x:55.5* totalWidth/100,
+			y:41.39 * totalHeight/100
+		},{
+			x:51.7* totalWidth/100,
+			y:40 * totalHeight/100
+		},{
+			x:47.4* totalWidth/100,
+			y:35.69 * totalHeight/100
+		},{ //70
+			x:40.5* totalWidth/100,
+			y:30.50 * totalHeight/100
+		},{
+			x:33.6* totalWidth/100,
+			y:23.16 * totalHeight/100
+		},{
+			x:28.8* totalWidth/100,
+			y:20.18 * totalHeight/100
+		},{
+			x:28* totalWidth/100,
+			y:21.96 * totalHeight/100
+		},{
+			x:29.2* totalWidth/100,
+			y:23.87 * totalHeight/100
+		},{
+			x:30.2* totalWidth/100,
+			y:21.49 * totalHeight/100
+		},{
+			x:31* totalWidth/100,
+			y:22.53 * totalHeight/100
+		},{
+			x:31.2* totalWidth/100,
+			y:24.68 * totalHeight/100
+		},{
+			x:31.7* totalWidth/100,
+			y:32.53 * totalHeight/100
+		},{
+			x:31.8* totalWidth/100,
+			y:36.07 * totalHeight/100
+		},{ //80
+			x:33.7* totalWidth/100,
+			y:37.72 * totalHeight/100
+		},{
+			x:32.67* totalWidth/100,
+			y:29.74 * totalHeight/100
+		},{
+			x:30.29* totalWidth/100,
+			y:23.92 * totalHeight/100
+		},{
+			x:31.56* totalWidth/100,
+			y:22.91 * totalHeight/100
+		},{
+			x:28.99* totalWidth/100,
+			y:29.11 * totalHeight/100
+		},{
+			x:31.49* totalWidth/100,
+			y:37.59 * totalHeight/100
+		},{
+			x:34.44* totalWidth/100,
+			y:43.03 * totalHeight/100
+		},{
+			x:44.25* totalWidth/100,
+			y:48.10 * totalHeight/100
+		},{
+			x:52.39* totalWidth/100,
+			y:51.13 * totalHeight/100
+		},{
+			x:52.07* totalWidth/100,
+			y:52.91 * totalHeight/100
+		},{ //90
+			x:51.67* totalWidth/100,
+			y:53.92 * totalHeight/100
+		},{
+			x:54.22* totalWidth/100,
+			y:53.92 * totalHeight/100
+		},{
+			x:57.57* totalWidth/100,
+			y:53.92 * totalHeight/100
+		},{
+			x:60.04* totalWidth/100,
+			y:39.11 * totalHeight/100
+		},{
+			x:63.39* totalWidth/100,
+			y:32.27 * totalHeight/100
+		},{
+			x:63.39* totalWidth/100,
+			y:24.68 * totalHeight/100
+		},{
+			x:74.64* totalWidth/100,
+			y:20.50 * totalHeight/100
+		},{
+			x:75.11* totalWidth/100,
+			y:20.75 * totalHeight/100
+		},{
+			x:76.9* totalWidth/100,
+			y:20.88 * totalHeight/100
+		},{
+			x:79.5* totalWidth/100,
+			y:20.88 * totalHeight/100
+		},{ //100
+			x:80.86* totalWidth/100,
+			y:21.51 * totalHeight/100
+		},{
+			x:81.18* totalWidth/100,
+			y:21.64 * totalHeight/100
+		},{
+			x:81.33* totalWidth/100,
+			y:22.02 * totalHeight/100
+		},{
+			x:81.25* totalWidth/100,
+			y:23.79 * totalHeight/100
+		},{
+			x:81.25* totalWidth/100,
+			y:29.74 * totalHeight/100
+		},{
+			x:79.98* totalWidth/100,
+			y:33.79 * totalHeight/100
+		},{
+			x:79.34* totalWidth/100,
+			y:40.25 * totalHeight/100
+		},{
+			x:77.51* totalWidth/100,
+			y:49.24 * totalHeight/100
+		},{
+			x:75.83* totalWidth/100,
+			y:53.41 * totalHeight/100
+		},{
+			x:71.92* totalWidth/100,
+			y:64.43 * totalHeight/100
+		},{ //110
+			x:68.5* totalWidth/100,
+			y:73.54 * totalHeight/100
+		},{
+			x:68.89* totalWidth/100,
+			y:78.48 * totalHeight/100
+		},{
+			x:69.85* totalWidth/100,
+			y:76.2 * totalHeight/100
+		},{
+			x:72.96* totalWidth/100,
+			y:73.41 * totalHeight/100
+		},{
+			x:81.49* totalWidth/100,
+			y:68.22 * totalHeight/100
+		},{//115
+			x:80.48* totalWidth/100,
+			y:63.16 * totalHeight/100
+		},{
+			x:82* totalWidth/100,
+			y:61.39 * totalHeight/100
+		},{
+			x:81.24* totalWidth/100,
+			y:64.43 * totalHeight/100
+		},{
+			x:81.04* totalWidth/100,
+			y:70.37 * totalHeight/100
+		},{
+			x:80.94* totalWidth/100,
+			y:75.56 * totalHeight/100
+		},{//120
+			x:76.39* totalWidth/100,
+			y:72.65 * totalHeight/100
+		},{
+			x:69.37* totalWidth/100,
+			y:63.41 * totalHeight/100
+		},{
+			x:59.56* totalWidth/100,
+			y:58.10 * totalHeight/100
+		},{
+			x:48.08* totalWidth/100,
+			y:62.15 * totalHeight/100
+		},{
+			x:46.17* totalWidth/100,
+			y:59.24 * totalHeight/100
+		},{
+			x:52.15* totalWidth/100,
+			y:43.67 * totalHeight/100
+		},{
+			x:58.61* totalWidth/100,
+			y:30 * totalHeight/100
+		},{
+			x:48.48* totalWidth/100,
+			y:29.36 * totalHeight/100
+		},{
+			x:46.25* totalWidth/100,
+			y:29.36 * totalHeight/100
+		},{
+			x:53.66* totalWidth/100,
+			y:27.34 * totalHeight/100
+		},{ //130
+			x:65.55* totalWidth/100,
+			y:25.06 * totalHeight/100
+		},{
+			x:74* totalWidth/100,
+			y:21.21 * totalHeight/100
+		},{
+			x:80.38* totalWidth/100,
+			y:21.84 * totalHeight/100
+		},{
+			x:81.72* totalWidth/100,
+			y:25.56 * totalHeight/100
+		},{
+			x:79.5* totalWidth/100,
+			y:52.15 * totalHeight/100
+		},{
+			x:71.21* totalWidth/100,
+			y:59.24 * totalHeight/100
+		},{
+			x:60.76* totalWidth/100,
+			y:67.08 * totalHeight/100
+		},{
+			x:45.93* totalWidth/100,
+			y:72.40 * totalHeight/100
+		},{
+			x:41.7* totalWidth/100,
+			y:74.68 * totalHeight/100
+		},{
+			x:34.68* totalWidth/100,
+			y:78.22 * totalHeight/100
+		},{ //140
+			x:28.38* totalWidth/100,
+			y:79.74 * totalHeight/100
+		},{
+			x:28.38* totalWidth/100,
+			y:69.74 * totalHeight/100
+		},{
+			x:40.43* totalWidth/100,
+			y:50.88 * totalHeight/100
+		},{
+			x:59.17* totalWidth/100,
+			y:39.62 * totalHeight/100
+		},{
+			x:68.97* totalWidth/100,
+			y:35.94 * totalHeight/100
+		},{
+			x:52.55* totalWidth/100,
+			y:27.97 * totalHeight/100
+		},{
+			x:38.11* totalWidth/100,
+			y:20 * totalHeight/100
+		},{
+			x:30.18* totalWidth/100,
+			y:25.22 * totalHeight/100
+		},{
+			x:30.67* totalWidth/100,
+			y:26.50 * totalHeight/100
+		},{
+			x:29.62* totalWidth/100,
+			y:23.67 * totalHeight/100
+		},{//150
+			x:29.5* totalWidth/100,
+			y:26.45 * totalHeight/100
+		},{
+			x:49.52* totalWidth/100,
+			y:28.48 * totalHeight/100
+		},{
+			x:59.64* totalWidth/100,
+			y:31.01 * totalHeight/100
+		},{
+			x:65.78* totalWidth/100,
+			y:29.36 * totalHeight/100
+		},{
+			x:69.45* totalWidth/100,
+			y:27.34 * totalHeight/100
+		},{
+			x:73.12* totalWidth/100,
+			y:26.83 * totalHeight/100
+		},{
+			x:78.38* totalWidth/100,
+			y:26.07 * totalHeight/100
+		},{
+			x:80.30* totalWidth/100,
+			y:25.69 * totalHeight/100
+		},{
+			x:80.54* totalWidth/100,
+			y:25.56 * totalHeight/100
+		},{
+			x:80.70* totalWidth/100,
+			y:26.7 * totalHeight/100
+		},{//160
+			x:79.02* totalWidth/100,
+			y:28.6 * totalHeight/100
+		},{
+			x:76.47* totalWidth/100,
+			y:30.37 * totalHeight/100
+		},{
+			x:74.40* totalWidth/100,
+			y:32.65 * totalHeight/100
+		},{
+			x:73.76* totalWidth/100,
+			y:35.06 * totalHeight/100
+		},{
+			x:73.44* totalWidth/100,
+			y:37.97 * totalHeight/100
+		},{
+			x:73.36* totalWidth/100,
+			y:40 * totalHeight/100
+		},{
+			x:73.68* totalWidth/100,
+			y:43.79 * totalHeight/100
+		},{
+			x:74.56* totalWidth/100,
+			y:47.59 * totalHeight/100
+		},{
+			x:75.91* totalWidth/100,
+			y:51.01 * totalHeight/100
+		},{
+			x:78.62* totalWidth/100,
+			y:55.04 * totalHeight/100
+		},{//170
+			x:81.97* totalWidth/100,
+			y:58.45 * totalHeight/100
+		},{
+			x:80.09* totalWidth/100,
+			y:63.03 * totalHeight/100
+		},{
+			x:80.41* totalWidth/100,
+			y:71.26 * totalHeight/100
+		},{
+			x:81.1* totalWidth/100,
+			y:73.92 * totalHeight/100
+		},{
+			x:78.22* totalWidth/100,
+			y:75.69 * totalHeight/100
+		},{
+			x:71.61* totalWidth/100,
+			y:75.94 * totalHeight/100
+		},{
+			x:67.86* totalWidth/100,
+			y:73.92 * totalHeight/100
+		},{
+			x:60.12* totalWidth/100,
+			y:73.16 * totalHeight/100
+		},{
+			x:55.02* totalWidth/100,
+			y:73.67 * totalHeight/100
+		},{//180
+			x:50.39* totalWidth/100,
+			y:74.93 * totalHeight/100
+		},{
+			x:46.57* totalWidth/100,
+			y:74.81 * totalHeight/100
+		},{
+			x:46.41* totalWidth/100,
+			y:74.81 * totalHeight/100
+		},{
+			x:45.93* totalWidth/100,
+			y:75.31 * totalHeight/100
+		},{
+			x:45.69* totalWidth/100,
+			y:75.69 * totalHeight/100
+		},{
+			x:45.21* totalWidth/100,
+			y:75.82 * totalHeight/100
+		},{
+			x:45.21* totalWidth/100,
+			y:74.68 * totalHeight/100
+		},{
+			x:48.72* totalWidth/100,
+			y:65.06 * totalHeight/100
+		},{
+			x:77.51* totalWidth/100,
+			y:61.89 * totalHeight/100
+		},{
+			x:99.92* totalWidth/100,
+			y:66.07  * totalHeight/100
 		},
 	]
 	var pos = 0;
 	var mouseMove = function(){
-		$('.grid__item').removeClass('active-center')
-		$('.grid__item').removeClass('active-round1')
-		$('.grid__item').removeClass('active-round2')
-
-
-			highlightLetters(path1[pos].x, path1[pos].y);
+			autoplay = true;
+			highlightLetters(path1[pos].x, path1[pos].y, autoplay);
 			pos++;
-			if (pos == path1.length){
-				clearInterval(mouseMove)
+
+			//Restart animation
+			if (pos == path1.length-1){
+				// clearInterval(mouseMove)
+				pos = 0;
 			}
-		// if( x < totalWidth && y < totalHeight){
-		// 	highlightLetters(x, y);
-		// 	x += $('.grid__item').width();
-		// 	y += $('.grid__item').outerHeight()
-		// }else{
-		// 	console.log('holaaa?');
-		// 	var randomH = Math.floor(Math.random() * gridNumberH) + 2;
-		// 	var randomV = Math.floor(Math.random() * gridNumberV) + 2 ;
-		// 	x = $('.grid__item').width() * randomH;
-		// 	y = $('.grid__item').height() * randomV;
-		// 	highlightLetters(x, y);
-		// }
 	};
 
-	// var simulateMove = setInterval(mouseMove, 1000);
+	var simulateMove = setInterval(mouseMove, 100);
 
-
+	// $('.over-the-folder').on('mouseover', function(){
+	// 	clearInterval(simulateMove);
+	// }).on('mouseout', function(){
+	// 	simulateMove = setInterval(mouseMove, 100);
+	// });
 	// Getting the elements under the mouse cursor
-	document.addEventListener('mousemove', function(e) {
+	$('.over-the-folder').on('mousemove', function(e) {
 		// Actual mouse position
 		currentX = e.pageX;
 		currentY = e.pageY;
+		highlightLetters(currentX, currentY, false);
+	});
 
-		highlightLetters(currentX, currentY);
-
-	})
+	scrollbar.addListener((status) => {
+		if(scrollbar.offset.y + 17 > $(window).height()/3 ){
+			clearInterval(simulateMove);
+		}else if (scrollbar.offset.y + 17 <$(window).height()/2 ) {
+			clearInterval(simulateMove);
+			simulateMove = setInterval(mouseMove, 100);
+		}
+	});
 
 	// First scroll: Scroll down
 	$('.js-scroll').on('click', function(e){
@@ -241,12 +726,23 @@ $(document).ready(function(){
 	$('.js-menu').on('click', function(e){
 		e.preventDefault();
 		section = $(this).data('section');
-		scrollbar.scrollTo(null, scrollbar.offset.y +$('.section--' + section).offset().top, 1000)
+		scrollbar.scrollTo(null, scrollbar.offset.y +$('.section--' + section).offset().top, 1000);
+		$(this).parent().removeClass('menu--opened');
+		// $(this).blur();
+		// $(this).trigger('blur');
+		// $(this).trigger('focusout');
+		// $(this).find('a').blur();
+		// console.log($(this));
+		// $('.nav__item--dot').click();
 	});
 
 
 	// End Menu: Scroll to new section
-
+	$('.js-old').on('touchmove', function(){
+		$(this).css({
+			'clip-path': 'none'
+		})
+	})
 	// Fixing view for slider component: old version vs new version
 	$('.js-toggle').on('click', function(){
 		if($(this).hasClass('active')){
@@ -274,10 +770,17 @@ $(document).ready(function(){
 
 		if($('.js-toggle').hasClass('active')){
 			$('.comparison-wrapper, .comparison__controller').addClass('zooming');
+
 			if($(this).data('period') == 'old'){
 				$('.comparison-wrapper, .comparison__controller').removeClass('new').addClass('old');
+				// $('.comparison--old').css({
+				// 	'clip-path': 'none'
+				// })
 			}else{
 				$('.comparison-wrapper, .comparison__controller').removeClass('old').addClass('new');
+				// $('.comparison--old').css({
+				// 	'clip-path': 'inset(0 0 0 0)'
+				// })
 			}
 
 		}else{
@@ -290,15 +793,15 @@ $(document).ready(function(){
 	})
 	// End: Fixing view for slider component: old version vs new version
 	// Updating mask for the slider component
-	$('.comparison__controller').css({
-		width: $(".comparison__slider").width() + 16,
-	});
+	// $('.comparison__controller').css({
+	// 	width: $(".comparison__slider").width() + 16,
+	// });
 	$('.comparison__controller').on('mousemove', function(e){
 		if(!$(this).hasClass('zooming')){
 			var x = e.pageX - $(this).offset().left;
 
 			var canvasWidth =  $(".comparison__slider").width();
-			var x = e.pageX - $(this).offset().left - 10;
+			var x = e.pageX - $(this).offset().left
 
 			var percent = x * 100 / canvasWidth;
 
@@ -311,20 +814,20 @@ $(document).ready(function(){
 	});
 
 	//Zooming view adjust left position
-	$('.comparison__slider').on('mouseover', function(){
-		var leftOffset = $(this).offset().left;
-		var zoomImgExists = function(){
-			if($('.easyzoom-flyout').length){
-				$('.easyzoom-flyout').css({
-					left: 'calc('+ -leftOffset + 'px + 1rem)'
-				})
-				clearInterval(zoomImg)
-			}else{
-			}
-		}
-		var zoomImg = setInterval(zoomImgExists, 100);
+	// $('.comparison__slider').on('mouseover', function(){
+	// 	var leftOffset = $(this).offset().left;
+	// 	var zoomImgExists = function(){
+	// 		if($('.easyzoom-flyout').length){
+	// 			$('.easyzoom-flyout').css({
+	// 				left: 'calc('+ -leftOffset + 'px + 1rem)'
+	// 			})
+	// 			clearInterval(zoomImg)
+	// 		}else{
+	// 		}
+	// 	}
+	// 	var zoomImg = setInterval(zoomImgExists, 100);
 
-	})
+	// })
 
 	$(".js-slider").on("input change mouseover", function() {
 		$('.js-slider-mask').css({
@@ -428,7 +931,69 @@ $(document).ready(function(){
 
 	// End Styles
 
+	// Move the dot for languages options
+	$('.js-language').on('click', function(){
+		$('.js-language').removeClass('language--active');
+		$(this).addClass('language--active');
 
+		var highlight = $(this).data('language');
+		$('.languages-list').attr('data-active', highlight);
+		$('.language__item').removeClass('active--hover');
+		if (highlight == 'all'){
+			$('.language__item').addClass('active--hover');
+		}else{
+			$('.language__item[data-language="' + highlight+'"').addClass('active--hover');
+		}
+	});
+
+	$('.language__item').on('click', function(){
+		$('.languages-list').toggleClass('opened');
+		$('.language__item').removeClass('opened');
+		$(this).addClass('opened');
+	});
+
+	$('.language__item').on('mouseover', function(e){
+		var parentPos = $(this).parent().offset(),
+				childrenPos = $(this).offset(),
+				dotDisplacementX = $(this).outerWidth() / 2 - $('.flying-dot').width()/2,
+				dotDisplacementY = $(this).outerHeight() / 2- $('.flying-dot').height()/2,
+				childrenTop = childrenPos.top - parentPos.top + dotDisplacementY,
+				childrenLeft = childrenPos.left - parentPos.left + dotDisplacementX;
+
+				$('.flying-dot').css({
+					left: childrenLeft,
+					top: childrenTop
+				})
+	});
+
+
+		// Show alphabetical selector if touchable device
+		// var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+		// if (!mobile) {
+		// 	$('body').addClass('is-touchable');
+		// 	alert('coñooo')
+		// }else{
+		// 	alert('WTF');
+		// }
+
+	// $('.languages-list').on('mousemove', function(e){
+
+	// 	var xPos = e.pageX;
+	// 	var yPos = e.pageY;
+	// 	elem = document.elementFromPoint(xPos, yPos);
+	// 	var top = elem.getBoundingClientRect().viewportOffset.top;
+	// 	var left = elem.getBoundingClientRect().viewportOffset.left;
+	// 	// elem.style.color = newColor;
+	// 	console.log(elem);
+	// 	// console.log(elem.height());
+	// 	console.log(elem.offsetHeight);
+	// 	console.log(elem.clientHeight);
+	// 	console.log(top);
+	// 	console.log(left);
+	// 	console.log(getPosition);
+
+	// });
+	// End Move the dot for languages options
 
 
 
@@ -672,9 +1237,15 @@ $('.js-otf-category').on('click', function(){
 });
 
 $(window).on('resize', function(){
+	totalWidth = $(window).width() - 36;
+	totalHeight = $(window).height() - 36 ; // css padding space
 	if($(window).width() > 1024){
 		$('.otf-item').show().removeClass('otf--active');
 	}
+
+	//Reset script height on resize to avoid elements overlapping
+	$('.scripts-list').height($('.script:first-of-type').height());
+
 })
 // End OTF category selector: Letters, numbers & symbols
 
