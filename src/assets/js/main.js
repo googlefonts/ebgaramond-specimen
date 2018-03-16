@@ -727,7 +727,7 @@ $(document).ready(function(){
 		});
 
 		if($('.section--scripts').offset().top < $(window).height()*.5  && scripts == 0 ){
-			$('.script--latin').addClass('script--active');
+			$('.script--latin').removeClass('script--hide').addClass('script--active');
 			scripts++;
 		}
 

@@ -341,7 +341,7 @@ html, body, .scroll-content{
 	padding: 1.25*$gap 0 0 0;
 	opacity: 0;
 	transition: all .4s ease-out;
-	transform: translateY(1rem);
+	// transform: translateY(1rem);
 
 	.loaded &{
 		animation: glyphIn .4s 5s forwards;
@@ -374,7 +374,6 @@ html, body, .scroll-content{
 @-webkit-keyframes glyphIn {
 	from {
 		opacity: 0;
-		transform: translateY(1rem);
 	}
 	to {
 		transform: translateY(0);
@@ -384,7 +383,6 @@ html, body, .scroll-content{
 @-o-keyframes glyphIn {
 	from {
 		opacity: 0;
-		transform: translateY(1rem);
 	}
 	to {
 		transform: translateY(0);
@@ -394,7 +392,6 @@ html, body, .scroll-content{
 @-moz-keyframes glyphIn {
 	from {
 		opacity: 0;
-		transform: translateY(1rem);
 	}
 	to {
 		transform: translateY(0);
@@ -404,7 +401,6 @@ html, body, .scroll-content{
 @keyframes glyphIn {
 	from {
 		opacity: 0;
-		transform: translateY(1rem);
 	}
 	to {
 		transform: translateY(0);
@@ -781,7 +777,7 @@ html, body, .scroll-content{
 		// position: static;
 		// z-index: 2;
 		// transition: z-index 2s 1.4s;
-		color: $c-black;
+		color: $c-text;
 		z-index: 2;
 
 	}
@@ -870,7 +866,7 @@ html, body, .scroll-content{
 .alphabet{
 	width: 20ch;
 	// transform: translateY(-5rem);
-	font-style: italic;
+	// font-style: italic;
 	font-weight: 500;
 	margin-left: calc(37% + #{$gap});
 	font-size: 5vw;
