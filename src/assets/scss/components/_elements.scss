@@ -48,8 +48,6 @@ button{
 						mask: url(../img/script-mask.png);
 		-webkit-mask-size: 3000% 100%;
 						mask-size: 3000% 100%;
-		-webkit-animation: subtitle-play 1.6s 2.9s steps(29) reverse forwards;
-						animation: subtitle-play 1.6s 2.9s steps(29) reverse forwards;
 
 		@media screen and (orientation: landscape) and (max-width: $bp_middle+px){
 			font-size: 3.5vw;
@@ -68,9 +66,12 @@ button{
 			font-size: 2.5vw;
 			max-width: 75%;
 		}
+
+		.loaded &{
+			-webkit-animation: subtitle-play 1.6s 2s steps(29) reverse forwards;
+						animation: subtitle-play 1.6s 2s steps(29) reverse forwards;
+		}
 	}
-
-
 
 	&--shy{
 		text-transform: uppercase;
@@ -259,6 +260,8 @@ button{
 
 		@media screen and (orientation: landscape) and (max-width: $bp_tabletish+px){
 			font-size: 31vh;
+			margin-left: 0;
+			opacity: .4 !important;
 		}
 
 		@include mq($bp_middle, max-width){
@@ -289,6 +292,10 @@ button{
 		margin-left: -1.25*$gap;
 		text-transform: uppercase;
 		font-size: 7vh;
+
+		@include mq($bp_tabletish){
+			margin-left: -4*$gap;
+		}
 	}
 
 	&--otf{
@@ -311,7 +318,6 @@ button{
 		position: absolute;
 		bottom: 5vh;
 		color: rgba($c-white, 0);
-		animation: scrollIn 1.2s 3s forwards;
 		padding-left: $gap;
 		margin-left: -$gap;
 
@@ -326,8 +332,16 @@ button{
 			opacity: 0;
 			// left: -150%;
 			transform: translate(-175%, -50%);
-			animation: scrollDown 1s 3s infinite alternate;
 		}
+
+		.loaded &{
+			animation: scrollIn 1.2s 3.5s forwards;
+
+			&::before{
+				animation: scrollDown 1s 3.5s infinite alternate;
+			}
+		}
+
 	}
 
 	&:hover{
@@ -437,7 +451,6 @@ button{
 	&--bossy{
 		text-transform: uppercase;
 		background-color: transparent;
-		animation: btnIn 1s 3s forwards;
 		position: relative;
 		color: transparent;
 
@@ -457,23 +470,47 @@ button{
 			opacity: 0;
 		}
 
-		&::before{
-			top: 0;
-			right: 0;
-			border-top: 1px solid $c-white;
-			border-right: 1px solid $c-white;
-			border-radius: 0 3rem 0 0;
-			animation: btn-rbIn 1s 2.5s forwards, btn-out .1s 4s forwards;
+		.loaded &{
+			animation: btnIn 1s 3s forwards;
 
+			&::before{
+				top: 0;
+				right: 0;
+				border-top: 1px solid $c-white;
+				border-right: 1px solid $c-white;
+				border-radius: 0 3rem 0 0;
+				animation: btn-rbIn 1s 2.5s forwards, btn-out .1s 4s forwards;
+			}
+			&::after{
+				left: 0;
+				bottom: 0;
+				border-bottom: 1px solid $c-white;
+				border-left: 1px solid $c-white;
+				border-radius: 0 0 0 3rem;
+				animation: btn-ltIn 1s 2.5s forwards, btn-out .1s 4s forwards;
+			}
 		}
 
-		&::after{
-			left: 0;
-			bottom: 0;
-			border-bottom: 1px solid $c-white;
-			border-left: 1px solid $c-white;
-			border-radius: 0 0 0 3rem;
-			animation: btn-ltIn 1s 2.5s forwards, btn-out .1s 4s forwards;
+	}
+
+	&--whisper{
+		border: 1px solid $c-grey-dark;
+		border-radius: 3rem;
+		display: inline-block;
+		padding: .15rem .75rem .2rem;
+		line-height: 1;
+		transition: all .4s ease-out;
+		position: relative;
+		white-space: nowrap;
+			font-size: $f-bit;
+
+
+		@include mq($bp_tabletish){
+		}
+
+		&:hover{
+			background-color: #fff;
+			border-color: #fff;
 		}
 	}
 }
@@ -711,7 +748,7 @@ button{
 
 .type-tester__label{
 	position: absolute;
-	bottom: 150%;
+	bottom: 95%;
 	transform: translateX(-50%); // size of the icon before the slider
 	white-space: nowrap;
 	opacity: 0;
@@ -1267,7 +1304,7 @@ button{
 [id="fl-19"]{
 	stroke-dasharray: 274;
 	stroke-dashoffset: 274;
-	animation: fl19 1s 1.8s ease-in-out forwards;
+	animation: fl19 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1283,7 +1320,7 @@ button{
 [id="fl-22_1_"]{
 	stroke-dasharray: 57;
 	stroke-dashoffset: 57;
-	animation: fl22_1_ 1s 1.8s ease-in-out forwards;
+	animation: fl22_1_ 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1299,7 +1336,7 @@ button{
 [id="fl-23"]{
 	stroke-dasharray: 46;
 	stroke-dashoffset: 46;
-	animation: fl23 1s 1.8s ease-in-out forwards;
+	animation: fl23 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1315,7 +1352,7 @@ button{
 [id="fl-31"]{
 	stroke-dasharray: 88;
 	stroke-dashoffset: 88;
-	animation: fl31 1s 1.8s ease-in-out forwards;
+	animation: fl31 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1331,7 +1368,7 @@ button{
 [id="fl-32"]{
 	stroke-dasharray: 118;
 	stroke-dashoffset: 118;
-	animation: fl32 1s 1.8s ease-in-out forwards;
+	animation: fl32 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1346,7 +1383,7 @@ button{
 [id="fl-33"]{
 	stroke-dasharray: 120;
 	stroke-dashoffset: 120;
-	animation: fl33 1s 1.8s ease-in-out forwards;
+	animation: fl33 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1362,7 +1399,7 @@ button{
 [id="fl-27"]{
 	stroke-dasharray: 112;
 	stroke-dashoffset: 112;
-	animation: fl27 1s 1.8s ease-in-out forwards;
+	animation: fl27 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1378,7 +1415,7 @@ button{
 [id="fl-34"]{
 	stroke-dasharray: 140;
 	stroke-dashoffset: 140;
-	animation: fl34 1s 1.8s ease-in-out forwards;
+	animation: fl34 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1394,7 +1431,7 @@ button{
 [id="fl-35"]{
 	stroke-dasharray: 152;
 	stroke-dashoffset: 152;
-	animation: fl35 1s 1.8s ease-in-out forwards;
+	animation: fl35 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1410,7 +1447,7 @@ button{
 [id="fl-36"]{
 	stroke-dasharray: 55;
 	stroke-dashoffset: 55;
-	animation: fl36 1s 1.8s ease-in-out forwards;
+	animation: fl36 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1426,7 +1463,7 @@ button{
 [id="fl-45"]{
 	stroke-dasharray: 318;
 	stroke-dashoffset: 318;
-	animation: fl45 1s 1.8s ease-in-out forwards;
+	animation: fl45 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1442,7 +1479,7 @@ button{
 [id="fl-39_1_"]{
 	stroke-dasharray: 260;
 	stroke-dashoffset: 260;
-	animation: fl39 1s 1.8s ease-in-out forwards;
+	animation: fl39 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1458,7 +1495,7 @@ button{
 [id="fl-40"]{
 	stroke-dasharray: 188;
 	stroke-dashoffset: 188;
-	animation: fl40 1s 1.8s ease-in-out forwards;
+	animation: fl40 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1474,7 +1511,7 @@ button{
 [id="fl-46a"]{
 	stroke-dasharray: 175;
 	stroke-dashoffset: 175;
-	animation: fl46 1s 1.8s ease-in-out forwards;
+	animation: fl46 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1490,7 +1527,7 @@ button{
 [id="fl-46b"]{
 	stroke-dasharray: 180;
 	stroke-dashoffset: 180;
-	animation: fl46 1s 1.8s ease-in-out forwards;
+	animation: fl46 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1508,7 +1545,7 @@ button{
 [id="fl-37"]{
 	stroke-dasharray: 129;
 	stroke-dashoffset: 129;
-	animation: fl37 1s 1.8s ease-in-out forwards;
+	animation: fl37 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1524,7 +1561,7 @@ button{
 [id="fl-38"]{
 	stroke-dasharray: 192;
 	stroke-dashoffset: 192;
-	animation: fl38 1s 1.8s ease-in-out forwards;
+	animation: fl38 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1540,7 +1577,7 @@ button{
 [id="fl-41"]{
 	stroke-dasharray: 145;
 	stroke-dashoffset: 145;
-	animation: fl41 1s 1.8s ease-in-out forwards;
+	animation: fl41 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1556,7 +1593,7 @@ button{
 [id="fl-42"]{
 	stroke-dasharray: 258;
 	stroke-dashoffset: 258;
-	animation: fl42 1s 1.8s ease-in-out forwards;
+	animation: fl42 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1572,7 +1609,7 @@ button{
 [id="fl-43"]{
 	stroke-dasharray: 183;
 	stroke-dashoffset: 183;
-	animation: fl43 1s 1.8s ease-in-out forwards;
+	animation: fl43 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1588,7 +1625,7 @@ button{
 [id="fl-44"]{
 	stroke-dasharray: 203;
 	stroke-dashoffset: 203;
-	animation: fl44 1s 1.8s ease-in-out forwards;
+	animation: fl44 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1604,7 +1641,7 @@ button{
 [id="fl-47a_1_"]{
 	stroke-dasharray: 428;
 	stroke-dashoffset: 428;
-	animation: fl47a 1s 1.8s ease-in-out forwards;
+	animation: fl47a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1620,7 +1657,7 @@ button{
 [id="fl-47b"]{
 	stroke-dasharray: 188;
 	stroke-dashoffset: 188;
-	animation: fl47b 1s 1.8s ease-in-out forwards;
+	animation: fl47b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1636,7 +1673,7 @@ button{
 [id="fl-64a_1_"]{
 	stroke-dasharray: 372;
 	stroke-dashoffset: 372;
-	animation: fl64a 1s 1.8s ease-in-out forwards;
+	animation: fl64a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1652,7 +1689,7 @@ button{
 [id="fl-64b"]{
 	stroke-dasharray: 104;
 	stroke-dashoffset: 104;
-	animation: fl64b 1s 1.8s ease-in-out forwards;
+	animation: fl64b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1670,7 +1707,7 @@ button{
 [id="fl-53"]{
 	stroke-dasharray: 97;
 	stroke-dashoffset: 97;
-	animation: fl53 1s 1.8s ease-in-out forwards;
+	animation: fl53 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1687,7 +1724,7 @@ button{
 [id="fl-67"]{
 	stroke-dasharray: 84;
 	stroke-dashoffset: 84;
-	animation: fl67 1s 1.8s ease-in-out forwards;
+	animation: fl67 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1703,7 +1740,7 @@ button{
 [id="fl-65"]{
 	stroke-dasharray: 40;
 	stroke-dashoffset: 40;
-	animation: fl65 1s 1.8s ease-in-out forwards;
+	animation: fl65 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1721,7 +1758,7 @@ button{
 [id="fl-66b"]{
 	stroke-dasharray: 550;
 	stroke-dashoffset: 550;
-	animation: fl66b 1s 1.8s ease-in-out forwards;
+	animation: fl66b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1737,7 +1774,7 @@ button{
 [id="fl-66a_1_"]{
 	stroke-dasharray: 265;
 	stroke-dashoffset: 265;
-	animation: fl66a 1s 1.8s ease-in-out forwards;
+	animation: fl66a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1753,7 +1790,7 @@ button{
 [id="fl47a"]{
 	stroke-dasharray: 282;
 	stroke-dashoffset: 282;
-	animation: fl47a 1s 1.8s ease-in-out forwards;
+	animation: fl47a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1769,7 +1806,7 @@ button{
 [id="fl-47b_1_"]{
 	stroke-dasharray: 341;
 	stroke-dashoffset: 341;
-	animation: fl47b 1s 1.8s ease-in-out forwards;
+	animation: fl47b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1785,7 +1822,7 @@ button{
 [id="fl-55"]{
 	stroke-dasharray: 220;
 	stroke-dashoffset: 220;
-	animation: fl55 1s 1.8s ease-in-out forwards;
+	animation: fl55 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1803,7 +1840,7 @@ button{
 [id="fl-48_1_"]{
 	stroke-dasharray: 324;
 	stroke-dashoffset: 324;
-	animation: fl48 1s 1.8s ease-in-out forwards;
+	animation: fl48 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1819,7 +1856,7 @@ button{
 [id="fl-49"]{
 	stroke-dasharray: 277;
 	stroke-dashoffset: 277;
-	animation: fl49 1s 1.8s ease-in-out forwards;
+	animation: fl49 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1835,7 +1872,7 @@ button{
 [id="fl-51"]{
 	stroke-dasharray: 80;
 	stroke-dashoffset: 80;
-	animation: fl51 1s 1.8s ease-in-out forwards;
+	animation: fl51 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1851,7 +1888,7 @@ button{
 [id="fl-52"]{
 	stroke-dasharray: 96;
 	stroke-dashoffset: 96;
-	animation: fl52 1s 1.8s ease-in-out forwards;
+	animation: fl52 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1867,7 +1904,7 @@ button{
 [id="fl-68"]{
 	stroke-dasharray: 49;
 	stroke-dashoffset: 49;
-	animation: fl68 1s 1.8s ease-in-out forwards;
+	animation: fl68 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1883,7 +1920,7 @@ button{
 [id="fl-69"]{
 	stroke-dasharray: 65;
 	stroke-dashoffset: 65;
-	animation: fl69 1s 1.8s ease-in-out forwards;
+	animation: fl69 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1899,7 +1936,7 @@ button{
 [id="fl-73"]{
 	stroke-dasharray: 106;
 	stroke-dashoffset: 106;
-	animation: fl73 1s 1.8s ease-in-out forwards;
+	animation: fl73 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1915,7 +1952,7 @@ button{
 [id="fl-75"]{
 	stroke-dasharray: 162;
 	stroke-dashoffset: 162;
-	animation: fl75 1s 1.8s ease-in-out forwards;
+	animation: fl75 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1931,7 +1968,7 @@ button{
 [id="fl-57"]{
 	stroke-dasharray: 218;
 	stroke-dashoffset: 218;
-	animation: fl57 1s 1.8s ease-in-out forwards;
+	animation: fl57 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1947,7 +1984,7 @@ button{
 [id="fl-56"]{
 	stroke-dasharray: 182;
 	stroke-dashoffset: 182;
-	animation: fl56 1s 1.8s ease-in-out forwards;
+	animation: fl56 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1963,7 +2000,7 @@ button{
 [id="fl-71"]{
 	stroke-dasharray: 173;
 	stroke-dashoffset: 173;
-	animation: fl71 1s 1.8s ease-in-out forwards;
+	animation: fl71 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1979,7 +2016,7 @@ button{
 [id="fl-72"]{
 	stroke-dasharray: 186;
 	stroke-dashoffset: 186;
-	animation: fl72 1s 1.8s ease-in-out forwards;
+	animation: fl72 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -1995,7 +2032,7 @@ button{
 [id="fl-70"]{
 	stroke-dasharray: 169;
 	stroke-dashoffset: 169;
-	animation: fl70 1s 1.8s ease-in-out forwards;
+	animation: fl70 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2013,7 +2050,7 @@ button{
 [id="fl-58"]{
 	stroke-dasharray: 53;
 	stroke-dashoffset: 53;
-	animation: fl58 1s 1.8s ease-in-out forwards;
+	animation: fl58 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2029,7 +2066,7 @@ button{
 [id="fl-59"]{
 	stroke-dasharray: 32;
 	stroke-dashoffset: 32;
-	animation: fl59 1s 1.8s ease-in-out forwards;
+	animation: fl59 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2045,7 +2082,7 @@ button{
 [id="fl-60"]{
 	stroke-dasharray: 29;
 	stroke-dashoffset: 29;
-	animation: fl60 1s 1.8s ease-in-out forwards;
+	animation: fl60 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2061,7 +2098,7 @@ button{
 [id="fl-61"]{
 	stroke-dasharray: 32;
 	stroke-dashoffset: 32;
-	animation: fl61 1s 1.8s ease-in-out forwards;
+	animation: fl61 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2077,7 +2114,7 @@ button{
 [id="fl-62"]{
 	stroke-dasharray: 27;
 	stroke-dashoffset: 27;
-	animation: fl62 1s 1.8s ease-in-out forwards;
+	animation: fl62 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2093,7 +2130,7 @@ button{
 [id="fl-63"]{
 	stroke-dasharray: 104;
 	stroke-dashoffset: 104;
-	animation: fl63 1s 1.8s ease-in-out forwards;
+	animation: fl63 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2109,7 +2146,7 @@ button{
 [id="fl-74"]{
 	stroke-dasharray: 74;
 	stroke-dashoffset: 74;
-	animation: fl74 1s 1.8s ease-in-out forwards;
+	animation: fl74 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2125,7 +2162,7 @@ button{
 [id="fl-76"]{
 	stroke-dasharray: 25;
 	stroke-dashoffset: 25;
-	animation: fl76 1s 1.8s ease-in-out forwards;
+	animation: fl76 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2141,7 +2178,7 @@ button{
 [id="fl-77"]{
 	stroke-dasharray: 26;
 	stroke-dashoffset: 26;
-	animation: fl77 1s 1.8s ease-in-out forwards;
+	animation: fl77 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2157,7 +2194,7 @@ button{
 [id="fl-78"]{
 	stroke-dasharray: 19;
 	stroke-dashoffset: 19;
-	animation: fl78 1s 1.8s ease-in-out forwards;
+	animation: fl78 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2173,7 +2210,7 @@ button{
 [id="fl-79"]{
 	stroke-dasharray: 78;
 	stroke-dashoffset: 78;
-	animation: fl79 1s 1.8s ease-in-out forwards;
+	animation: fl79 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2189,7 +2226,7 @@ button{
 [id="fl-80a"]{
 	stroke-dasharray: 180;
 	stroke-dashoffset: 180;
-	animation: fl80a 1s 1.8s ease-in-out forwards;
+	animation: fl80a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2205,7 +2242,7 @@ button{
 [id="fl-80b"]{
 	stroke-dasharray: 171;
 	stroke-dashoffset: 171;
-	animation: fl80b 1s 1.8s ease-in-out forwards;
+	animation: fl80b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2221,7 +2258,7 @@ button{
 [id="fl-80b"]{
 	stroke-dasharray: 171;
 	stroke-dashoffset: 171;
-	animation: fl80b 1s 1.8s ease-in-out forwards;
+	animation: fl80b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2237,7 +2274,7 @@ button{
 [id="fl-86b"]{
 	stroke-dasharray: 153;
 	stroke-dashoffset: 153;
-	animation: fl86b 1s 1.8s ease-in-out forwards;
+	animation: fl86b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2253,7 +2290,7 @@ button{
 [id="fl-86a_1_"]{
 	stroke-dasharray: 158;
 	stroke-dashoffset: 158;
-	animation: fl86a 1s 1.8s ease-in-out forwards;
+	animation: fl86a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2269,7 +2306,7 @@ button{
 [id="fl-85a_1_"]{
 	stroke-dasharray: 239;
 	stroke-dashoffset: 239;
-	animation: fl85a 1s 1.8s ease-in-out forwards;
+	animation: fl85a 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2285,7 +2322,7 @@ button{
 [id="fl-85b"]{
 	stroke-dasharray: 239;
 	stroke-dashoffset: 239;
-	animation: fl85b 1s 1.8s ease-in-out forwards;
+	animation: fl85b 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2303,7 +2340,7 @@ button{
 [id="fl-87"]{
 	stroke-dasharray: 220;
 	stroke-dashoffset: 220;
-	animation: fl87 1s 1.8s ease-in-out forwards;
+	animation: fl87 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2319,7 +2356,7 @@ button{
 [id="fl-88"]{
 	stroke-dasharray: 119;
 	stroke-dashoffset: 119;
-	animation: fl88 1s 1.8s ease-in-out forwards;
+	animation: fl88 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2335,7 +2372,7 @@ button{
 [id="fl-89"]{
 	stroke-dasharray: 271;
 	stroke-dashoffset: 271;
-	animation: fl89 1s 1.8s ease-in-out forwards;
+	animation: fl89 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2351,7 +2388,7 @@ button{
 [id="fl-92"]{
 	stroke-dasharray: 55;
 	stroke-dashoffset: 55;
-	animation: fl92 1s 1.8s ease-in-out forwards;
+	animation: fl92 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2367,7 +2404,7 @@ button{
 [id="fl-91"]{
 	stroke-dasharray: 259;
 	stroke-dashoffset: 259;
-	animation: fl91 1s 1.8s ease-in-out forwards;
+	animation: fl91 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2383,7 +2420,7 @@ button{
 [id="fl-81"]{
 	stroke-dasharray: 162;
 	stroke-dashoffset: 162;
-	animation: fl81 1s 1.8s ease-in-out forwards;
+	animation: fl81 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2399,7 +2436,7 @@ button{
 [id="fl-83"]{
 	stroke-dasharray: 113;
 	stroke-dashoffset: 113;
-	animation: fl83 1s 1.8s ease-in-out forwards;
+	animation: fl83 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2415,7 +2452,7 @@ button{
 [id="fl-82"]{
 	stroke-dasharray: 129;
 	stroke-dashoffset: 129;
-	animation: fl82 1s 1.8s ease-in-out forwards;
+	animation: fl82 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2431,7 +2468,7 @@ button{
 [id="fl-84"]{
 	stroke-dasharray: 384;
 	stroke-dashoffset: 384;
-	animation: fl84 1s 1.8s ease-in-out forwards;
+	animation: fl84 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2447,7 +2484,7 @@ button{
 [id="fl-90"]{
 	stroke-dasharray: 104;
 	stroke-dashoffset: 104;
-	animation: fl90 1s 1.8s ease-in-out forwards;
+	animation: fl90 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2463,7 +2500,7 @@ button{
 [id="fl-25"]{
 	stroke-dasharray: 69;
 	stroke-dashoffset: 69;
-	animation: fl25 1s 1.8s ease-in-out forwards;
+	animation: fl25 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2479,7 +2516,7 @@ button{
 [id="fl-26"]{
 	stroke-dasharray: 68;
 	stroke-dashoffset: 68;
-	animation: fl26 1s 1.8s ease-in-out forwards;
+	animation: fl26 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2495,7 +2532,7 @@ button{
 [id="fl-24"]{
 	stroke-dasharray: 87;
 	stroke-dashoffset: 87;
-	animation: fl24 1s 1.8s ease-in-out forwards;
+	animation: fl24 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2511,7 +2548,7 @@ button{
 [id="fl-21"], [id="fl-20"]{
 	stroke-dasharray: 67;
 	stroke-dashoffset: 67;
-	animation: fl21 1s 1.8s ease-in-out forwards;
+	animation: fl21 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2527,7 +2564,7 @@ button{
 [id="fl-30"], [id="fl-29"]{
 	stroke-dasharray: 116;
 	stroke-dashoffset: 116;
-	animation: fl30 1s 1.8s ease-in-out forwards;
+	animation: fl30 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2543,7 +2580,7 @@ button{
 [id="fl-28"]{
 	stroke-dasharray: 81;
 	stroke-dashoffset: 81;
-	animation: fl28 1s 1.8s ease-in-out forwards;
+	animation: fl28 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2559,7 +2596,7 @@ button{
 [id="fl-50"]{
 	stroke-dasharray: 101;
 	stroke-dashoffset: 101;
-	animation: fl50 1s 1.8s ease-in-out forwards;
+	animation: fl50 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2575,7 +2612,7 @@ button{
 [id="fl-54"]{
 	stroke-dasharray: 64;
 	stroke-dashoffset: 64;
-	animation: fl54 1s 1.8s ease-in-out forwards;
+	animation: fl54 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2594,7 +2631,7 @@ button{
 [id*="c-"]{
 	stroke-dasharray: 32;
 	stroke-dashoffset: 32;
-	animation: c1 1s 1.8s ease-in-out forwards;
+	animation: c1 1s 1.7s ease-in-out forwards;
 	// animation-play-state: paused;
 }
 
@@ -2616,10 +2653,10 @@ button{
 }
 
 // Ebg Garamond title
-[id="ebg-solid"] path{
+.loaded [id="ebg-solid"] path{
 	opacity: 0;
 	fill: $c-white !important;
-	animation: solid 1s 2.8s ease-in-out forwards;
+	animation: solid 1s 2.3s ease-in-out forwards;
 }
 
 @keyframes solid {
@@ -2633,8 +2670,8 @@ button{
 [id="ebg-stroke"] path{
 	stroke: $c-white !important;
 }
-[id="ebg-stroke"] {
-	animation: stroke .3s 3.2s ease-in-out forwards;
+.loaded [id="ebg-stroke"] {
+	animation: stroke .3s 2.8s ease-in-out forwards;
 	opacity: 1;
 }
 
@@ -2646,11 +2683,11 @@ button{
 		opacity: 0;
 	}
 }
-[id="e-top-out_1_"],
-[id="e-bottom-out_1_"]{
+.loaded [id="e-top-out_1_"],
+.loaded [id="e-bottom-out_1_"]{
 	stroke-dasharray: 110;
 	stroke-dashoffset: 110;
-	animation: e1 1s 1.8s ease-in-out forwards;
+	animation: e1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes e1 {
@@ -2662,11 +2699,11 @@ button{
 	}
 }
 
-[id="e-bottom-inner_1_"],
-[id="e-top-inner_1_"]{
+.loaded [id="e-bottom-inner_1_"],
+.loaded [id="e-top-inner_1_"]{
 	stroke-dasharray: 95;
 	stroke-dashoffset: 95;
-	animation: e2 1s 1.8s ease-in-out forwards;
+	animation: e2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes e2 {
@@ -2679,10 +2716,10 @@ button{
 }
 
 
-[id="b-left"]{
+.loaded [id="b-left"]{
 	stroke-dasharray: 73;
 	stroke-dashoffset: 73;
-	animation: b1 1s 1.8s ease-in-out forwards;
+	animation: b1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes b1 {
@@ -2694,10 +2731,10 @@ button{
 	}
 }
 
-[id="b-bottom_1_"]{
+.loaded [id="b-bottom_1_"]{
 	stroke-dasharray: 99;
 	stroke-dashoffset: 99;
-	animation: b2 1s 1.8s ease-in-out forwards;
+	animation: b2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes b2 {
@@ -2709,10 +2746,10 @@ button{
 	}
 }
 
-[id="b-top_1_"]{
+.loaded [id="b-top_1_"]{
 	stroke-dasharray: 88;
 	stroke-dashoffset: 88;
-	animation: b3 1s 1.8s ease-in-out forwards;
+	animation: b3 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes b3 {
@@ -2724,11 +2761,11 @@ button{
 	}
 }
 
-[id="b-inner-top"],
-[id="b-inner-bottom_1_"]{
+.loaded [id="b-inner-top"],
+.loaded [id="b-inner-bottom_1_"]{
 	stroke-dasharray: 73;
 	stroke-dashoffset: 73;
-	animation: b4 1s 1.8s ease-in-out forwards;
+	animation: b4 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes b4 {
@@ -2740,10 +2777,10 @@ button{
 	}
 }
 
-[id="g-inner"]{
+.loaded [id="g-inner"]{
 	stroke-dasharray: 144;
 	stroke-dashoffset: 144;
-	animation: g1 1s 1.8s ease-in-out forwards;
+	animation: g1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes g1 {
@@ -2754,10 +2791,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="g-out_1_"]{
+.loaded [id="g-out_1_"]{
 	stroke-dasharray: 244;
 	stroke-dashoffset: 244;
-	animation: g2 1s 1.8s ease-in-out forwards;
+	animation: g2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes g2 {
@@ -2768,11 +2805,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="a-left-inner"],
-[id="a2-left-inner_1_"]{
+.loaded [id="a-left-inner"],
+.loaded [id="a2-left-inner_1_"]{
 	stroke-dasharray: 40;
 	stroke-dashoffset: 40;
-	animation: a1 1s 1.8s ease-in-out forwards;
+	animation: a1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes a1 {
@@ -2783,11 +2820,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="a-bottom-left_1_"],
-[id="a2-left-bottom_1_"]{
+.loaded [id="a-bottom-left_1_"],
+.loaded [id="a2-left-bottom_1_"]{
 	stroke-dasharray: 57;
 	stroke-dashoffset: 57;
-	animation: a2 1s 1.8s ease-in-out forwards;
+	animation: a2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes a2 {
@@ -2798,11 +2835,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="a-bottom-right_1_"],
-[id="a2-right-bottom_1_"]{
+.loaded [id="a-bottom-right_1_"],
+.loaded [id="a2-right-bottom_1_"]{
 	stroke-dasharray: 27;
 	stroke-dashoffset: 27;
-	animation: a3 1s 1.8s ease-in-out forwards;
+	animation: a3 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes a3 {
@@ -2813,11 +2850,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="a-top_1_"],
-[id="a2-top_1_"]{
+.loaded [id="a-top_1_"],
+.loaded [id="a2-top_1_"]{
 	stroke-dasharray: 83;
 	stroke-dashoffset: 83;
-	animation: a4 1s 1.8s ease-in-out forwards;
+	animation: a4 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes a4 {
@@ -2828,11 +2865,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="a-inner_1_"],
-[id="a2-inner_1_"]{
+.loaded [id="a-inner_1_"],
+.loaded [id="a2-inner_1_"]{
 	stroke-dasharray: 33;
 	stroke-dashoffset: 33;
-	animation: a5 1s 1.8s ease-in-out forwards;
+	animation: a5 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes a5 {
@@ -2843,10 +2880,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="r-left_1_"]{
+.loaded [id="r-left_1_"]{
 	stroke-dasharray: 88;
 	stroke-dashoffset: 88;
-	animation: r1 1s 1.8s ease-in-out forwards;
+	animation: r1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes r1 {
@@ -2857,10 +2894,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="r-right_1_"]{
+.loaded [id="r-right_1_"]{
 	stroke-dasharray: 102;
 	stroke-dashoffset: 102;
-	animation: r2 1s 1.8s ease-in-out forwards;
+	animation: r2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes r2 {
@@ -2871,10 +2908,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="m-left_1_"]{
+.loaded [id="m-left_1_"]{
 	stroke-dasharray: 86;
 	stroke-dashoffset: 86;
-	animation: m1 1s 1.8s ease-in-out forwards;
+	animation: m1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes m1 {
@@ -2886,11 +2923,11 @@ button{
 	}
 }
 
-[id="m-left-inner_1_"],
-[id="m-middle-right_1_"]{
+.loaded [id="m-left-inner_1_"],
+.loaded [id="m-middle-right_1_"]{
 	stroke-dasharray: 44;
 	stroke-dashoffset: 44;
-	animation: m2 1s 1.8s ease-in-out forwards;
+	animation: m2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes m2 {
@@ -2901,11 +2938,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="m-middle-left_1_"],
-[id="m-right-inner_1_"]{
+.loaded [id="m-middle-left_1_"],
+.loaded [id="m-right-inner_1_"]{
 	stroke-dasharray: 61;
 	stroke-dashoffset: 61;
-	animation: m3 1s 1.8s ease-in-out forwards;
+	animation: m3 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes m3 {
@@ -2916,10 +2953,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="m-right_1_"]{
+.loaded [id="m-right_1_"]{
 	stroke-dasharray: 115;
 	stroke-dashoffset: 115;
-	animation: m4 1s 1.8s ease-in-out forwards;
+	animation: m4 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes m4 {
@@ -2931,10 +2968,10 @@ button{
 	}
 }
 
-[id="o-outer_1_"]{
+.loaded [id="o-outer_1_"]{
 	stroke-dasharray: 147;
 	stroke-dashoffset: 147;
-	animation: o1 1s 1.8s ease-in-out forwards;
+	animation: o1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes o1 {
@@ -2946,10 +2983,10 @@ button{
 	}
 }
 
-[id="o-inner_1_"]{
+.loaded [id="o-inner_1_"]{
 	stroke-dasharray: 88;
 	stroke-dashoffset: 88;
-	animation: o2 1s 1.8s ease-in-out forwards;
+	animation: o2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes o2 {
@@ -2961,10 +2998,10 @@ button{
 	}
 }
 
-[id="n-left_1_"]{
+.loaded [id="n-left_1_"]{
 	stroke-dasharray: 87;
 	stroke-dashoffset: 87;
-	animation: n1 1s 1.8s ease-in-out forwards;
+	animation: n1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes n1 {
@@ -2975,10 +3012,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="n-left-inner_1_"]{
+.loaded [id="n-left-inner_1_"]{
 	stroke-dasharray: 46;
 	stroke-dashoffset: 46;
-	animation: n2 1s 1.8s ease-in-out forwards;
+	animation: n2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes n2 {
@@ -2989,10 +3026,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="n-right-inner_1_"]{
+.loaded [id="n-right-inner_1_"]{
 	stroke-dasharray: 63;
 	stroke-dashoffset: 63;
-	animation: n4 1s 1.8s ease-in-out forwards;
+	animation: n4 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes n4 {
@@ -3003,11 +3040,11 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="n-left-inner_1_"],
-[id="n-right_1_"]{
+.loaded [id="n-left-inner_1_"],
+.loaded [id="n-right_1_"]{
 	stroke-dasharray: 85;
 	stroke-dashoffset: 85;
-	animation: n3 1s 1.8s ease-in-out forwards;
+	animation: n3 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes n3 {
@@ -3018,10 +3055,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="d-left_1_"]{
+.loaded [id="d-left_1_"]{
 	stroke-dasharray: 95;
 	stroke-dashoffset: 95;
-	animation: d1 1s 1.8s ease-in-out forwards;
+	animation: d1 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes d1 {
@@ -3032,10 +3069,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="d-right-bottom_1_"]{
+.loaded [id="d-right-bottom_1_"]{
 	stroke-dasharray: 39;
 	stroke-dashoffset: 39;
-	animation: d2 1s 1.8s ease-in-out forwards;
+	animation: d2 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes d2 {
@@ -3046,10 +3083,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="d-right_1_"]{
+.loaded [id="d-right_1_"]{
 	stroke-dasharray: 110;
 	stroke-dashoffset: 110;
-	animation: d3 1s 1.8s ease-in-out forwards;
+	animation: d3 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes d3 {
@@ -3060,10 +3097,10 @@ button{
 		stroke-dashoffset: 0;
 	}
 }
-[id="d-inner_1_"]{
+.loaded [id="d-inner_1_"]{
 	stroke-dasharray: 85;
 	stroke-dashoffset: 85;
-	animation: d4 1s 1.8s ease-in-out forwards;
+	animation: d4 1s 1.7s ease-in-out forwards;
 }
 
 @keyframes d4 {
@@ -3113,9 +3150,10 @@ button{
 	transition: background-color .1s ease-out;
 	opacity: 0;
 	transform: translateY(1rem);
-	animation: logoIn 1.2s 3s forwards;
 
-
+	.loaded &{
+		animation: logoIn 1.2s 4s forwards;
+	}
 
 	&.on-content{
 		fill: $c-grey-dark;
