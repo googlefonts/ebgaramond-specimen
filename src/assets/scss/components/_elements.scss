@@ -826,6 +826,14 @@ button{
 }
 
 
+.show-img{
+	&:hover{
+		img{
+			opacity: 1;
+		}
+	}
+}
+
 .mask-img{
 	width: 0;
 	transform-origin: left center;
@@ -843,19 +851,15 @@ button{
 	.show-img &{
 		width: calc(68vw + 1.25rem);
 		transition: all 1.5s cubic-bezier(.01,.3,.2,.98);
-		background-color: lighten($c-complementary, 15%);
+		background-color: $c-bg;
 
 		img{
 			transform: scale(1);
-			opacity: .8;
+			opacity: .45;
 			vertical-align: middle;
 		}
 
-		&:hover{
-			img{
-				opacity: 1;
-			}
-		}
+
 	}
 
 	@include mq($bp_middle){

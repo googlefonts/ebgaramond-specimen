@@ -8,6 +8,9 @@ $(document).ready(function(){
 	// 	$('body').append(glyphs);
 	// });
 
+	$(document).on('mouseover', '.show-img', function(){
+		console.log('over img');
+	});
 
 	//Open menu on mobile version
 	$('.js-menu-mobile').on('click', function(e){

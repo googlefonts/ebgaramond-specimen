@@ -91,7 +91,18 @@ html, body, .scroll-content{
 			top: 50%;
 			transform: translate(.75rem, -50%);
 			border-radius: 100%;
+		}
 
+		&::after{
+			content: '';
+			position: absolute;
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background-color: transparent;
+			top: 50%;
+			transform: translate(.75rem, -50%);
+			border-radius: 100%;
 		}
 
 		&--dot{
@@ -416,7 +427,12 @@ html, body, .scroll-content{
 
 		p{
 			// margin-left: 4%;
-			background-color: rgba(241, 241, 241, 0.45);
+			position: relative;
+			z-index: 2;
+
+			&:not(:first-child){
+				background-color: rgba(241, 241, 241, 0.18);
+			}
 
 			@include mq($bp_tabletish){
 				margin-left: 18.7%;
@@ -458,13 +474,23 @@ html, body, .scroll-content{
 		left: 66.6%;
 		transform: translateY(-35%);
 		margin-left: $gap;
-		z-index: -1;
+		// z-index: 1;
 		// opacity: 0;
 		width: 27vw;
 	}
 
 
 	&.show-img{
+
+		&:hover{
+			z-index: 2;
+			box-shadow: 0 0 25px rgba(157,157,157, .1);
+
+
+			img{
+				opacity: 1;
+			}
+		}
 
 	}
 }
@@ -474,10 +500,15 @@ html, body, .scroll-content{
 .section{
 	&--typographer{
 		padding-bottom: 0;
+		pointer-events:none;
 
 		p{
-			background-color: rgba(241, 241, 241, 0.33);
+			background-color: rgba(241, 241, 241, 0.18);
 			text-shadow: 0 1px 0 $c-bg;
+
+			&:last-child{
+				pointer-events: all;
+			}
 		}
 
 		@include mq($bp_middle){
@@ -503,9 +534,10 @@ html, body, .scroll-content{
 }
 
 .bio__img{
-	width: 50vw;
+	width: 27vw;
 	position: relative;
 	z-index: -2;
+	pointer-events: all;
 	// margin-left: $gap;
 
 	@include mq($bp_middle){
@@ -538,9 +570,19 @@ html, body, .scroll-content{
 
 	}
 
-	// img{
-	// 	width: 32vw;
-	// }
+	&.show-img{
+
+
+		&:hover{
+			z-index: 2;
+			box-shadow: 0 0 25px rgba(157,157,157, .1);
+
+			img{
+				opacity: 1;
+			}
+		}
+
+	}
 }
 
 .glyph{
