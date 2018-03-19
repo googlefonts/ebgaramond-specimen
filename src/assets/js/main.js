@@ -861,6 +861,7 @@ $(document).ready(function(){
 			});
 			$('.js-slider').val(100);
 		}
+		$(this).next().find('.caption').text('Click to slide');
 
 		if($('.js-toggle').hasClass('active')){
 			$('.comparison-wrapper, .comparison__controller').addClass('zooming');
@@ -876,6 +877,7 @@ $(document).ready(function(){
 				// 	'clip-path': 'inset(0 0 0 0)'
 				// })
 			}
+			$('.caption').text('Click to slide');
 
 		}else{
 			$('.comparison-wrapper, .comparison__controller').removeClass('zooming new old');
@@ -883,6 +885,8 @@ $(document).ready(function(){
 				'clip-path': 'inset(0 0 0 ' + 50 + '%)'
 			});
 			$('.js-slider').val(50);
+			$('.caption').text('Click to zoom over');
+
 		}
 	})
 	// End: Fixing view for slider component: old version vs new version
@@ -1049,19 +1053,20 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.language__item').on('click', function(){
+	$(document).on('click', '.language__item',  function(){
 		$('.languages-list').toggleClass('opened');
 		$('.language__item').removeClass('opened').trigger('blur');
 		$(this).addClass('opened');
-		if ($(this).find('.language__content').height() > $(window).height()){
-			$(this).find('.language__content').css({
-				'top': - $('.languages-list').offset().top,
-				'padding-top': '1.5rem'
-			});
-		}else{
-			$(this).find('.language__content').css('top', - $('.languages-list').offset().top + $(window).height() / 2 - $(this).find('.language__content').height()/2).find('h3').css('margin-top', "-1rem");
+		if($('.is-touchable').length){
+			if ($(this).find('.language__content').height() > $(window).height()){
+				$(this).find('.language__content').css({
+					'top': - $('.languages-list').offset().top,
+					'padding-top': '1.5rem'
+				});
+			}else{
+				$(this).find('.language__content').css('top', - $('.languages-list').offset().top + $(window).height() / 2 - $(this).find('.language__content').height()/2).find('h3').css('margin-top', "-1rem");
+			}
 		}
-
 	});
 
 	$('.language__content').on('click', function(e){
@@ -1095,8 +1100,18 @@ $(document).ready(function(){
 		$('.flying-dot').css({
 			left: 0,
 			top: 0
-		})
+		});
+		$('.language__item').removeClass('opened');
+		$(this).removeClass('opened')
 	});
+
+	$(document).on('click', '.language__content',  function(){
+		$('.language__item.opened').removeClass('opened');
+		$(this).parent().removeClass('opened');
+		$('.language__item.opened').delete();
+	});
+
+
 	$('.otf-list').on('mouseleave', function(e){
 		e.stopPropagation();
 		$('.otf-dot').css({

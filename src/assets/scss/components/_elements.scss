@@ -165,19 +165,30 @@ button{
 
 	&-vertical{
 		transform-origin: left top;
-		opacity: .3;
-		transition: opacity 1.4s 1s ease-out;
+		opacity: .1;
+		transition: opacity .8s 0s ease-out;
 		position: absolute;
 		top: 0;
 		white-space: nowrap;
 		transform: rotate(-90deg) translateX(-100%) translateY(-50%);
+		color: lighten($c-brown, 28%);
+		text-transform: uppercase;
+		font-weight: 400;
+		margin-left: -1rem;
+		font-size: 8vh;
+
 
 		.section--typographer &{
 			top: 4rem;
 		}
 
+		// .section--in &{
+		// 	opacity: .8;
+		// }
+
 
 		&.im-here{
+			transition: opacity 1.2s 1s ease-out;
 			opacity: .4;
 
 			@include mq($bp_middle){
@@ -246,63 +257,69 @@ button{
 
 .vertical{
 	&--bio{
-		font-style: italic;
-		font-size: 9.5vh;
-		margin-left: -2*$gap;
+		// font-size: 9.5vh;
+		font-size: 8vh;
+		// margin-left: -2*$gap;
 	}
 
 	&--styles{
-		font-style: italic;
-		font-size: 18vh;
-		font-weight: 600;
-		top: 50%;
-		margin-left: 4%;
+		// font-size: 14vh;
+		// font-size: 8vh;
+		top: 7.5rem;
+		// margin-left: 4%;
 
 		@media screen and (orientation: landscape) and (max-width: $bp_tabletish+px){
-			font-size: 31vh;
-			margin-left: 0;
+			// font-size: 24vh;
+			// font-size: 8vh;
+			// margin-left: 0;
 			opacity: .4 !important;
 		}
 
 		@include mq($bp_middle, max-width){
 			opacity: .2 !important;
 			top: 7%;
-			margin-left: 0rem;
+			// margin-left: 0rem;
 		}
 
 		@include mq($bp_desktopish){
-			margin-left: 4.5%;
+			// margin-left: 4.5%;
 		}
 	}
 
 	&--scripts{
-		text-transform: uppercase;
-		font-size: 11vh;
-		top: 22vh;
-		margin-left: -1.5*$gap;
+		// font-size: 11vh;
+		// font-size: 8vh;
+		top: 40vh;
+		// margin-left: -1.5*$gap;
 
 		@include mq($bp_middle-down){
-			margin-left: -3*$gap;
-			font-size: 13vh;
+			// margin-left: -3*$gap;
+			// font-size: 13vh;
 		}
 	}
 
 	&--languages{
-		top: 12vh;
-		margin-left: -1.25*$gap;
-		text-transform: uppercase;
+		top: 7.5rem;
+		// font-size: 8vh;
+		// margin-left: -1.25*$gap;
 		font-size: 7vh;
 
 		@include mq($bp_tabletish){
-			margin-left: -4*$gap;
+			// margin-left: -4*$gap;
 		}
 	}
 
 	&--otf{
-		font-size: 8vh;
-		top: calc(50% - 16vh);
-		font-weight: 400;
-		margin-left: -2.5*$gap;
+		// font-size: 8vh;
+		top: calc(50% - 25vh);
+		// margin-left: -2.5*$gap;
+	}
+
+	&--past-present{
+		// font-size: 8vh;
+		top: 7.5rem;
+		// margin-left: -2.5*$gap;
+
 	}
 }
 

@@ -2616,6 +2616,12 @@ $contrast: 5% !default;
 	}
 }
 
+.otf--old-proportional {
+		.otf__sample, .otf__launcher{
+		font-feature-settings: 'onum' 1;
+	}
+}
+
 .otf--aligned-tabular {
 		.otf__sample, .otf__launcher{
 		font-feature-settings: 'tnum' 1;
@@ -2656,8 +2662,8 @@ $contrast: 5% !default;
 	}
 }
 .otf--petit-caps {
-		.otf__sample, .otf__launcher{
-		font-feature-settings: 'ss01' 1;
+		.otf__sample, .otf__launcher, .otf__active{
+		font-feature-settings: 'pcap' 1;
 	}
 }
 .otf--old-forms {
@@ -2671,6 +2677,9 @@ $contrast: 5% !default;
 	}
 }
 .otf--ligatures {
+		.otf__inactive{
+			font-feature-settings: 'liga' 0;
+		}
 		.otf__sample, .otf__launcher{
 		font-feature-settings: 'liga' 1;
 	}
@@ -3113,8 +3122,12 @@ $contrast: 5% !default;
 			min-height: 100vh;
 		}
 
-		.is-touchable .opened > &{
-			pointer-events: all
+		.opened > &{
+			opacity: 1;
+			pointer-events: all;
+
+			a{
+			}
 		}
 
 		&::before{
