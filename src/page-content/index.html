@@ -115,6 +115,7 @@
 				-ms-transform-origin: left top;
 				-o-transform-origin: left top;
 				transform-origin: left top;
+				pointer-events: none;
 			}
 
 			.loaded body::before{
@@ -139,6 +140,7 @@
 				transition: all .4s .2s ease-out;
 				opacity: 0;
 				font-weight: bold;
+				pointer-events: none;
 			}
 
 			.loaded body::after{
@@ -2021,21 +2023,21 @@
 						<input type="checkbox" id="old" class="js-toggle " data-period="old">
 						<label for="old" class="toggle__label">
 							<span class="cta--whisper">Old version</span>
-							<span class="caption"> Click to zoom over</span>
+							<span class="caption"> Click to zoom it</span>
 						</label>
 					</div>
 					<div class="comparison__toggle comparison__toggle--new">
 						<input type="checkbox" id="new" class="js-toggle " data-period="new">
 						<label for="new" class="toggle__label">
 							<span class="cta--whisper">New version
-								<span class="caption"> Click to zoom over</span>
+								<span class="caption"> Click to zoom it</span>
 							</span>
 						</label>
 					</div>
 					<input type="range" class="controller__slide js-slider" min="0" max="100" step="1">
 				</div>
-					<!-- <div class="comparison__behavior"><label>Zooming <input type="checkbox"> Slide </label></div>
- -->			</div>
+					<!-- <div class="comparison__behavior"><label>Zooming <input type="checkbox"> Slide </label></div>-->
+				</div>
 			<div class="section section--otf">
 				<h2 class="title-vertical vertical--otf" data-y="150" data-hook=".5" data-offset=".5">OT Features</h2>
 				<div class="otf-selector">
@@ -2383,9 +2385,6 @@
 				});
 
 			});
-
-
-
 		</script>
 
 		<script src='third_party/easyzoom/easyzoom.js' async></script>

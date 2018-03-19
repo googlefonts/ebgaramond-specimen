@@ -861,7 +861,7 @@ $(document).ready(function(){
 			});
 			$('.js-slider').val(100);
 		}
-		$(this).next().find('.caption').text('Click to slide');
+		// $(this).next().find('.caption').text('Click to slide');
 
 		if($('.js-toggle').hasClass('active')){
 			$('.comparison-wrapper, .comparison__controller').addClass('zooming');
@@ -877,7 +877,8 @@ $(document).ready(function(){
 				// 	'clip-path': 'inset(0 0 0 0)'
 				// })
 			}
-			$('.caption').text('Click to slide');
+			$('.caption').text('Click to zoom it');
+			$(this).next().find('.caption').text('Click to slide');
 
 		}else{
 			$('.comparison-wrapper, .comparison__controller').removeClass('zooming new old');
@@ -885,7 +886,7 @@ $(document).ready(function(){
 				'clip-path': 'inset(0 0 0 ' + 50 + '%)'
 			});
 			$('.js-slider').val(50);
-			$('.caption').text('Click to zoom over');
+			$('.caption').text('Click to zoom it');
 
 		}
 	})
