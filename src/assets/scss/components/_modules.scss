@@ -511,11 +511,14 @@ html, body, .scroll-content{
 			}
 		}
 
+		p:not(:first-child){
+			font-style: italic;
+		}
+
 		@include mq($bp_middle){
 			p:not(:first-of-type){
 				width: 75%;
 				margin-left: 26.1%;
-				font-style: italic;
 				max-width: 65ch;
 			}
 			p:first-of-type{

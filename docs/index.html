@@ -2299,13 +2299,12 @@
 				damping: .22
 			});
 
-			var lastScrollTop = 0;
+			var iScrollPos = 0;
 			var typetester = false
+			var elMov = 0;
 			scrollbar.addListener(function (status) {
 
 				// launch typetester function before you reach the section
-
-
 				function isElementOutViewport (el) {
 					var rect = el.getBoundingClientRect();
 					 return rect.bottom < window.innerHeight/ 2 || rect.right < 0 || rect.left > window.innerWidth || rect.top > window.innerHeight/ 2;
@@ -2319,6 +2318,7 @@
 				}
 				//End Change color for Google friends logo
 
+				// Item has been in viewport at least once
 				$('.section:not(.over-the-folder)').each(function(){
 					isElementOutViewport(this)
 					if(isElementOutViewport(this) == false){
@@ -2329,47 +2329,32 @@
 					}
 				});
 
-				// $('.animated--scroll').each(function(){
-				// 		var $speed = $(this).data('speed');
+				// $('.animated--img').each(function(){
+				// 	if(scrollbar.isVisible(this)){
+				// 		console.log(elMov);
+				// 		elMov++;
+				// 		// console.log(status.direction.y);
+				// 		var iCurScrollPos = scrollbar.offset.y;
+				// 		if (iCurScrollPos > iScrollPos) {
+				// 		//Scrolling Down
+				// 			$(this).css({
+				// 				'transform': 'translate3d(0, '+ elMov +  'px, 0)'
+				// 			})
+				// 		} else {
+				// 		//Scrolling Up
+				// 			$(this).css({
+				// 				'transform': 'translate3d(0, -'+ elMov +  'px, 0)'
+				// 			})
+				// 		}
+				// 		iScrollPos = iCurScrollPos;
+				// 		elMov = elMov;
+				// 		console.log(elMov);
 
-				// 		var st = status.offset.y;
-				// 			if (st > lastScrollTop){
-				// 				// Check if the element is animatable and should go down
-				// 				if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'down'){
-				// 					TweenLite.to(this, 1, {
-				// 						ease: Power4.easeOut,
-				// 						y:  "-=" + $speed + 'px',
-				// 						rotate: -90
-				// 					});
-				// 				// Check if the element is animatable and should go up
-				// 				}else if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'up'){
-				// 					TweenLite.to(this, 1, {
-				// 						ease: Power4.easeOut,
-				// 						y:  "+=" + $speed + 'px',
-				// 						rotate: -90
-				// 					});
-				// 				}
-				// 			} else {
-				// 				// upscroll code
-				// 				// Check if the element is animatable and should go down
-				// 				if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'down'){
-				// 					TweenLite.to(this, 1, {
-				// 						ease: Power4.easeOut,
-				// 						y:  "+=" + $speed + 'px',
-				// 						rotate: -90
-				// 					});
-				// 				// Check if the element is animatable and should go up
-				// 				}else if($(this).hasClass('scrolling-item') && $(this).data('direction') == 'up'){
-				// 					TweenLite.to(this, 1, {
-				// 						ease: Power4.easeOut,
-				// 						y:  "-=" + $speed + 'px',
-				// 						rotate: -90
-				// 					});
-				// 				}
-				// 			}
-				// 			lastScrollTop = st;
+				// 	}
+
 				// });
 
+				// Activating titles on view
 				$('.section:not(.over-the-folder)').each(function(){
 					if(scrollbar.isVisible(this)){
 						$(this).find('.title-vertical').addClass('im-here');
