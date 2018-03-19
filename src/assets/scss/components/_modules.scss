@@ -2598,10 +2598,19 @@ $contrast: 5% !default;
 
 }
 
+.otf--aligned-tabular{
+	.otf__inactive{
+		font-feature-settings: 'pnum' 1;
+	}
+}
+.otf--old-tabular{
+	.otf__inactive{
+		font-feature-settings: 'onum' 1, 'pnum' 1;
+	}
+}
+
 .otf__sample{
 	color: $c-main;
-
-
 }
 
 .otf--small-caps {
@@ -2611,14 +2620,14 @@ $contrast: 5% !default;
 }
 
 .otf--localized-forms {
-		.otf__sample, .otf__launcher{
+		.otf__sample, .otf__launcher, .otf__active{
 		font-feature-settings: 'locl' 1;
 	}
 }
 
 .otf--old-proportional {
-		.otf__sample, .otf__launcher{
-		font-feature-settings: 'onum' 1;
+		.otf__sample, .otf__launcher, .otf__active{
+		font-feature-settings: 'onum' 1, 'pnum' 1;
 	}
 }
 
@@ -2629,7 +2638,7 @@ $contrast: 5% !default;
 }
 
 .otf--aligned-proportional {
-	.otf__sample, .otf__launcher{
+	.otf__sample, .otf__launcher, .otf__active{
 		font-feature-settings: 'pnum' 1;
 	}
 }
