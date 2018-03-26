@@ -283,6 +283,15 @@ html, body, .scroll-content{
 
 	@include mq($bp_middle){
 		padding: 6*$gap $centering 4*$gap;
+
+		&--scripts,
+		&--languages,
+		&--styles,
+		&--comparison,
+		&--otf,
+		&--typetester{
+			margin-top: 8*$gap;
+		}
 	}
 
 	&:not(.footer, .over-the-folder){
@@ -574,8 +583,6 @@ html, body, .scroll-content{
 	}
 
 	&.show-img{
-
-
 		&:hover{
 			z-index: 2;
 			box-shadow: 0 0 25px rgba(157,157,157, .1);
@@ -909,7 +916,7 @@ html, body, .scroll-content{
 }
 
 .alphabet{
-	width: 20ch;
+	width: calc(20ch + 2rem);
 	// transform: translateY(-5rem);
 	// font-style: italic;
 	font-weight: 500;
@@ -918,15 +925,21 @@ html, body, .scroll-content{
 	word-wrap: break-word;
 	position: relative;
 	z-index: -1;
-	line-height: 1;
 	opacity: 0;
 	transition: opacity .4s 1.4s ease-out, transform .4s 1.2s ease-out;
+	background-color: rgba($c-bg, .7);
 	// transform: translate(0, -5rem);
 	margin-top: -3rem;
 	color: transparent;
+	padding: 1rem;
+
+
+	p{
+		line-height: 1.1;
+	}
 
 	@include mq($bp_desktopish){
-		margin-top: -6rem;
+		margin-top: -4rem;
 		font-size: 3.8vw;
 	}
 
@@ -1205,6 +1218,13 @@ html, body, .scroll-content{
 	// }
 }
 
+.comparison__caption{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 80%);
+	font-size: $f-micro;
+}
 
 // .comparison-toggles{
 // 	bottom: 0;
@@ -2075,6 +2095,11 @@ html, body, .scroll-content{
 	a{
 		color: inherit;
 		display: inline-block;
+		text-decoration: none;
+
+		&:hover{
+			color: $c-main;
+		}
 	}
 }
 
@@ -2179,8 +2204,9 @@ $track-shadow-blur: 1px !default;
 $track-shadow-color: rgba(0, 0, 0, .0) !default;
 $track-border-width: 0 !default;
 $track-border-color: #cfd8dc !default;
+$track-bg: linear-gradient($c-bg 48%, $c-grey-dark 48%, $c-grey-dark 51%, $c-bg 51%);
 
-$track-radius: 5px !default;
+$track-radius: 0 !default;
 $contrast: 5% !default;
 
 @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
@@ -2216,25 +2242,28 @@ $contrast: 5% !default;
     outline: 0;
 
     &::-webkit-slider-runnable-track {
-      background: lighten($track-color, $contrast);
+     background-image: $track-bg;
+
     }
 
     &::-ms-fill-lower {
-      background: $track-color;
+      background-image: $track-bg;
+
     }
 
     &::-ms-fill-upper {
-      background: lighten($track-color, $contrast);
+      background-image: $track-bg;
+
     }
   }
 
   &::-webkit-slider-runnable-track {
     @include track;
     @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-    background: $track-color;
-    border: $track-border-width solid $track-border-color;
+    background-image: $track-bg;
+    border: $track-border-width solid $c-bg;
     border-radius: $track-radius;
-    box-shadow: inset 0  0 0 12px $c-bg;
+    // box-shadow: inset 0 0 0 12px $c-bg, 0 0 0 2px $c-bg;
   }
 
   &::-webkit-slider-thumb {
@@ -2287,7 +2316,7 @@ $contrast: 5% !default;
 /* $OTF list
 ========================================================================== */
 .section--otf{
-	margin-top: 4*$gap;
+	margin-top: 8*$gap;
 }
 
 .otf-selector{
@@ -2663,6 +2692,10 @@ $contrast: 5% !default;
 	}
 }
 
+.supscript{
+	font-feature-settings: 'sups' 1;
+}
+
 .otf--fractions {
 		.otf__sample, .otf__launcher{
 		font-feature-settings: 'frac' 1;
@@ -2676,6 +2709,7 @@ $contrast: 5% !default;
 .otf--petit-caps {
 		.otf__sample, .otf__launcher, .otf__active{
 		font-feature-settings: 'pcap' 1;
+		line-height: 1;
 	}
 }
 .otf--old-forms {

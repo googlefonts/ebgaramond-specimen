@@ -363,6 +363,14 @@ button{
 
 	&:hover{
 	}
+
+	&--decorated{
+		text-decoration: underline !important;
+	}
+
+	&--no-decorated{
+		text-decoration: none;
+	}
 }
 
 @-webkit-keyframes scrollIn {
