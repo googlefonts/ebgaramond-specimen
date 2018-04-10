@@ -1,16 +1,5 @@
+
 $(document).ready(function(){
-
-	// var glyphs = $('.section--typetester');
-	// console.log(glyphs);
-	// glyphs.detach();
-	// $('.test').on('click', function(e){
-	// 	e.preventDefault();
-	// 	$('body').append(glyphs);
-	// });
-
-	$(document).on('mouseover', '.show-img', function(){
-		console.log('over img');
-	});
 
 	//Open menu on mobile version
 	$('.js-menu-mobile').on('click', function(e){
@@ -1054,7 +1043,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$(document).on('click', '.language__item',  function(){
+	$(document).on('click', '.language__item.active--hover',  function(){
 		$('.languages-list').toggleClass('opened');
 		$('.language__item').removeClass('opened').trigger('blur');
 		$(this).addClass('opened');
@@ -1134,7 +1123,6 @@ $(document).ready(function(){
 
 		$('.js-alphabet').on('click', function(){
 			// $(this).parent().addClass('filtering')
-			console.log($(this).data('letter'));
 			$(this).parent().attr('data-filter', $(this).data('letter'));
 			$('.languages-list').attr('data-view', $(this).data('letter'))
 		});
@@ -1401,7 +1389,6 @@ $('.js-otf-category').on('click', function(){
 
 var moveScroll;
 function doneResizing(){
-	console.log($('.nav__item--active').data('section'));
 	scrollbar.scrollTo(null, scrollbar.offset.y +$('.section--' + $('.nav__item--active').data('section')).offset().top , 1000);
 }
 $(window).on('resize', function(){
@@ -2002,26 +1989,34 @@ $(window).on('resize', function(){
 
 	window.onload = function(){
 
-		// var glyphs = function(){
-		// 	if($('.glyph').length != 0){
-		// 		var glyphTable = $('.glyph-table');
-		// 		glyphTable.detach();
-
-		// 		clearInterval(gettingGlyphs);
-
-		// 		$('.test').on('click', function(e){
-		// 			e.preventDefault();
-		// 			$('.glyphs-wrapper').addClass('glyph-view').append(glyphTable);
-		// 		});
-		// 	}
-		// }
-		// var gettingGlyphs = setInterval(glyphs, 1000);
 
 		// Deactivating spell checked on typetester element
 		$('.js-tt-text').attr("spellcheck",false);
 		// Cleaning OTF names in typetester
 		var OTFLabel = function(){
 			if($('.type-tester__features--optional  button').length != 0 ){
+
+				// $('.type-tester__features--optional  button, .type-tester__features--default  button').off('click').on('click', function(event){
+				// 	$('.js-tt-text').css({
+				// 		'font-size': $('.specimen-slider').val() + 'px'
+				// 	})
+				// })
+				$('.type-tester__features--optional  button, .type-tester__features--default  button').off('click').on('click', function(event){
+					var height = $('.js-tt-text').outerHeight();
+					if(changeBtn == true){
+						$('.js-tt-text').css({
+							opacity: 0,
+							height: height
+						})
+						window.setTimeout(function(){
+							$('.js-tt-text').css({
+								'font-size': $('.specimen-slider').val() + 'px',
+								opacity: 1,
+								height: ''
+							})
+						}, .001);
+					}
+				})
 				$('.type-tester__features--optional  button, .type-tester__features--default  button').each(function(){
 					var str = $(this).text();
 					str = str.substring(str.indexOf(":") + 2);
@@ -2209,14 +2204,15 @@ $(window).on('resize', function(){
 
 		//Fill with paragraphs
 		}else{
+
 			$('.js-tt-text').css({
-				fontSize: '21px'
+				fontSize: '22px'
 			});
 
-			$('.specimen-slider').val('21');
-			$('.specimen-slider').value = '21';
+			$('.specimen-slider').val('22');
+			$('.specimen-slider').value = '22';
 
-			$('.type-tester__label').text('21px');
+			$('.type-tester__label').text('22px');
 
 			proportionalLH();
 
@@ -2281,6 +2277,8 @@ $(window).on('resize', function(){
 	$( ".languages-list" ).load( "languages-list.html .languages-list > *", function(){
 		languages = $('.languages-list').detach();
 	});
+
+
 
 });
 
