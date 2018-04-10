@@ -866,7 +866,7 @@ $(document).ready(function(){
 				// 	'clip-path': 'inset(0 0 0 0)'
 				// })
 			}
-			$('.caption').text('Click to zoom it');
+			$('.caption').text('Click to zoom');
 			$(this).next().find('.caption').text('Click to slide');
 
 		}else{
@@ -875,7 +875,7 @@ $(document).ready(function(){
 				'clip-path': 'inset(0 0 0 ' + 50 + '%)'
 			});
 			$('.js-slider').val(50);
-			$('.caption').text('Click to zoom it');
+			$('.caption').text('Click to zoom');
 
 		}
 	})
