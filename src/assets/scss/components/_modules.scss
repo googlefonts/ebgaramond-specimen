@@ -295,13 +295,9 @@ html, body, .scroll-content{
 	}
 
 	&:not(.footer, .over-the-folder){
-		>* + *{
-			margin-top: 2*$gap;
-
-		}
 	}
 
-	&:not('over-the-folder'){
+	&:not(.over-the-folder){
 		a{
 			color: $c-main;
 		}
@@ -688,7 +684,10 @@ html, body, .scroll-content{
 	}
 	@media screen and (orientation:portrait){
 		margin-top: 5vw;
+	}
 
+	* + *{
+		margin-top: 2*$gap;
 	}
 }
 
@@ -1220,10 +1219,16 @@ html, body, .scroll-content{
 
 .comparison__caption{
 	position: absolute;
-	bottom: 0;
+	bottom: -2rem;
 	left: 50%;
 	transform: translate(-50%, 80%);
 	font-size: $f-micro;
+	width: 80%;
+	text-align: center;
+
+	@include mq ($bp_tabletish){
+		bottom: 0;
+	}
 }
 
 // .comparison-toggles{
@@ -2025,6 +2030,10 @@ html, body, .scroll-content{
 	}
 }
 
+[data-feature-tag="subs"],
+[data-feature-tag="sups"]{
+	display: none;
+}
 
 .open-type{
 	transition: transform .4s ease-out;
@@ -2587,6 +2596,7 @@ $contrast: 5% !default;
 
 	.otf--localized-forms &{
 		text-transform: uppercase;
+
 	}
 
 	.otf--aligned-proportional &, .otf--old-proportional &, .otf--petit-caps &{
@@ -2630,6 +2640,10 @@ $contrast: 5% !default;
 
 }
 
+.localiced-enabled.localiced-enabled{
+	fill: $c-main;
+}
+
 .otf--aligned-tabular{
 	.otf__inactive{
 		font-feature-settings: 'pnum' 1;
@@ -2655,6 +2669,18 @@ $contrast: 5% !default;
 		.otf__sample, .otf__launcher, .otf__active{
 		font-feature-settings: 'locl' 1;
 	}
+
+	svg{
+		width: 40vw;
+
+		>*{
+			fill: $c-text;
+		}
+	}
+}
+
+.localized-launcher.localized-launcher{
+	width: 3vw;
 }
 
 .otf--old-proportional {
@@ -3072,7 +3098,7 @@ $contrast: 5% !default;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
+
 
 		&::before{
 			content: '';
@@ -3115,6 +3141,8 @@ $contrast: 5% !default;
 		}
 
 		.active--hover &{
+			cursor: pointer;
+
 			&::before{
 				transform: scale(1);
 
@@ -3237,6 +3265,7 @@ $contrast: 5% !default;
 
 .languages-filter{
 	display: none;
+	font-size: 4.75vw;
 
 	.is-touchable &{
 		width: 100%;

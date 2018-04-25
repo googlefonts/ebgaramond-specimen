@@ -910,6 +910,7 @@ button{
 .florish{
 	width: 10rem;
 	stroke-width: 2px;
+	transform: translate(-1.5rem, -.5rem);
 
 	path, polyline{
 		stroke: $c-complementary !important;
