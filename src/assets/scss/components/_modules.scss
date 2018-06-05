@@ -2877,6 +2877,7 @@ $contrast: 5% !default;
 
 		.show-img .mask-img, .mask-img img{
 			width: 23vw ;
+			max-height: none;
 		}
 		h2{
 			font-size: 7.2vw;
