@@ -2830,7 +2830,6 @@ $contrast: 5% !default;
 
 	.show-img .mask-img, .mask-img img{
 		width: 100% ;
-		max-width: none ;
 	}
 
 	.about__img{
@@ -2876,8 +2875,8 @@ $contrast: 5% !default;
 			margin-left: 2*$gap;
 		}
 
-		.show-img .mask-img, img{
-			width: 23vw;
+		.show-img .mask-img, .mask-img img{
+			width: 23vw ;
 		}
 		h2{
 			font-size: 7.2vw;
