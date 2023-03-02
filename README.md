@@ -1,8 +1,30 @@
+# EB Garamond website
 
-# EB Garamond Specimen Site
+Welcome to the specimen showcase of the EB Garamond font, the revival of an eternal classic.
 
-This project showcases the EB Garamond font family. 
+`/src` contains the complete source website files for editing and changes.
 
-`/src` contains the complete source files for the website.
+`/docs` contains the compiled full site, you can check it too at <https://ashler.github.io/ebg-website>
 
-`/docs` contains the compiled output of the site, and this available live at <https://googlefonts.github.io/ebgaramond-specimen/>
+
+## Getting started
+
+First, clone the project and `cd` into the directory. Then run:
+
+```sh
+$ npm install
+```
+
+To compile down to HTML, CSS, and JavaScript and compress and move files (fonts and images):
+
+```sh
+$ gulp watch
+
+# Now serving at http://localhost:9000
+```
+
+To manually build the project into the `docs folder`:
+
+```sh
+$ gulp dist
+```
